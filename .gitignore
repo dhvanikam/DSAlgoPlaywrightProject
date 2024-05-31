@@ -5,3 +5,4 @@ tests-examples
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+cucumber-report.html
