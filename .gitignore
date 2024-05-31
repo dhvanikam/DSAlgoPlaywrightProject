@@ -6,3 +6,8 @@ tests-examples
 /blob-report/
 /playwright/.cache/
 cucumber-report.html
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/.github/workflows/
