@@ -15,6 +15,7 @@ Given('User launches the browser', async function () {
 
   When('User gives the correct DsAlgo portal URL', async function () {
     
+
     await this.page.goto("https://dsportalapp.herokuapp.com/home");
     this.homePage =await this.pomanager.getHomePage(); 
 
@@ -31,6 +32,9 @@ Given('User launches the browser', async function () {
     // non functional -->later
   });
 
+
+
+ 
   When('User clicks on SignIn link on Home Page', async function () {
     await this.homePage.clickSignInLink(); 
   });
@@ -43,6 +47,7 @@ Given('User launches the browser', async function () {
   When('User sees Registration link', function () {
     // non functional -->later
   });
+
 
   When('User clicks on Registration link', async function () {
     await this.homePage.clickRegisterLink();
