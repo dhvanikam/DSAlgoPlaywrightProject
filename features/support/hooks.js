@@ -18,7 +18,9 @@ Before({tags:"@array"},async function () {
   AfterStep( async function ({result}) {
     if (result.status === Status.FAILED) {
       const buffer = await this.page.screenshot();
-      await this.page.screenshot({ path: 'screenshot1.png' });
+    //await this.page.screenshot({ path: 'screenshot1.png' });
+      await this.page.screenshot({ path: 'screenshotdir/screenshot1.png' });
+
       this.attach(buffer.toString('base64'), 'base64:image/png');
       console.log("Screenshot logged")
     }
