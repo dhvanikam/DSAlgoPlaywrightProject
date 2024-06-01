@@ -4,12 +4,13 @@ const { POManager } = require('../../pageObjects/POManager');
 
 Before({tags:"@login"},async function () {
     console.log("i am first");
+    /*
     const browser = await playwright.chromium.launch({
       headless: false,
-  });
-  const context = await browser.newContext();
-  this.page =  await context.newPage();
-  this.pomanager = new POManager(this.page);
+    });
+    const context = await browser.newContext();
+    this.page =  await context.newPage();
+    this.pomanager = new POManager(this.page);*/
   });
 
   AfterStep( async function ({result}) {
@@ -22,6 +23,6 @@ Before({tags:"@login"},async function () {
     });
 
   After(async function () {
-    // await context.close();
-    // await browser.close();
+     /*await this.context.close();
+     await this.browser.close();*/
   });
