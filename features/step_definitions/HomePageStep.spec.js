@@ -15,8 +15,9 @@ Given('User launches the browser', async function () {
 
   When('User gives the correct DsAlgo portal URL', async function () {
     
-    this.page.goto("https://dsportalapp.herokuapp.com/home");
-    this.homePage = this.pomanager.getHomePage(); 
+
+    await this.page.goto("https://dsportalapp.herokuapp.com/home");
+    this.homePage =await this.pomanager.getHomePage(); 
 
   });
 
@@ -31,13 +32,15 @@ Given('User launches the browser', async function () {
     // non functional -->later
   });
 
-  When('User clicks on SignIn link', function () {
-    this.homePage.clickSignInLink();    
+
+
+ 
+  When('User clicks on SignIn link on Home Page', async function () {
+    await this.homePage.clickSignInLink(); 
   });
 
-  When('User clicks on SignIn link on Home Page', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+  Then('User lands on SignIn Page', async function () {
+     await expect(this.page).toHaveTitle(" Login ");
   });
  
 
@@ -45,8 +48,9 @@ Given('User launches the browser', async function () {
     // non functional -->later
   });
 
-  When('User clicks on Registration link', function () {
-    this.homePage.clickRegisterLink();
+
+  When('User clicks on Registration link', async function () {
+    await this.homePage.clickRegisterLink();
   });
 
   Then('User lands on Registration Page', function () {

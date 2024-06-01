@@ -1,5 +1,5 @@
 const {HomePage} = require('./HomePage.spec');
-const {LoginPage} = require('./LoginPage');
+const {LoginPage} = require('./LoginPage.spec');
 
 
 

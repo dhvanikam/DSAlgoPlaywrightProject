@@ -34,7 +34,7 @@ class HomePage{
 
     async clickSignInLink(){
         await this.signInLink.click();
-        waitForPageLoad();        
+       // waitForPageLoad();        
     }
 
     /*********** Module methods *****************/

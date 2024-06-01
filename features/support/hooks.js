@@ -2,7 +2,9 @@ const{Before,After,Status,AfterStep} = require('@cucumber/cucumber');
 const playwright = require('@playwright/test');
 const { POManager } = require('../../pageObjects/POManager');
 
-Before({tags:"@login"},async function () {
+let browser;
+
+Before({tags:"@array"},async function () {
     console.log("i am first");
     /*
     const browser = await playwright.chromium.launch({
@@ -23,6 +25,7 @@ Before({tags:"@login"},async function () {
     });
 
   After(async function () {
-     /*await this.context.close();
-     await this.browser.close();*/
+    // await context.close();
+    //await browser.close();
+    console.log("i am at last");
   });
