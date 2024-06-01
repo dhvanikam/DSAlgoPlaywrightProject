@@ -1,10 +1,17 @@
-const { LoginPage } = require('./LoginPage');
+const {HomePage} = require('./HomePage.spec');
+const {LoginPage} = require('./LoginPage.spec');
+
 
 
 class POManager {
     constructor(page) {
         this.page = page;
+        this.homePage = new HomePage(this.page);
         this.loginPage = new LoginPage(this.page);
+    }
+
+    getHomePage() {
+        return this.homePage;
     }
 
     getLoginPage() {
@@ -12,4 +19,4 @@ class POManager {
     }
 
 }
-module.exports = { POManager };
+module.exports = {POManager};
