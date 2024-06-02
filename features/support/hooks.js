@@ -2,13 +2,27 @@ const{Before,After,Status,AfterStep} = require('@cucumber/cucumber');
 const playwright = require('@playwright/test');
 const { POManager } = require('../../pageObjects/POManager');
 
+
 let browser;
+let context;
 
-Before(/*{tags:"@array"},*/async function () {
+// Before(/*{tags:"@array"},*/async function () {
+//     console.log("i am first");
+
+
+// });
+
+
+
+Before(/*{tags:"@stack"},*/async function () {
+  //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
     console.log("i am first");
-
-    /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
-
+  //   browser = await playwright.chromium.launch({
+  //     headless: false,
+  // });
+  // context = await browser.newContext();
+  // this.page =  await context.newPage();
+  // this.pomanager = new POManager(this.page); 
   });
 
   AfterStep( async function ({result}) {
@@ -24,8 +38,10 @@ Before(/*{tags:"@array"},*/async function () {
     }
     });
 
-  After(async function () {
-    // await context.close();
-    //await browser.close();
-    console.log("i am at last");
+  After(async function () {     
+    if(!browser || !context)
+    {    
+    //  await context.close();
+    //  await browser.close();
+    }
   });

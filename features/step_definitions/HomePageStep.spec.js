@@ -2,6 +2,7 @@ const{Given, When, Then} = require('@cucumber/cucumber');
 const{expect} = require('@playwright/test');
 const playwright = require('@playwright/test');
 const {POManager} = require('../../pageObjects/POManager');
+const config = require('../../playwright.config.js');
 
 
 Given('User launches the browser', async function () {
@@ -14,9 +15,8 @@ Given('User launches the browser', async function () {
   });
 
   When('User gives the correct DsAlgo portal URL', async function () {
-    await this.page.goto("https://dsportalapp.herokuapp.com/home");
+    await this.page.goto(config.use.baseURL);
     this.homePage =await this.pomanager.getHomePage(); 
-
   });
 
   Then('User lands on home page', async function () {
