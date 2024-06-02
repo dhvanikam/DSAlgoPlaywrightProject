@@ -5,7 +5,7 @@ const {POManager} = require('../../pageObjects/POManager');
 const config = require('../../playwright.config.js');
 
 
-Given('User launches the browser',{timeout:100*1000}, async function () {
+Given('User launches the browser', async function () {
     this.browser = await playwright.chromium.launch({
         headless: false,
       });
@@ -15,7 +15,7 @@ Given('User launches the browser',{timeout:100*1000}, async function () {
   });
 
   When('User gives the correct DsAlgo portal URL', async function () {
-    await this.page.goto(config.use.baseURL);//replace it with reading from config file
+    await this.page.goto(config.use.baseURL);
     this.homePage =await this.pomanager.getHomePage(); 
   });
 
@@ -31,7 +31,7 @@ Given('User launches the browser',{timeout:100*1000}, async function () {
     expect(await this.homePage.isSignInLinkVisible()).toBeTruthy();
   });
 
-  When('User clicks on SignIn link on Home Page',{timeout:100*1000}, async function () {
+  When('User clicks on SignIn link on Home Page', async function () {
     await this.homePage.clickSignInLink(); 
   });
 
