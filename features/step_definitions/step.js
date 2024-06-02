@@ -5,6 +5,7 @@ Given('User is on login page', async function () {
   const loginpage = this.pomanager.getLoginPage();
   await loginpage.goTo();
   await loginpage.goToAuthPage();
+  
 });
 
 When('User provide valid username {string} and password {string} and click on login button', async function (username, password) {

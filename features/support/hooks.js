@@ -2,26 +2,46 @@ const{Before,After,Status,AfterStep} = require('@cucumber/cucumber');
 const playwright = require('@playwright/test');
 const { POManager } = require('../../pageObjects/POManager');
 
-Before({tags:"@login"},async function () {
+
+let browser;
+let context;
+
+// Before(/*{tags:"@array"},*/async function () {
+//     console.log("i am first");
+
+
+// });
+
+
+
+Before(/*{tags:"@stack"},*/async function () {
+  //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
     console.log("i am first");
-    const browser = await playwright.chromium.launch({
-      headless: false,
-  });
-  const context = await browser.newContext();
-  this.page =  await context.newPage();
-  this.pomanager = new POManager(this.page);
+  //   browser = await playwright.chromium.launch({
+  //     headless: false,
+  // });
+  // context = await browser.newContext();
+  // this.page =  await context.newPage();
+  // this.pomanager = new POManager(this.page); 
   });
 
   AfterStep( async function ({result}) {
+
     if (result.status === Status.FAILED) {
       const buffer = await this.page.screenshot();
-      await this.page.screenshot({ path: 'screenshot1.png' });
+
+      let timestamp = new Date().getTime();
+      await this.page.screenshot({ path: "screenshotdir/screenshot1_"+timestamp+".png" });
+
       this.attach(buffer.toString('base64'), 'base64:image/png');
       console.log("Screenshot logged")
     }
     });
 
-  After(async function () {
-    // await context.close();
-    // await browser.close();
+  After(async function () {     
+    if(!browser || !context)
+    {    
+    //  await context.close();
+    //  await browser.close();
+    }
   });
