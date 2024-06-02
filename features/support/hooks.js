@@ -4,22 +4,20 @@ const { POManager } = require('../../pageObjects/POManager');
 
 let browser;
 
-Before({tags:"@array"},async function () {
+Before(/*{tags:"@array"},*/async function () {
     console.log("i am first");
-    /*
-    const browser = await playwright.chromium.launch({
-      headless: false,
-    });
-    const context = await browser.newContext();
-    this.page =  await context.newPage();
-    this.pomanager = new POManager(this.page);*/
+
+    /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
+
   });
 
   AfterStep( async function ({result}) {
+
     if (result.status === Status.FAILED) {
       const buffer = await this.page.screenshot();
-    //await this.page.screenshot({ path: 'screenshot1.png' });
-      await this.page.screenshot({ path: 'screenshotdir/screenshot1.png' });
+
+      let timestamp = new Date().getTime();
+      await this.page.screenshot({ path: "screenshotdir/screenshot1_"+timestamp+".png" });
 
       this.attach(buffer.toString('base64'), 'base64:image/png');
       console.log("Screenshot logged")

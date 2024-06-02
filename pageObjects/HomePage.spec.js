@@ -12,62 +12,61 @@ class HomePage{
         this.queueBtn = page.locator("a[href='queue']");
         this.treeBtn = page.locator("a[href='tree']");
         this.graphBtn = page.locator("a[href='graph']");
+        this.signOut = page.locator("a[href='/logout']");
     }
-
-    async waitForPageLoad(){
-        //await this.page.waitForLoadState('networkidle'); 
-        await page.waitForTimeout(
-            10000);
-    }
-
-    /*
-    async getPageTitle(){
-        return await this.page.title();
-    }*/
 
     /*********** Link action methods *****************/
 
+    async isRegisterLinkVisible(){
+        return await this.registerLink.isVisible();
+    }
+
     async clickRegisterLink(){
         await this.registerLink.click();
-        waitForPageLoad();    
+    }
+
+    async isSignInLinkVisible(){
+        return await this.signInLink.isVisible();
     }
 
     async clickSignInLink(){
         await this.signInLink.click();
-       // waitForPageLoad();        
     }
+
+    async isSignOutLinkVisible(){
+        return await this.signOut.isVisible();
+    }
+
+    async clickSignOutLink(){
+        await this.signOut.click();
+    }
+    
+    
 
     /*********** Module methods *****************/
 
-    async clickGetStartedO_DataStructure(){
+    async clickGetStartedOf_DataStructure(){
         await this.dsIntroBtn.click();
-        waitForPageLoad();        
     }
 
-    async clickGetStartedO_Array(){
+    async clickGetStartedOf_Array(){
         await this.arrayBtn.click();
-        waitForPageLoad();             
     }
 
-    async clickGetStartedOfLinkedList(){
+    async clickGetStartedOf_LinkedList(){
         await this.linkedListBtn.click();
-        waitForPageLoad();
     }
-    async clickGetStartedOfStack(){
+    async clickGetStartedOf_Stack(){
         await this.stackBtn.click();
-        waitForPageLoad();
     }
-    async clickGetStartedOfQueue(){
+    async clickGetStartedOf_Queue(){
         await this.queueBtn.click();
-        waitForPageLoad();
     }
-    async clickGetStartedOfTree(){
+    async clickGetStartedOf_Tree(){
         await this.treeBtn.click();
-        waitForPageLoad();
     }
-    async clickGetStartedOfGraph(){
+    async clickGetStartedOf_Graph(){
         await this.graphBtn.click();
-        waitForPageLoad();
     }
 
 }
