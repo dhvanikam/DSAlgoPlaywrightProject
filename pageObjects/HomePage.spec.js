@@ -46,18 +46,6 @@ class HomePage{
 
         //iterate and click on each options and get the error msg
         for (let i=0; i<optionCount; i++){
-            //console.log(await menuArray.nth(i).textContent());
-
-            /**
-             * ....Arrays
-            Linked List
-            Stack
-            Queue
-            Tree
-            Graph
-            ...
-             * note: why are there dots before Arrays and also at the end?? Team
-             */
 
             await menuArray.nth(i).click();
         
@@ -65,7 +53,7 @@ class HomePage{
                 let text = await this.errMsg.textContent()
                 errMsgArray.push(text.trim());
             }
-
+            
             //click on dropdown again
             //await clickOnDropDOwn(); //--> giving the error: ReferenceError: clickOnDropDOwn is not defined-->Team??
             await this.dropdownEle.click();

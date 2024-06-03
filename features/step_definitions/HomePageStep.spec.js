@@ -1,9 +1,9 @@
-const{Given, When, Then, DataTable} = require('@cucumber/cucumber');
+const{Given, When, Then} = require('@cucumber/cucumber');
 const{expect} = require('@playwright/test');
 const playwright = require('@playwright/test');
 const {POManager} = require('../../pageObjects/POManager');
 const config = require('../../playwright.config.js');
-
+const eleUtil = require('../../utils/util.spec.js');
 
 Given('User launches the browser', async function () {
     this.browser = await playwright.chromium.launch({
@@ -33,35 +33,13 @@ Given('User launches the browser', async function () {
     await expect.soft(this.homePage.getDefaultDropDownOptionEle()).toHaveText(defaultOptionText);
   });
 
-  //URL: https://www.aimeerivers.com/2023/03/09/data-tables-with-cucumber-js.html, https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
+
   Then('User sees {string} options with following options:', async function (expectedMenuCount, dataTable) { 
-    //console.log(Array.from(dataTable.raw()[0])); -->[ 'Arrays' ]    
-    //console.log(dataTable.raw()); //--> [ [Arrays],[Linked List],[Stack,Queue],[Tree],[Graph]]
-    //const x = dataTable.raw().rowHash(); dataTable.rowHash();
-    //console.log("dataTable type = " + typeof dataTable); //object
-    //const x = dataTable.raw()
-    // const keysValues = Array.from(x.values());
-    // console.log("array size = " + keysValues.length);
 
-    let strArr = [];
-    const keysValues = Array.from(dataTable.raw().values());
-
-        for(const e of keysValues){
-            strArr.push(String(e));
-        }
-    //console.log(keysValues); //--> [ [Arrays],[Linked List],[Stack,Queue],[Tree],[Graph]]
-    //console.log("keysValues type = " + typeof keysValues);
-    //const firstVal = String(keysValues[0]);
-    //console.log("firstVal type = " + typeof firstVal);
-    //console.log(dataTable.rows()); //it treats the first item in the table as header
-    //console.log("dataTable type = " + typeof x); //dataTable.rows() and dataTable.raw() = object
-   
-   //console.log("=======================================")
-  //  const actual = await this.homePage.getAllDropdownOptionMenuTexts();
-  //  console.log(actual);
-  //  console.log(typeof actual[0]);
   expect.soft(await this.homePage.getMenuOptionCount()).toBe(expectedMenuCount);
-    expect.soft(await this.homePage.getAllDropdownOptionMenuTexts()).toStrictEqual(strArr);
+
+  let strArr = eleUtil.convertObjectArrayToStringArray(dataTable.raw());
+  expect.soft(await this.homePage.getAllDropdownOptionMenuTexts()).toStrictEqual(strArr);
 
   });
 
@@ -79,6 +57,12 @@ Given('User launches the browser', async function () {
     expect(this.homePage.checkEveryOptionEquatesToValue(this.errMsgArray,expectedErrMsg)).toBeTruthy();
   });
 
+  /******************** Module Panel Steps ***********************/
+  Then('User sees {string} panels with following panel header:', function (expectedPanelCount, dataTable) {
+   
+    
+
+  });
 
 
 /********************* SignIn Link Steps ******************/

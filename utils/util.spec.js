@@ -1,10 +1,7 @@
 // @ts-check
-class util{
-
-    constructor(){};
-
+module.exports = {
+    
     convertObjectArrayToStringArray(objectArray){
-
         let strArr = [];
 
         const keysValues = Array.from(objectArray.values());
@@ -12,9 +9,7 @@ class util{
         for(const e of keysValues){
             strArr.push(String(e));
         }
+        return strArr;
     }
-
-    //return strArr; --> getting error:
-    /**Unexpected token. A constructor, method, accessor, or property was expected. */
 
 }

@@ -53,7 +53,6 @@ Scenario: Verify dropdown
     When User gives the correct DsAlgo portal URL
    	Then User sees dropdown menu with "Data Structures" option selected on home page  
 
-@dropdown @non-functional @positive
 Scenario: Verify dropdown has six options
     Given User launches the browser
     And User gives the correct DsAlgo portal URL 
@@ -77,19 +76,19 @@ Scenario: Verify Unsuccessful access of dropdown topic modules without signing i
 
 ################ Module Panels scenarios #####################    
 
-# @modulePanel @non-functional
-# Scenario: Verify presence of seven topic panels
-#     Given User launches the browser
-#     And User gives the correct DsAlgo portal URL
-#     When User gives the correct LMS portal URL
-#     Then User sees "7" panels with following panel header:
-   	#|Data Structures-Introduction|
-    #|Array|
-   	#|Linked List|
-   	#|Stack|
-   	#|Queue|
-   	#|Tree|
-   	#|Graph|
+@wip
+Scenario: Verify presence of seven topic panels
+    Given User launches the browser
+    And User gives the correct DsAlgo portal URL
+    When User gives the correct LMS portal URL
+    Then User sees "7" panels with following panel header:
+   	|Data Structures-Introduction|
+    |Array|
+   	|Linked List|
+   	|Stack|
+   	|Queue|
+   	|Tree|
+   	|Graph|
 
 #@modulePanel @negative
 # Scenario: Verify Unsuccessful access of topic panels without signing in
