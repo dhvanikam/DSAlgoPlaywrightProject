@@ -5,8 +5,8 @@ const {LoginPage} = require('./LoginPage.spec');
 class POManager {
     constructor(page) {
         this.page = page;
-        this.homePage = new HomePage(this.page);
-        this.loginPage = new LoginPage(this.page);
+        this.homePage = new HomePage(this.page,this);
+        this.loginPage = new LoginPage(this.page,this);
         this.stackPage=null;
     //    this.queuePage = new QueuePage(this.page);
         
@@ -25,15 +25,15 @@ class POManager {
     {    if(!this.stackPage)
         {
             const {StackPage}=require('./StackPage.spec'); 
-            this.stackPage=new StackPage(this.page);
+            this.stackPage=new StackPage(this.page,this);
         }        
         return this.stackPage;
     }
 
+
     // getQueuePage() {
     //     return this.queuePage;
     // }
-
 
 }
 module.exports = {POManager};

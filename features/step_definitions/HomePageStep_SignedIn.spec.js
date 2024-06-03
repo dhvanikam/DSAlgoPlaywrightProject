@@ -32,7 +32,7 @@ When('User clicks on Get Started button of Data Structures-Introduction module',
   });
 
   When('User clicks on Get Started button of Stack module', async function () {
-    await this.homePage.clickGetStartedOf_Stack();
+    this.stackPage=await this.homePage.clickGetStartedOf_Stack();
   }); 
 
   Then('User is able to go to Stack page', async function () {

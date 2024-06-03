@@ -4,9 +4,10 @@ const config = require('../playwright.config.js');
 
 class StackPage{
 
-  constructor(page)
+  constructor(page,pommanager)
   {
     this.page=page;
+    this.pommanager = pommanager;
     //locators
     this.username=page.locator('[name="username"]');
     this.password=page.locator("[name='password']");
@@ -33,7 +34,7 @@ class StackPage{
     await this.username.fill(username);
     await this.password.fill(password);      
     await this.submitButton.click();   
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('networkidle');    
   }  
   async successLoginTextCheck(successLoginTextStr) {
     const successText= await this.successLoginText.textContent();  
@@ -78,8 +79,6 @@ async enterCodeInTryEditor(pythonCode){
   return actualOutput;
 }
 
-
-
 async verifyUrl(expectedUrl)
 {
     const currentUrl = await this.page.url();
@@ -94,14 +93,10 @@ async enterInvalidCodeInTryEditor(invalidPythonCode)
 async acceptAlert()
 {
   this.page.on("dialog", async (dialog)=>
-  {
-    const message = dialog.message();
-    console.log(message);
+  {    
     await dialog.accept();
-  })
-  
-  await this.tryEditorButton.click();
-  
+  })  
+  await this.tryEditorButton.click();  
 }
 
 async logOut()

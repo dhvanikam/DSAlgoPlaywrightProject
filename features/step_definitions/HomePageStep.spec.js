@@ -15,8 +15,9 @@ Given('User launches the browser', async function () {
   });
 
   When('User gives the correct DsAlgo portal URL', async function () {
-    await this.page.goto(config.use.baseURL);
+    //await this.page.goto(config.use.baseURL);
     this.homePage =await this.pomanager.getHomePage(); 
+    await this.homePage.goToUrl();
   });
 
   Then('User lands on home page', async function () {
@@ -81,7 +82,7 @@ Given('User launches the browser', async function () {
   });
 
   When('User clicks on SignIn link on Home Page', async function () {
-    await this.homePage.clickSignInLink(); 
+    this.loginPage=await this.homePage.clickSignInLink(); 
   });
 
   Then('User lands on SignIn Page', async function () {

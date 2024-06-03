@@ -23,6 +23,7 @@ Scenario: Verify user can navigate to Stack page from Home Page
 	When User clicks on Get Started button of Stack module
    	Then User is able to go to Stack page
 
+@wip
 Scenario: Verify user can navigate to Queue page from Home Page
 	When User clicks on Get Started button of Queue module
    	Then User is able to go to Queue page

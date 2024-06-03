@@ -1,29 +1,49 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
-
+const playwright = require('@playwright/test');
+const {POManager} = require('../../pageObjects/POManager');
+const config = require('../../playwright.config.js');
 
 Given('The user is on Signin page of DS Algo portal', async function () {  
   this.stackPage=this.pomanager.getStackPage();
   await this.stackPage.goToUrl();  
 });
-When('The user enter valid {string} and {string} credential and click signInButton', async function (username, password) {
-  await this.stackPage.loginValidCredentials(username, password); 
-});
-Then('The user redirected to homepage and have {string}', async function (successLoginText) {
-  await this.stackPage.successLoginTextCheck(successLoginText); 
+
+
+Given('User launches the browserr', async function () {
+  browser = await playwright.chromium.launch({
+      headless: false,
+    });
+    context = await browser.newContext({
+      storageState:"./loginauth.json"
+    });
+    this.page =  await context.newPage();
+    this.pomanager = new POManager(this.page);
 });
 
-When('The user selects the stack option from the dropdown in the homepage',async function () {
-  await this.stackPage.selectStackOption();  
+When('User gives the correct DsAlgo portal URLl', async function () {
+  await this.page.goto(config.use.baseURL);
+  await this.page.waitForTimeout(2000);
+  this.homePage =await this.pomanager.getHomePage(); 
 });
+// When('The user enter valid {string} and {string} credential and click signInButton', async function (username, password) {
+//   await this.stackPage.loginValidCredentials(username, password); 
+// });
+// Then('The user redirected to homepage and have {string}', async function (successLoginText) {
+//   await this.stackPage.successLoginTextCheck(successLoginText); 
+// });
 
-Then('The user is directed to Stack Page', async function () {
-  this.stackPage=this.pomanager.getStackPage();
-  await this.stackPage.verifyStackPageUrl();   
-});
+// When('The user selects the stack option from the dropdown in the homepage',async function () {
+//   await this.stackPage.selectStackOption();  
+// });
+
+// Then('The user is directed to Stack Page', async function () {
+//   this.stackPage=this.pomanager.getStackPage();
+//   await this.stackPage.verifyStackPageUrl();   
+// });
 
 When('The user clicks on the {string} link', async function (menuOption) {
-  this.stackPage=this.pomanager.getStackPage();
+  //this.stackPage=this.pomanager.getStackPage();
   await this.stackPage.clickMenuOption(menuOption); 
 });
 
