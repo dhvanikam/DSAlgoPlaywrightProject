@@ -1,5 +1,5 @@
 const{Before,After,Status,AfterStep} = require('@cucumber/cucumber');
-
+//const globalSetup = require('../../global-setup'); // Adjust the path if needed
 
 let browser;
 let context;
@@ -12,7 +12,7 @@ let context;
 
 
 
-Before(/*{tags:"@stack"},*/async function () {
+Before({tags:'(not @logIn) or (not @RegisterPageTest)',timeout: 100*1000},async function () {
   //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
     console.log("inside Before Hook");
 

@@ -1,11 +1,13 @@
+
 const elementUtil = require('../utils/elementUtil.spec');
+const config = require('../../DSAlgoPlaywrightProject/playwright.config'); //Changes made by suba
 
 class HomePage{
 
-    constructor(page){
+    constructor(page,pommanager){
         this.page = page;
-
         //dropdown locators
+        this.pommanager = pommanager;
         this.textLogo = page.locator(".navbar-brand");
         this.dropdownEle = page.locator(".dropdown");
         this.defaultDropdownOption = page.locator(".nav-link.dropdown-toggle");
@@ -102,6 +104,11 @@ class HomePage{
 
     /*********** Link action methods *****************/
 
+  async goToUrl() 
+  {  
+   await this.page.goto(config.use.baseURL);
+  }
+
     async isRegisterLinkVisible(){
         return await this.registerLink.isVisible();
     }
@@ -116,6 +123,7 @@ class HomePage{
 
     async clickSignInLink(){
         await this.signInLink.click();
+        return this.pommanager.getLoginPage();
     }
 
     async isSignOutLinkVisible(){
@@ -135,7 +143,7 @@ class HomePage{
     }
 
     async clickGetStartedOf_Array(){
-        await this.arrayBtn.click();
+        await this.arrayBtn.click();        
     }
 
     async clickGetStartedOf_LinkedList(){
@@ -143,6 +151,7 @@ class HomePage{
     }
     async clickGetStartedOf_Stack(){
         await this.stackBtn.click();
+        return this.pommanager.getStackPage();
     }
     async clickGetStartedOf_Queue(){
         await this.queueBtn.click();

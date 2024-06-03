@@ -8,9 +8,9 @@ const { POManager } = require('../../pageObjects/POManager');
 
   When('User enters valid username {string} and password {string} and clicks on login button', async function (username, password) {
 
-    this.loginPage = await this.pomanager.getLoginPage();
+    //this.loginPage = await this.pomanager.getLoginPage();
    // const loginPage = await this.pomanager.getLoginPage();
-    await this.loginPage.validLogin(username, password);
+   this.homePage=await this.loginPage.validLogin(username, password);
   });
 
   Then('User navigates to the home page with a message {string}', async function (msg) {
