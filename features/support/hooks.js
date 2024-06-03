@@ -12,7 +12,7 @@ let context;
 
 
 
-Before(/*{tags:"@stack"},*/async function ({event}) {
+Before(/*{tags:"@stack"},*/async function () {
   //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
     console.log("inside Before Hook");
 

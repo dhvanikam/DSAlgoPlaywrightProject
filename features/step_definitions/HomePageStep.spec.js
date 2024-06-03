@@ -3,7 +3,7 @@ const{expect} = require('@playwright/test');
 const playwright = require('@playwright/test');
 const {POManager} = require('../../pageObjects/POManager');
 const config = require('../../playwright.config.js');
-const eleUtil = require('../../utils/util.spec.js');
+const util = require('../../utils/util.spec.js');
 
 Given('User launches the browser', async function () {
     this.browser = await playwright.chromium.launch({
@@ -38,7 +38,7 @@ Given('User launches the browser', async function () {
 
   expect.soft(await this.homePage.getMenuOptionCount()).toBe(parseInt(expectedMenuCount));
 
-  let tableArr = eleUtil.convertObjectArrayToStringArray(dataTable.raw());
+  let tableArr = util.convertObjectArrayToStringArray(dataTable.raw());
   expect.soft(await this.homePage.getAllDropdownOptionMenuTexts()).toStrictEqual(tableArr);
 
   });
@@ -54,7 +54,7 @@ Given('User launches the browser', async function () {
 
   Then('User sees {string} message each time', function (expectedErrMsg) {
     
-    expect(eleUtil.checkActualEveryErrMsgToEquate(this.errMsgArray,expectedErrMsg)).toBeTruthy();
+    expect(util.checkActualEveryErrMsgToEquate(this.errMsgArray,expectedErrMsg)).toBeTruthy();
   });
 
   /******************** Module Panel Steps ***********************/
@@ -62,7 +62,7 @@ Given('User launches the browser', async function () {
    
     expect.soft(await this.homePage.getAllModuleCount()).toBe(parseInt(expectedPanelCount));
 
-    let tableArr = eleUtil.convertObjectArrayToStringArray(dataTable.raw());
+    let tableArr = util.convertObjectArrayToStringArray(dataTable.raw());
     expect.soft(await this.homePage.getAllModuleNames()).toStrictEqual(tableArr);
   });
 
@@ -71,7 +71,7 @@ Given('User launches the browser', async function () {
   });
 
   Then('User sees {string} error message each time', function (expectedErrMsg) {
-    expect(eleUtil.checkActualEveryErrMsgToEquate(this.errMsgArray,expectedErrMsg)).toBeTruthy();
+    expect(util.checkActualEveryErrMsgToEquate(this.errMsgArray,expectedErrMsg)).toBeTruthy();
   });
 
 /********************* SignIn Link Steps ******************/

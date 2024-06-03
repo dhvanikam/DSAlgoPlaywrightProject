@@ -1,3 +1,5 @@
+const elementUtil = require('../utils/elementUtil.spec');
+
 class HomePage{
 
     constructor(page){
@@ -36,7 +38,8 @@ class HomePage{
 
     /*********** DropDown methods *****************/
     async isDropDOwnVisible(){
-        return await this.dropdownEle.isVisible();
+        return elementUtil.isELementVisible(this.dropdownEle);
+        
     }
 
     getDefaultDropDownOptionEle(){
@@ -44,8 +47,8 @@ class HomePage{
     }
 
     async clickOnDropDOwn(){
-        await this.dropdownEle.click();
-        return await this.dropdownMenuSection.isVisible();
+        await elementUtil.clickLocator(this.dropdownEle);
+        return elementUtil.isELementVisible(this.dropdownMenuSection);
     }
 
     async clickEachOptionAndGetErrMsg(){
@@ -175,10 +178,8 @@ class HomePage{
         let btnArray = await this.allGetStartedBtn;
         const btnCount = await btnArray.count();
 
-        //initializa an empty array
         let errMsgArray=[];        
 
-        //iterate and click on each options and get the error msg
         for (let i=0; i<btnCount; i++){
 
             await btnArray.nth(i).click();

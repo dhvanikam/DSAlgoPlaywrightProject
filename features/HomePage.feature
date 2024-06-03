@@ -53,6 +53,7 @@ Scenario: Verify dropdown
     When User gives the correct DsAlgo portal URL
    	Then User sees dropdown menu with "Data Structures" option selected on home page  
 
+
 Scenario: Verify dropdown has six options
     Given User launches the browser
     And User gives the correct DsAlgo portal URL 
