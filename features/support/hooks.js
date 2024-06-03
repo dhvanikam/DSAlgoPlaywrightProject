@@ -1,6 +1,4 @@
 const{Before,After,Status,AfterStep} = require('@cucumber/cucumber');
-const playwright = require('@playwright/test');
-const { POManager } = require('../../pageObjects/POManager');
 
 
 let browser;
@@ -16,7 +14,8 @@ let context;
 
 Before(/*{tags:"@stack"},*/async function () {
   //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
-    console.log("i am first");
+    console.log("inside Before Hook");
+
   //   browser = await playwright.chromium.launch({
   //     headless: false,
   // });

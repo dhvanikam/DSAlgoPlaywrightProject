@@ -1,13 +1,18 @@
 const{Given, When, Then} = require('@cucumber/cucumber');
 const{expect} = require('@playwright/test');
 const {POManager} = require('../../pageObjects/POManager');
+const constants = require('../../utils/appConstants.spec.js');
+
+
 
 When('User clicks on Get Started button of Data Structures-Introduction module', async function () {
     await this.homePage.clickGetStartedOf_DataStructure();
   });
 
   Then('User is able to go to Data Structures-Introduction page', async function () {
-    await expect(this.page).toHaveTitle("Data Structures-Introduction");
+    await expect(this.page).toHaveTitle(constants.DS_PAGE_TITLE);
+    //await expect(this.page).toHaveTitle("Data Structures-Introduction");
+
   });
 
   When('User clicks on Get Started button of Array module', async function () {
@@ -15,7 +20,7 @@ When('User clicks on Get Started button of Data Structures-Introduction module',
   });
 
   Then('User is able to go to Array page', async function () {
-    await expect(this.page).toHaveTitle("Array");
+    await expect(this.page).toHaveTitle(constants.ARRAY_PAGE_TITLE);
   });
 
   When('User clicks on Get Started button of Linked List module', async function () {
@@ -23,7 +28,7 @@ When('User clicks on Get Started button of Data Structures-Introduction module',
   });
 
   Then('User is able to go to Linked List page', async function () {
-    await expect(this.page).toHaveTitle("Linked List");
+    await expect(this.page).toHaveTitle(constants.LINKEDLIST_PAGE_TITLE);
   });
 
   When('User clicks on Get Started button of Stack module', async function () {
@@ -31,7 +36,7 @@ When('User clicks on Get Started button of Data Structures-Introduction module',
   }); 
 
   Then('User is able to go to Stack page', async function () {
-    await expect(this.page).toHaveTitle("Stack");
+    await expect(this.page).toHaveTitle(constants.STACK_PAGE_TITLE);
   });
 
   When('User clicks on Get Started button of Queue module', async function () {
@@ -39,7 +44,7 @@ When('User clicks on Get Started button of Data Structures-Introduction module',
   });
 
   Then('User is able to go to Queue page', async function () {
-    await expect(this.page).toHaveTitle("Queue");
+    await expect(this.page).toHaveTitle(constants.QUEUE_PAGE_TITLE);
   });
 
   When('User clicks on Get Started button of Tree module', async function () {
@@ -47,7 +52,7 @@ When('User clicks on Get Started button of Data Structures-Introduction module',
   });  
 
   Then('User is able to go to Tree page', async function () {
-    await expect(this.page).toHaveTitle("Tree");
+    await expect(this.page).toHaveTitle(constants.TREE_PAGE_TITLE);
   });
 
   When('User clicks on Get Started button of Graph module', async function () {
@@ -55,7 +60,7 @@ When('User clicks on Get Started button of Data Structures-Introduction module',
   });
 
   Then('User is able to go to Graph page', async function () {
-    await expect(this.page).toHaveTitle("Graph");
+    await expect(this.page).toHaveTitle(constants.GRAPH_PAGE_TITLE);
   });
 
   Then('User can see signed out link on Home Page', async function () {
