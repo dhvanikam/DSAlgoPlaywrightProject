@@ -17,3 +17,4 @@ When('User provide valid username {string} and password {string} and click on lo
 Then('User should able to see successful login', async function () {
   await expect(this.page).toHaveTitle("The Internet");
 });
+
