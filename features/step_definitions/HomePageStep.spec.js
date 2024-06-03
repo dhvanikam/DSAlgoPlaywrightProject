@@ -36,10 +36,10 @@ Given('User launches the browser', async function () {
 
   Then('User sees {string} options with following options:', async function (expectedMenuCount, dataTable) { 
 
-  expect.soft(await this.homePage.getMenuOptionCount()).toBe(expectedMenuCount);
+  expect.soft(await this.homePage.getMenuOptionCount()).toBe(parseInt(expectedMenuCount));
 
-  let strArr = eleUtil.convertObjectArrayToStringArray(dataTable.raw());
-  expect.soft(await this.homePage.getAllDropdownOptionMenuTexts()).toStrictEqual(strArr);
+  let tableArr = eleUtil.convertObjectArrayToStringArray(dataTable.raw());
+  expect.soft(await this.homePage.getAllDropdownOptionMenuTexts()).toStrictEqual(tableArr);
 
   });
 
@@ -54,16 +54,25 @@ Given('User launches the browser', async function () {
 
   Then('User sees {string} message each time', function (expectedErrMsg) {
     
-    expect(this.homePage.checkEveryOptionEquatesToValue(this.errMsgArray,expectedErrMsg)).toBeTruthy();
+    expect(eleUtil.checkActualEveryErrMsgToEquate(this.errMsgArray,expectedErrMsg)).toBeTruthy();
   });
 
   /******************** Module Panel Steps ***********************/
-  Then('User sees {string} panels with following panel header:', function (expectedPanelCount, dataTable) {
+  Then('User sees {string} panels with following panel header:', async function (expectedPanelCount, dataTable) {
    
-    
+    expect.soft(await this.homePage.getAllModuleCount()).toBe(parseInt(expectedPanelCount));
 
+    let tableArr = eleUtil.convertObjectArrayToStringArray(dataTable.raw());
+    expect.soft(await this.homePage.getAllModuleNames()).toStrictEqual(tableArr);
   });
 
+  When('User clicks Get Started button of every topic panels', async function () {
+    this.errMsgArray = await this.homePage.clickGetStartedBtnEachModuleAndGetErrMsg();
+  });
+
+  Then('User sees {string} error message each time', function (expectedErrMsg) {
+    expect(eleUtil.checkActualEveryErrMsgToEquate(this.errMsgArray,expectedErrMsg)).toBeTruthy();
+  });
 
 /********************* SignIn Link Steps ******************/
 

@@ -76,11 +76,9 @@ Scenario: Verify Unsuccessful access of dropdown topic modules without signing i
 
 ################ Module Panels scenarios #####################    
 
-@wip
 Scenario: Verify presence of seven topic panels
     Given User launches the browser
     And User gives the correct DsAlgo portal URL
-    When User gives the correct LMS portal URL
     Then User sees "7" panels with following panel header:
    	|Data Structures-Introduction|
     |Array|
@@ -90,9 +88,9 @@ Scenario: Verify presence of seven topic panels
    	|Tree|
    	|Graph|
 
-#@modulePanel @negative
-# Scenario: Verify Unsuccessful access of topic panels without signing in
-#     Given User launches the browser
-#     And User gives the correct DsAlgo portal URL	
-#     When User clicks Get Started button of every topic panels
-#     Then User sees "You are not logged in" message each time
+
+Scenario: Verify Unsuccessful access of topic panels without signing in
+    Given User launches the browser
+    And User gives the correct DsAlgo portal URL	
+    When User clicks Get Started button of every topic panels
+    Then User sees "You are not logged in" error message each time

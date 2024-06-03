@@ -2,15 +2,23 @@ class HomePage{
 
     constructor(page){
         this.page = page;
+
+        //dropdown locators
         this.textLogo = page.locator(".navbar-brand");
         this.dropdownEle = page.locator(".dropdown");
         this.defaultDropdownOption = page.locator(".nav-link.dropdown-toggle");
         this.dropdownMenuSection = page.locator(".dropdown-menu.show");
         this.menuOptions = page.locator(".dropdown-menu.show a");
+
+        //error msg locator
         this.errMsg = page.locator("div[role='alert']");
 
+        //link locators
         this.registerLink = page.locator("//a[normalize-space()='Register']");
         this.signInLink = page.locator("//a[normalize-space()='Sign in']");
+        this.signOut = page.locator("a[href='/logout']");
+
+        //get started buttons for each modules
         this.dsIntroBtn = page.locator("//a[@href='data-structures-introduction']");
         this.arrayBtn = page.locator("//a[@href='array']");
         this.linkedListBtn = page.locator("a[href='linked-list']");
@@ -18,7 +26,12 @@ class HomePage{
         this.queueBtn = page.locator("a[href='queue']");
         this.treeBtn = page.locator("a[href='tree']");
         this.graphBtn = page.locator("a[href='graph']");
-        this.signOut = page.locator("a[href='/logout']");
+
+        this.allGetStartedBtn = page.locator(".card-body.d-flex.flex-column a");
+
+        //module name locator
+        this.moduleTexts = page.locator('.card-title');
+        
     }
 
     /*********** DropDown methods *****************/
@@ -63,11 +76,6 @@ class HomePage{
         return errMsgArray;
     }
 
-    checkEveryOptionEquatesToValue(expArray,expectedText){
-        let arr = expArray;
-        return arr.every((e) => e===expectedText); 
-    }
-
     async getAllDropdownOptionMenuTexts(){
 
         let menuArray = await this.menuOptions;
@@ -85,7 +93,7 @@ class HomePage{
         let menuArray = await this.menuOptions;
         const count = await menuArray.count();
 
-        return String(count);
+        return count;
     }
 
 
@@ -143,6 +151,50 @@ class HomePage{
         await this.graphBtn.click();
     }
 
+
+    async getAllModuleNames(){
+
+        let moduleArray = await this.moduleTexts;
+        const moduleCount = await moduleArray.count();
+
+        let moduleTextArray=[]; 
+        for (let i=0; i<moduleCount; i++){
+            let text = await moduleArray.nth(i).textContent();
+            moduleTextArray.push(text.trim());
+        }
+        return moduleTextArray;
+    }
+
+    async getAllModuleCount(){
+        return await this.moduleTexts.count();
+    }
+
+    async clickGetStartedBtnEachModuleAndGetErrMsg(){
+
+        //get all getStarted Btns in an array
+        let btnArray = await this.allGetStartedBtn;
+        const btnCount = await btnArray.count();
+
+        //initializa an empty array
+        let errMsgArray=[];        
+
+        //iterate and click on each options and get the error msg
+        for (let i=0; i<btnCount; i++){
+
+            await btnArray.nth(i).click();
+        
+            if(await this.errMsg.isVisible()){
+                let text = await this.errMsg.textContent()
+                errMsgArray.push(text.trim());
+            }
+
+            //reinitialize
+            btnArray = await this.allGetStartedBtn;
+
+          } 
+        
+        return errMsgArray;
+    }
 }
 
 module.exports = {HomePage};

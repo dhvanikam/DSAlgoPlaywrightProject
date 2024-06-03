@@ -1,6 +1,6 @@
 // @ts-check
 module.exports = {
-    
+
     convertObjectArrayToStringArray(objectArray){
         let strArr = [];
 
@@ -10,6 +10,11 @@ module.exports = {
             strArr.push(String(e));
         }
         return strArr;
+    },
+
+    checkActualEveryErrMsgToEquate(expArray,expectedText){
+        let arr = expArray;
+        return arr.every((e) => e===expectedText); 
     }
 
 }
