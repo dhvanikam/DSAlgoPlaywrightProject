@@ -1,11 +1,11 @@
 {
   "name": "dsalgoplaywrightproject",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is POM Framework with Playwright",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
-  "author": "",
+  "author": "JS-Playwright Cruisers",
   "license": "ISC",
   "devDependencies": {
     "@cucumber/cucumber": "^10.8.0",
