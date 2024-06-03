@@ -3,6 +3,12 @@ class HomePage{
     constructor(page){
         this.page = page;
         this.textLogo = page.locator(".navbar-brand");
+        this.dropdownEle = page.locator(".dropdown");
+        this.defaultDropdownOption = page.locator(".nav-link.dropdown-toggle");
+        this.dropdownMenuSection = page.locator(".dropdown-menu.show");
+        this.menuOptions = page.locator(".dropdown-menu.show a");
+        this.errMsg = page.locator("div[role='alert']");
+
         this.registerLink = page.locator("//a[normalize-space()='Register']");
         this.signInLink = page.locator("//a[normalize-space()='Sign in']");
         this.dsIntroBtn = page.locator("//a[@href='data-structures-introduction']");
@@ -14,6 +20,86 @@ class HomePage{
         this.graphBtn = page.locator("a[href='graph']");
         this.signOut = page.locator("a[href='/logout']");
     }
+
+    /*********** DropDown methods *****************/
+    async isDropDOwnVisible(){
+        return await this.dropdownEle.isVisible();
+    }
+
+    getDefaultDropDownOptionEle(){
+        return this.defaultDropdownOption;
+    }
+
+    async clickOnDropDOwn(){
+        await this.dropdownEle.click();
+        return await this.dropdownMenuSection.isVisible();
+    }
+
+    async clickEachOptionAndGetErrMsg(){
+
+        //get all the options in an array
+        let menuArray = await this.menuOptions;
+        const optionCount = await menuArray.count();
+
+        //initializa an empty array
+        let errMsgArray=[];        
+
+        //iterate and click on each options and get the error msg
+        for (let i=0; i<optionCount; i++){
+            //console.log(await menuArray.nth(i).textContent());
+
+            /**
+             * ....Arrays
+            Linked List
+            Stack
+            Queue
+            Tree
+            Graph
+            ...
+             * note: why are there dots before Arrays and also at the end?? Team
+             */
+
+            await menuArray.nth(i).click();
+        
+            if(await this.errMsg.isVisible()){
+                let text = await this.errMsg.textContent()
+                errMsgArray.push(text.trim());
+            }
+
+            //click on dropdown again
+            //await clickOnDropDOwn(); //--> giving the error: ReferenceError: clickOnDropDOwn is not defined-->Team??
+            await this.dropdownEle.click();
+
+          } 
+        
+        return errMsgArray;
+    }
+
+    checkEveryOptionEquatesToValue(expArray,expectedText){
+        let arr = expArray;
+        return arr.every((e) => e===expectedText); 
+    }
+
+    async getAllDropdownOptionMenuTexts(){
+
+        let menuArray = await this.menuOptions;
+        const optionCount = await menuArray.count();
+
+        let optionMenuArray=[]; 
+        for (let i=0; i<optionCount; i++){
+            let text = await menuArray.nth(i).textContent();
+            optionMenuArray.push(text.trim());
+        }
+        return optionMenuArray;
+    }
+
+    async getMenuOptionCount(){
+        let menuArray = await this.menuOptions;
+        const count = await menuArray.count();
+
+        return String(count);
+    }
+
 
     /*********** Link action methods *****************/
 
