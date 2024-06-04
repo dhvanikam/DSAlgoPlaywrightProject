@@ -1,6 +1,7 @@
 const{Before,After,Status,AfterStep} = require('@cucumber/cucumber');
 //const globalSetup = require('../../global-setup'); // Adjust the path if needed
-
+const playwright = require('@playwright/test');
+const { POManager } = require('../../pageObjects/POManager');
 let browser;
 let context;
 
@@ -10,37 +11,34 @@ let context;
 
 // });
 
-
-
-Before({tags:'(not @logIn) or (not @RegisterPageTest)',timeout: 100*1000},async function () {
+Before({timeout: 100*1000},async function () {
   //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
-    console.log("inside Before Hook");
-
-  //   browser = await playwright.chromium.launch({
-  //     headless: false,
-  // });
-  // context = await browser.newContext();
-  // this.page =  await context.newPage();
-  // this.pomanager = new POManager(this.page); 
+  //   console.log("inside Before Hook");
+    browser = await playwright.chromium.launch({
+      headless: false,
+  });
+  context = await browser.newContext();
+  this.page =  await context.newPage();
+  this.pomanager = new POManager(this.page);
   });
 
-  AfterStep( async function ({result}) {
 
-    if (result.status === Status.FAILED) {
-      const buffer = await this.page.screenshot();
+AfterStep(async function ({ result }) {
 
-      let timestamp = new Date().getTime();
-      await this.page.screenshot({ path: "screenshotdir/screenshot1_"+timestamp+".png" });
+  if (result.status === Status.FAILED) {
+    const buffer = await this.page.screenshot();
 
-      this.attach(buffer.toString('base64'), 'base64:image/png');
-      console.log("Screenshot logged")
-    }
-    });
+    let timestamp = new Date().getTime();
+    await this.page.screenshot({ path: "screenshotdir/screenshot1_" + timestamp + ".png" });
 
-  After(async function () {     
-    if(!browser || !context)
-    {    
+    this.attach(buffer.toString('base64'), 'base64:image/png');
+    console.log("Screenshot logged")
+  }
+});
+
+After(async function () {
+  if (!browser || !context) {
     //  await context.close();
     //  await browser.close();
-    }
-  });
+  }
+});

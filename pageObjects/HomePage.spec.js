@@ -143,7 +143,8 @@ class HomePage{
     }
 
     async clickGetStartedOf_Array(){
-        await this.arrayBtn.click();        
+        await this.arrayBtn.click();
+        return this.pommanager.getArrayPage(); //Added by Dhvani      
     }
 
     async clickGetStartedOf_LinkedList(){
