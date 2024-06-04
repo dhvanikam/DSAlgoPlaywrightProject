@@ -1,6 +1,9 @@
 const {HomePage} = require('./HomePage.spec');
 const {LoginPage} = require('./LoginPage.spec');
 //const { QueuePage } = require('./QueuePage.spec');
+const {ArrayPage} = require('./ArrayPage.spec');
+
+
 
 class POManager {
     constructor(page) {
@@ -9,7 +12,8 @@ class POManager {
         this.loginPage = new LoginPage(this.page,this);
         this.stackPage=null;
     //    this.queuePage = new QueuePage(this.page);
-        
+        this.arrayPage = new ArrayPage(this.page,this);
+
     }
 
     getHomePage() {
@@ -30,10 +34,13 @@ class POManager {
         return this.stackPage;
     }
 
-
     // getQueuePage() {
     //     return this.queuePage;
     // }
+
+    getArrayPage(){
+        return this.arrayPage;
+    }
 
 }
 module.exports = {POManager};

@@ -5,7 +5,7 @@ const constants = require('../../utils/appConstants.spec.js');
 
 
 
-When('User clicks on Get Started button of Data Structures-Introduction module', async function () {
+  When('User clicks on Get Started button of Data Structures-Introduction module', async function () {
     await this.homePage.clickGetStartedOf_DataStructure();
   });
 

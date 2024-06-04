@@ -45,7 +45,7 @@ class StackPage{
   try{
   await this.dropDown.click();    
   await this.stackOption.click();   
-  await this.page.waitForLoadState('networkidle');
+ await this.page.waitForLoadState('networkidle'); 
   const expectedUrl="https://dsportalapp.herokuapp.com/stack/";
   // await this.verifyUrl(expectedUrl);
   const currentUrl = await this.page.url();
