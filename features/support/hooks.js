@@ -11,7 +11,7 @@ let context;
 
 // });
 
-Before({tags:'@arrays',timeout: 100*1000},async function () {
+Before({timeout: 100*1000},async function () {
   //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
   //   console.log("inside Before Hook");
     browser = await playwright.chromium.launch({

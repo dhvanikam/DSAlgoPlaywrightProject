@@ -2,7 +2,6 @@
 Feature: User tests the stack page on the Ds-algo application
 
   Background: The user is logged in to DS Algo portal   
-    Given User launches the browser
     Given User gives the correct DsAlgo portal URL
     Given User clicks on SignIn link on Home Page
     When User enters valid username "suba" and password "suba@123" and clicks on login button
