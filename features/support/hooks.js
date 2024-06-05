@@ -37,14 +37,7 @@ AfterStep(async function ({ result }) {
 });
 
 After(async function () {
-<<<<<<< Updated upstream
   await this.page.close();
   await this.context.close();
   await this.browser.close();
-=======
-  //if (!browser || !context) {
-     await context.close();
-     await browser.close();
- // }
->>>>>>> Stashed changes
 });
