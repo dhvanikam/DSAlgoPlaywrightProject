@@ -13,8 +13,5 @@
     "@types/node": "^20.12.13",
     "allure-commandline": "^2.29.0",
     "allure-cucumberjs": "^2.15.1"
-  },
-  "dependencies": {
-    "fs-extra": "^11.2.0"
   }
 }
