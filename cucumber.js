@@ -5,12 +5,12 @@ module.exports = {
     defaultTimeout: 10000,
     require: [      
       'features/support/hooks.js',
-      'features/step_definitions/*.js'    
+      'features/step_definitions/*.spec.js'    
     ],
     forceExit: true,
     format: ["html:cucumber-report.html"]/*Allure : [path.resolve(__dirname, "reporter.js")]*/,
-    //retry: 1,
-    //parallel: 3
+    retry: 1,
+    parallel: 3
   },
 };
 

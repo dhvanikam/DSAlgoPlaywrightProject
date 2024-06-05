@@ -13,6 +13,7 @@ class POManager {
         this.signInPage = new SignInPage(this.page,this);
         this.registerPage = new RegisterPage(this.page,this);      
         this.stackPage=null;
+        this.linkedListPage=null; 
         this.arrayPage = new ArrayPage(this.page,this);
         this.queuePage = new QueuePage(this.page, this);
         this.treePage = new TreePage(this.page,this);
@@ -40,9 +41,22 @@ class POManager {
         return this.stackPage;
     }
 
+
     getQueuePage() {
         return this.queuePage;
     }
+
+    getLinkedListPage()
+    {
+        if(!this.linkedListPage)
+        {
+            const {LinkedListPage}=require('./LinkedListPage.spec'); 
+            this.linkedListPage=new LinkedListPage(this.page,this);
+        }        
+        return this.linkedListPage;
+    }
+
+ 
 
     getArrayPage(){
         return this.arrayPage;

@@ -14,11 +14,11 @@ let context;
 Before({timeout: 100*1000},async function () {
   //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
   //   console.log("inside Before Hook");
-    browser = await playwright.chromium.launch({
-      headless: false,
+    this.browser = await playwright.chromium.launch({
+      headless: true,
   });
-  context = await browser.newContext();
-  this.page =  await context.newPage();
+  this.context = await this.browser.newContext(this.context);
+  this.page =  await this.context.newPage();
   this.pomanager = new POManager(this.page);
   });
 
@@ -37,8 +37,7 @@ AfterStep(async function ({ result }) {
 });
 
 After(async function () {
-  if (!browser || !context) {
-    //  await context.close();
-    //  await browser.close();
-  }
+  await this.page.close();
+  await this.context.close();
+  await this.browser.close();
 });

@@ -11,8 +11,16 @@ screenshotdir/
 /allure-report/
 global-setup.js
 loginauth.json
+<<<<<<< Updated upstream
  .DS_Store
 tests/
+=======
+.DS_Store
+/utils/EXCEL.js
+/utils/TestData.xlsx
+/ExcelReader.js
+utils/ExcelReader.js
+>>>>>>> Stashed changes
 
 
 
