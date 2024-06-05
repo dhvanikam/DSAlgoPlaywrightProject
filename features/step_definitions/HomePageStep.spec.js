@@ -82,7 +82,7 @@ Given('User launches the browser', async function () {
   });
 
   When('User clicks on SignIn link on Home Page', async function () {
-    this.loginPage=await this.homePage.clickSignInLink(); 
+    this.signInPage = await this.homePage.clickSignInLink(); 
   });
 
   Then('User lands on SignIn Page', async function () {
@@ -97,7 +97,7 @@ Given('User launches the browser', async function () {
 
 
   When('User clicks on Registration link', async function () {
-    await this.homePage.clickRegisterLink();
+    this.registerPage = await this.homePage.clickRegisterLink();
   });
 
   Then('User lands on Registration Page', async function () {

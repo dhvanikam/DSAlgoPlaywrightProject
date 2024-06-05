@@ -1,15 +1,16 @@
 const {HomePage} = require('./HomePage.spec');
-const {LoginPage} = require('./LoginPage.spec');
-//const { QueuePage } = require('./QueuePage.spec');
 const {ArrayPage} = require('./ArrayPage.spec');
-
+const {SignInPage} = require('./SignInPage.spec');
+const{RegisterPage} = require('./RegisterPage.spec');
 
 
 class POManager {
     constructor(page) {
+        
         this.page = page;
         this.homePage = new HomePage(this.page,this);
-        this.loginPage = new LoginPage(this.page,this);
+        this.signInPage = new SignInPage(this.page,this);
+        this.registerPage = new RegisterPage(this.page,this);      
         this.stackPage=null;
     //    this.queuePage = new QueuePage(this.page);
         this.arrayPage = new ArrayPage(this.page,this);
@@ -21,11 +22,15 @@ class POManager {
         
     }
 
-    getLoginPage() {
-        return this.loginPage;
+    getSignInPage() {
+        return this.signInPage;
     }
 
-    getStackPage()
+    getRegisterPage() {
+        return this.registerPage;
+    }
+
+     getStackPage()
     {    if(!this.stackPage)
         {
             const {StackPage}=require('./StackPage.spec'); 

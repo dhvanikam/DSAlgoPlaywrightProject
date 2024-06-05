@@ -115,6 +115,8 @@ class HomePage{
 
     async clickRegisterLink(){
         await this.registerLink.click();
+        await this.page.waitForLoadState('networkidle');
+        return this.pommanager.getRegisterPage();
     }
 
     async isSignInLinkVisible(){
@@ -123,7 +125,7 @@ class HomePage{
 
     async clickSignInLink(){
         await this.signInLink.click();
-        return this.pommanager.getLoginPage();
+        return this.pommanager.getSignInPage();
     }
 
     async isSignOutLinkVisible(){

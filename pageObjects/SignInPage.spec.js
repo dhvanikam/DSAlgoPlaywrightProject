@@ -1,5 +1,5 @@
 
-class LoginPage {
+class SignInPage {
     
     constructor(page,pommanager) {
         this.page = page;
@@ -10,22 +10,21 @@ class LoginPage {
         this.successLoginText = page.locator("div.alert.alert-primary");
      }
 
-      async validLogin(username, password) {
+    //Valid Login
+    async validLogin(username, password) 
+    {
         await this.username.fill(username);
         await this.password.fill(password);
         await this.loginButton.click();
         return this.pommanager.getHomePage();
     }
 
-    async successLogin() {
-        if(await this.successLoginText.isVisible()){
-            //const msg = "You are logged in";
-            //return this.successLoginText.textContent();
-            return this.successLoginText;
-        }
-        /*  
-		else {msg= "you are not logged in";}
-		return msg;*/
+    async successLogin() 
+    {
+        if(await this.successLoginText.isVisible())
+        {
+           return this.successLoginText;
+        }      
     }
 }
-module.exports = {LoginPage};
+module.exports = {SignInPage};
