@@ -1,0 +1,67 @@
+@QueuePage
+Feature: User Launch DSAlgo application and test Queue Page
+Background:
+  When User gives the correct DsAlgo portal URL
+  When User clicks get started for queue after entering valid credential
+
+@queue-links
+  Scenario Outline: User is able to navigate to "<Links>" on queue page
+    Given User is on "Queue" page after logged in
+    When User clicks on queue "<Links>"
+    Then User should be navigate to "<pagename>" page
+
+    Examples:
+      | Links                     | pagename                              |
+      | implementation-lists      | Implementation of Queue in Python     |
+      | implementation-collections| Implementation using collections.deque|
+      | Implementation-array      | Implementation using array            |
+      | QueueOp                   | Queue Operations                      |
+
+@queue-tryeditor
+  Scenario Outline: User is able to navigate to "<Links>" on  queue page
+    Given User is on "Queue" page after logged in
+    When User click the Try here button for Queue page from "<Links>" page
+    Then User should be navigate to a page having an tryEditor with a Run button to test
+
+    Examples:
+      | Links                     |
+      | implementation-lists      |
+      | implementation-collections|
+      | Implementation-array      |
+      | QueueOp                   |
+
+@queue-tryeditor-validcode
+  Scenario: User is able run valid python code in tryEditor for "<Links>" page
+    Given User is on "Queue" page after logged in
+    When User click the Try here button for Queue page from "<Links>" page
+    And User clicks the run button after entering "<valid python code>" in tryEditor for Queue page
+    Then User should be presented with Run result as "<result>" in Queue page
+
+    Examples:
+      | Links                     | valid python code | result |
+      | implementation-lists      | print('hello')    | hello  |
+      | implementation-collections| print('hello')    | hello  |
+      | Implementation-array      | print('hello')    | hello  |
+      | QueueOp                   | print('hello')    | hello  |
+
+@queue-tryeditor-invalidcode
+  Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<Links>" page
+    Given User is on "Queue" page after logged in
+    When User click the Try here button for Queue page from "<Links>" page
+    And User clicks the run button after entering "<invalid python code>" in tryEditor for Queue page
+    Then User should be presented with error message as "<error message>" in Queue page
+
+    Examples:
+      | Links                     | invalid python code | error message                                    |
+      | implementation-lists      | hello               | NameError: name 'hello' is not defined on line 1 |
+      | implementation-collections| hello               | NameError: name 'hello' is not defined on line 1 |
+      | Implementation-array      | hello               | NameError: name 'hello' is not defined on line 1 |
+      | QueueOp                   | hello               | NameError: name 'hello' is not defined on line 1 |
+
+@queue-practice-questions
+  Scenario: The user is able to navigate to QueueOp page and click on Practice Questions
+    Given User is on "Queue" page after logged in
+    When User clicks Practice Questions after reaching to QueueOp page
+    Then User is directed to Practice page
+
+    

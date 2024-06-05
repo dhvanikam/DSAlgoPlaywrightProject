@@ -1,6 +1,6 @@
 
 const elementUtil = require('../utils/elementUtil.spec');
-const config = require('../../DSAlgoPlaywrightProject/playwright.config'); //Changes made by suba
+const config = require('../playwright.config'); //Changes made by suba
 
 class HomePage{
 
@@ -158,9 +158,11 @@ class HomePage{
     }
     async clickGetStartedOf_Queue(){
         await this.queueBtn.click();
+        return this.pommanager.getQueuePage();
     }
     async clickGetStartedOf_Tree(){
         await this.treeBtn.click();
+        return this.pommanager.getTreePage();
     }
     async clickGetStartedOf_Graph(){
         await this.graphBtn.click();
