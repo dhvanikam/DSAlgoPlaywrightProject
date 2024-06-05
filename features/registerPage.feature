@@ -1,24 +1,28 @@
-@RegisterPageTest
+@Register
 Feature: Register page Validation
 
-  # Background: User navigates to Register page from Home page
-  #   Given User is on Home page
-  #   When User clicks Register link and he is directed to register page
-  #   Then User validates Register page
+  Background: User navigates to Register page from Home page
+    Given User launches the browser
+    When User gives the correct DsAlgo portal URL
+    When User clicks on Registration link
+    
 
   # @RegisterTest_Emptyfields
-  # Scenario: To verify Register Form with Empty fields
-  #   Given The user opens Register Page
-  #   When User click Register with all empty field
+  # Scenario Outline: To verify Register Form with Empty fields
+  #   When User click Register with all empty field in "<username>", "<password>" and "<confirmpassword>"
   #   Then It should display an error "Please fill out this field." below username textbox
+  #    Examples:
+  #     | username        | password  | confirmpassword |
+  #     |                 |           |                 |
 
-  # @RegisterTest_withonly_username
+  # @RegisterTest_withonly_username @table
   # Scenario: The user is presented with error message for empty fields below password textbox
-  #   Given The user opens Register Page
   #   When The user clicks Register button after entering username with other fields empty
-  #     | username  |
-  #     | Sdet@1234 |
-  #   Then It should display an error "Please fill out this field." below password textbox
+  #     | username  |password  | confirmpassword |
+  #     #|           |          |                 |
+  #     | Sdet@1234 |          |                 |
+  #     #| Sdet@second|pass     |                 |
+  # Then It should display an error "Please fill out this field." below password textbox
 
   # @RegisterTest_withonly_password
   # Scenario Outline: The user is presented with error message for empty fields below username textbox
@@ -44,28 +48,41 @@ Feature: Register page Validation
   #     | Unumpy   | Pnumpy   |
   #   Then User verify the message at confirmpassword on Register Page as "Please fill out this field."
 
-  # @RegisterTest_with_invalidcredentials
-  # Scenario Outline: To verify Register Form with invalid Credentials
-  #   Given The user opens Register Page
-  #   When user enter invalid "<username>","<password>" and "<confirmpassword>"
-  #   Then User verifies for the mismatch error message "password_mismatch:The two password fields didn’t match."
+  @RegisterTest_with_invalidcredentials_Excel
+  Scenario Outline: To verify Register Form with invalid Credentials
+    #Given The user opens Register Page
+    When user enters invalid credentials in the sheetname "<sheetname>" and row number <rownum>
+    Then User verifies for the mismatch error message "password_mismatch:The two password fields didn’t match."
 
-  #   Examples:
-  #     | username   | password   | confirmpassword |
-  #     | Nu$$@      | sdet       | sdet1           |
-  #     | Numpy@sdet | password12 | password        |
-  #     | Numpy@sdet | 1010101010 |      1010101010 |
-  #     | Numpy@sdet | Numpy@sdet | Numpy@sdet      |
-  #     | suba       | Numpy@sdet | Numpy@sdet      |
-  #     | Numpy@sdet | asdf       | asdf            |
-  #     | Numpy@sdet | welcome1   | welcome1        |
+     Examples:
+      | sheetname                   | rownum |
+      | Register_InvalidCredentials |      2 |
+      | Register_InvalidCredentials |      3 | 
+      | Register_InvalidCredentials |      4 |
+      | Register_InvalidCredentials |      5 |
+      | Register_InvalidCredentials |      6 |
+      | Register_InvalidCredentials |      7 |
+      | Register_InvalidCredentials |      8 |  
 
-  # @RegisterTest_with_validdata
-  # Scenario Outline: User register with valid information
-  #   Given The user opens Register Page
-  #   When user enter the sheetname "<sheetname>" and row number <rownum>
-  #   Then User verifies for the successful registration message
 
-  #   Examples:
-  #     | sheetname        | rownum |
-  #     | validcredentials |      0 |
+  @RegisterTest_with_invalidcredentials_Excel @OnlySheetname
+  Scenario Outline: To verify Register Form with invalid Credentials with all data sets
+    #Given The user opens Register Page
+    When user enters invalid credentials in the sheetname "<sheetname>"
+    #Then User verifies for the mismatch error message "password_mismatch:The two password fields didn’t match."
+
+     Examples:
+      | sheetname                   |
+      #| Register_InvalidCredentials |
+      |Sheet1|
+
+
+@RegisterTest_with_validdata_JSON
+  Scenario Outline: User register with valid information
+    #Given The user opens Register Page
+    When User logs in with valid credentials from "<JsonDataSet>"
+    Then User navigate to the home page with a message "New Account Created"
+    Examples:
+       | JsonDataSet|
+       | 1      |
+       | 2      |

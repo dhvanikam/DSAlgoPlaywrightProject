@@ -12,5 +12,7 @@ screenshotdir/
 global-setup.js
 loginauth.json
  .DS_Store
+tests/
+
 
 

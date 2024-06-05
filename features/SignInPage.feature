@@ -6,11 +6,6 @@ Background:
     When User gives the correct DsAlgo portal URL
     When User clicks on SignIn link on Home Page
 
-  # @LogIn
-  # Scenario: User is on Home page and Clicks on Signin
-  #   Given user is on Home Page
-  #   When user clicks on SignIn button he is directed to login page
-  #   Then user validates the login page
 
   # @LoginTest_Emptyfields
   # Scenario: To verify SignIn with Empty fields

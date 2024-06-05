@@ -15,6 +15,12 @@ module.exports = {
     checkActualEveryErrMsgToEquate(expArray,expectedText){
         let arr = expArray;
         return arr.every((e) => e===expectedText); 
+    },
+
+    //to generate random number
+    getRandomInt(max) 
+    {
+        return Math.floor(Math.random() * max);
     }
 
 }
