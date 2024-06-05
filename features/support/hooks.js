@@ -1,15 +1,15 @@
-const{Before,After,Status,AfterStep} = require('@cucumber/cucumber');
+const { Before, After, Status, AfterStep } = require('@cucumber/cucumber');
 //const globalSetup = require('../../global-setup'); // Adjust the path if needed
 const playwright = require('@playwright/test');
 const { POManager } = require('../../pageObjects/POManager');
 let browser;
 let context;
+let scenarioName;
 
-// Before(/*{tags:"@array"},*/async function () {
-//     console.log("i am first");
-
-
-// });
+Before(async function (scenario) {
+  this.scenarioName = scenario.pickle.name; //https://github.com/cucumber/cucumber-js/issues/1191
+  console.log(this.scenarioName);
+});
 
 Before({timeout: 100*1000},async function () {
   //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
@@ -20,7 +20,7 @@ Before({timeout: 100*1000},async function () {
   this.context = await this.browser.newContext(this.context);
   this.page =  await this.context.newPage();
   this.pomanager = new POManager(this.page);
-  });
+});
 
 
 AfterStep(async function ({ result }) {
@@ -37,7 +37,14 @@ AfterStep(async function ({ result }) {
 });
 
 After(async function () {
+<<<<<<< Updated upstream
   await this.page.close();
   await this.context.close();
   await this.browser.close();
+=======
+  //if (!browser || !context) {
+     await context.close();
+     await browser.close();
+ // }
+>>>>>>> Stashed changes
 });

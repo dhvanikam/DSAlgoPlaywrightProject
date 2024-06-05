@@ -2,7 +2,6 @@
 Feature: Login Action
 
 Background: 
-    Given User launches the browser
     When User gives the correct DsAlgo portal URL
     When User clicks on SignIn link on Home Page
 

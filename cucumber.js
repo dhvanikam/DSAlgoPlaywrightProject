@@ -8,9 +8,9 @@ module.exports = {
       'features/step_definitions/*.spec.js'    
     ],
     forceExit: true,
-    format: ["html:cucumber-report.html"]/*Allure : [path.resolve(__dirname, "reporter.js")]*/,
+    format: [path.resolve(__dirname, "reporter.js")],
     retry: 1,
-    parallel: 3
+    //parallel: 3
   },
 };
 
