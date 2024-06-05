@@ -1,6 +1,6 @@
 
 const elementUtil = require('../utils/elementUtil.spec');
-const config = require('../../DSAlgoPlaywrightProject/playwright.config'); //Changes made by suba
+const config = require('../playwright.config'); //Changes made by suba
 
 class HomePage{
 
