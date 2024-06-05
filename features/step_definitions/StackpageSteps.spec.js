@@ -1,6 +1,5 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
-const { expect } = require('@playwright/test');
-const playwright = require('@playwright/test');
+const { expect, chromium } = require('@playwright/test');
 const {POManager} = require('../../pageObjects/POManager');
 const config = require('../../playwright.config.js');
 
@@ -11,7 +10,7 @@ Given('The user is on Signin page of DS Algo portal', async function () {
 
 
 Given('User launches the browserr', async function () {
-  browser = await playwright.chromium.launch({
+  browser = await chromium.launch({
       headless: false,
     });
     context = await browser.newContext({

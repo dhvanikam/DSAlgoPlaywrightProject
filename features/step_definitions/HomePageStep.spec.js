@@ -1,12 +1,11 @@
 const{Given, When, Then} = require('@cucumber/cucumber');
-const{expect} = require('@playwright/test');
-const playwright = require('@playwright/test');
+const{expect, chromium} = require('@playwright/test');
 const {POManager} = require('../../pageObjects/POManager');
 const config = require('../../playwright.config.js');
 const util = require('../../utils/util.spec.js');
 
 Given('User launches the browser', async function () {
-    this.browser = await playwright.chromium.launch({
+    this.browser = await chromium.launch({
         headless: false,
       });
       this.context = await this.browser.newContext();
