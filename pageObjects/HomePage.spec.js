@@ -151,6 +151,7 @@ class HomePage{
 
     async clickGetStartedOf_LinkedList(){
         await this.linkedListBtn.click();
+        return this.pommanager.getLinkedListPage();
     }
     async clickGetStartedOf_Stack(){
         await this.stackBtn.click();

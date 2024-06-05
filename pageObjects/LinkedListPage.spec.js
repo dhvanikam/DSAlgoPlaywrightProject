@@ -2,7 +2,7 @@ const { expect } = require('@playwright/test');
 const config = require('../playwright.config.js');
 
 
-class StackPage{
+class LinkedListPage{
 
   constructor(page,pommanager)
   {
@@ -26,9 +26,87 @@ class StackPage{
     this.practiceQuestionLink=page.locator("//a[normalize-space()='Practice Questions']");
   }
 
- 
+  async goToUrl()
+  {  
+   await this.page.goto(config.use.baseURL);
+  }
+  async loginValidCredentials(username,password)
+  {
+    await this.username.fill(username);
+    await this.password.fill(password);      
+    await this.submitButton.click();   
+    await this.page.waitForLoadState('networkidle');    
+  }  
+  async successLoginTextCheck(successLoginTextStr) {
+    const successText= await this.successLoginText.textContent();  
+     expect(await successText).toContain(successLoginTextStr) ;    
+ }
+ async selectStackOption()
+ { 
+  try{
+  await this.dropDown.click();    
+  await this.stackOption.click();   
+ await this.page.waitForLoadState('networkidle'); 
+  const expectedUrl="https://dsportalapp.herokuapp.com/stack/";
+  // await this.verifyUrl(expectedUrl);
+  const currentUrl = await this.page.url();
+    if (currentUrl !== expectedUrl) {
+      throw new Error(`URL mismatch: expected ${expectedUrl}, but got ${currentUrl}`);
+    }
+  } catch (error) {
+    console.error(`Error in selectStackOption: ${error.message}`);
+    throw error;
+  }
+  }
 
+ async verifyStackPageUrl()
+ {
+  await this.page.waitForTimeout(3000);
+  const title=await this.page.title();
+  return title;
+ }
 
+async clickMenuOption(menuoption)
+{ 
+  const expectedUrl = `https://dsportalapp.herokuapp.com/stack/${menuoption}/`;
+  await this.page.locator(`[href="${menuoption}"]`).click();
+  await this.verifyUrl(expectedUrl);    
+}
+async enterCodeInTryEditor(pythonCode){
+  await this.tryEditorLink.click();
+  await this.tryEditorTextarea.fill(pythonCode);
+  await this.tryEditorButton.click();
+  const actualOutput=await this.textOutput.textContent()
+  return actualOutput;
+}
+
+async verifyUrl(expectedUrl)
+{
+    const currentUrl = await this.page.url();
+    expect(currentUrl).toBe(expectedUrl); 
+}
+
+async enterInvalidCodeInTryEditor(invalidPythonCode)
+{
+  await this.tryEditorLink.click();
+  await this.tryEditorTextarea.fill(invalidPythonCode);
+}
+async acceptAlert()
+{
+  this.page.on("dialog", async (dialog)=>
+  {    
+    await dialog.accept();
+  })  
+  await this.tryEditorButton.click();  
+}
+
+async logOut()
+{
+  await this.page.goBack();
+  await this.signOut.click();
+}
+
+//**********from ArrayPage copied functions */
 async clickOnLink(linkName) {
   await this.page.locator(`[href="${linkName}"]`).click();
 }
@@ -50,6 +128,7 @@ async enterCode(code) {
 
 async clickRunButton(){
   await this.tryEditorButton.click();
+  await this.page.waitForLoadState('networkidle'); 
 }
 
 async getResult(){
@@ -90,7 +169,8 @@ async clickRunButtonwithInvalidCode()
 
 }
 
+
 }
 
 
-module.exports={StackPage};
+module.exports={LinkedListPage};
