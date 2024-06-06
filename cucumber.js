@@ -9,7 +9,7 @@ module.exports = {
     ],
     forceExit: true,
     format: ["html:cucumber-report.html"]/*Allure : [path.resolve(__dirname, "reporter.js")]*/,
-    retry: 1,
+    //retry: 1,
     parallel: 3
   },
 };

@@ -1,6 +1,5 @@
 const{Given, When, Then} = require('@cucumber/cucumber');
 const{expect} = require('@playwright/test');
-const {POManager} = require('../../pageObjects/POManager');
 const constants = require('../../utils/appConstants.spec.js');
 
 
@@ -11,7 +10,6 @@ const constants = require('../../utils/appConstants.spec.js');
 
   Then('User is able to go to Data Structures-Introduction page', async function () {
     await expect(this.page).toHaveTitle(constants.DS_PAGE_TITLE);
-    //await expect(this.page).toHaveTitle("Data Structures-Introduction");
 
   });
 

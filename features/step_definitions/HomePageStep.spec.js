@@ -2,8 +2,8 @@ const{Given, When, Then} = require('@cucumber/cucumber');
 const{expect} = require('@playwright/test');
 const playwright = require('@playwright/test');
 const {POManager} = require('../../pageObjects/POManager');
-const config = require('../../playwright.config.js');
 const util = require('../../utils/util.spec.js');
+const contantVals = require('../../utils/appConstants.spec.js');
 
 Given('User launches the browser', async function () {
     this.browser = await playwright.chromium.launch({
@@ -15,16 +15,32 @@ Given('User launches the browser', async function () {
   });
 
   When('User gives the correct DsAlgo portal URL', async function () {
-    //await this.page.goto(config.use.baseURL);
+
     this.homePage =await this.pomanager.getHomePage(); 
     await this.homePage.goToUrl();
   });
 
   Then('User lands on home page', async function () {
 
-    await expect(this.page).toHaveTitle('NumpyNinja'); 
-    //Note: need to put this contant in some other class --> later
+    await expect(this.page).toHaveTitle(contantVals.HOMEPAGE_TITLE); 
+    
   });
+
+  When('User gives DsAlgo URL with misspelled baseURL', async function () {
+    const response = await this.page.request.get(contantVals.MISSPELLED_URL);
+ 
+    this.responseStatus = await response.status();
+    const res = JSON.parse(JSON.stringify(response))
+    this.responseStatusLine = res._initializer.statusText;
+ 
+  });
+
+  Then('User recieves status code {string} and  error message {string}', async function (expStatusCode, expStatusMsg) {
+    expect.soft(await this.responseStatus).toBe(Number(expStatusCode));
+    expect.soft(await this.responseStatusLine).toBe(expStatusMsg);
+
+  });
+ 
 
   /************* Dropdown Steps ************************/
 
