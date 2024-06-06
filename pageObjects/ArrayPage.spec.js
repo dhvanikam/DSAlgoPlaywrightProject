@@ -67,20 +67,22 @@ class ArrayPage {
         return result;
     }
 
+    
+
+    async getLinkNameFromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);     
+        const linkName = output[rowNumber].get('links');
+        return linkName;
+    }
     async getExpectedResultFromExcel(sheetName, rowNumber) {
-        const output = await excelData.readExcel(sheetName);
-       // console.log("🚀 ~ ArrayPage ~ getExpectedResultFromExcel ~ output:", output)
-        
+        const output = await excelData.readExcel(sheetName);     
         const expectedResult = output[rowNumber].get('Result');
-       console.log("🚀 ~ ArrayPage ~ getExpectedResultFromExcel ~ expectedResult:", expectedResult)
         return expectedResult;
     }
 
     async enterCodefromExcel(sheetName, rowNumber) {
         const output = await excelData.readExcel(sheetName);
-      //  console.log("🚀 ~ ArrayPage ~ enterCodefromExcel ~ output:", output)
         const code = output[rowNumber].get('pythonCode');
-        console.log("🚀 ~ ArrayPage ~ enterCodefromExcel ~ code:", code)
         await this.page.waitForLoadState('networkidle');
         await this.tryEditorTextarea.fill(code);
     }

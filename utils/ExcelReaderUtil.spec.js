@@ -96,7 +96,7 @@ async getRegistrationData(sheetName, rowNum)  {
 module.exports = {async readExcel(sheetName) {
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.readFile("./PythonCode.xlsx");
-    const worksheet = workbook.getWorksheet("pythonCode");
+    const worksheet = workbook.getWorksheet(sheetName);
     let excelRows = [];
 
     worksheet.eachRow((row, rowNumber) => {
@@ -104,6 +104,7 @@ module.exports = {async readExcel(sheetName) {
         if (rowNumber === 1) {
             return;
         }
+        
         let columnMapData = new Map();
         row.eachCell((cell, colNumber) => {
             cell = worksheet.getRow(rowNumber);

@@ -32,7 +32,13 @@ Then('User should be navigate to a page having {string}', async function (pageTi
     await expect(this.page).toHaveTitle(pageTitle);
 });
 //@arrays-tryeditor
-When('User click the Try here button from {string} page', async function (linkName) {
+// When('User click the Try here button from {string} page', async function (linkName) {
+//     await this.arrayPage.clickOnLink(linkName);
+//     await this.arrayPage.clickTryButton();
+// });
+
+When('User click the Try here button from {string} page from {string} of sheet {string}', async function (string, rowNumber, sheetName) {
+    const linkName = await this.arrayPage.getLinkNameFromExcel(sheetName, rowNumber);
     await this.arrayPage.clickOnLink(linkName);
     await this.arrayPage.clickTryButton();
 });
@@ -41,15 +47,23 @@ Then('User should be navigate to a page having an tryEditor with a Run button to
 });
 
 //@arrays-tryeditor-validcode
-When('User clicks the run button after entering {string} in tryEditor', async function (code) {
-    console.log(code)
-    await this.arrayPage.enterCode(code);
+// When('User clicks the run button after entering {string} in tryEditor', async function (code) {
+//     console.log(code)
+//     await this.arrayPage.enterCode(code);
+//     await this.arrayPage.clickRunButton();
+// });
+When('User clicks the run button after entering code in tryEditor from row {string} of sheet {string}', async function (rowNumber, sheetName) {
+    //await this.arrayPage.enterCode(code);
+    await this.arrayPage.enterCodefromExcel(sheetName, rowNumber);
     await this.arrayPage.clickRunButton();
 });
-
-Then('User should be presented with Run result as {string}', async function (result) {
+Then('User should be presented with Run result from row {string} of sheet {string}', async function (rowNumber, sheetName) {
+    const result = await this.arrayPage.getExpectedResultFromExcel(sheetName, rowNumber);
     expect(await this.arrayPage.getResult()).toContain(result);
 });
+// Then('User should be presented with Run result as {string}', async function (result) {
+//     expect(await this.arrayPage.getResult()).toContain(result);
+// });
 
 //@arrays-tryeditor-invalidcode
 Then('User should be presented with error message as {string}', async function (errorMessage) {
@@ -96,18 +110,26 @@ Then('User should be presented with Submit result as {string}', async function (
 
 //@arrays-practice-question1-run-fail [Reused Steps]
 //@arrays-practice-question2-run-excel
-// When('User clicks the run button after entering code from {string} in tryEditor', async function (sheetName) {
-//     await this.arrayPage.clearCodeFromEditor();
-//     await this.arrayPage.enterCodefromExcel(sheetName);
-//     await this.arrayPage.clickRunButton();
-// });
-When('User clicks the run button after entering code in tryEditor from row {string} of sheet {string}', async function (rownum, sheetName) {
+When('User clicks the run button after entering code in \\/question\\/{int} from row {string} of sheet {string}', async function (link, rownum, sheetName) {
     await this.arrayPage.clearCodeFromEditor();
-    await this.arrayPage.enterCodefromExcel(sheetName,rownum);
+    await this.arrayPage.enterCodefromExcel(sheetName, rownum);
     await this.arrayPage.clickRunButton();
-  });
+});
 
-Then('User should be presented with Run result from row {string} of sheet {string}', async function (rownum, sheetName) {
-    const result = await this.arrayPage.getExpectedResultFromExcel(sheetName,rownum);
+Then('User should be presented with result from row {string} of sheet {string}', async function (rownum, sheetName) {
+    const result = await this.arrayPage.getExpectedResultFromExcel(sheetName, rownum);
     expect(await this.arrayPage.getResult()).toContain(result);
-  });
+});
+
+//@arrays-practice-question2-submit-excel
+When('User clicks the submit button after entering code in \\/question\\/{int} from row {string} of sheet {string}', async function (link, rownum, sheetName) {
+    await this.arrayPage.clearCodeFromEditor();
+    await this.arrayPage.enterCodefromExcel(sheetName, rownum);
+    await this.arrayPage.clickSubmitButton();
+});
+
+Then('User should be presented with error message from row {string} of sheet {string}', async function (rownum, sheetName) {
+    const errorMessage = await this.arrayPage.getExpectedResultFromExcel(sheetName, rownum);
+    expect(await this.arrayPage.getErrorMsg()).toContain(errorMessage);
+});
+
