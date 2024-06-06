@@ -95,3 +95,19 @@ Then('User should be presented with Submit result as {string}', async function (
 });
 
 //@arrays-practice-question1-run-fail [Reused Steps]
+//@arrays-practice-question2-run-excel
+// When('User clicks the run button after entering code from {string} in tryEditor', async function (sheetName) {
+//     await this.arrayPage.clearCodeFromEditor();
+//     await this.arrayPage.enterCodefromExcel(sheetName);
+//     await this.arrayPage.clickRunButton();
+// });
+When('User clicks the run button after entering code in tryEditor from row {string} of sheet {string}', async function (rownum, sheetName) {
+    await this.arrayPage.clearCodeFromEditor();
+    await this.arrayPage.enterCodefromExcel(sheetName,rownum);
+    await this.arrayPage.clickRunButton();
+  });
+
+Then('User should be presented with Run result from row {string} of sheet {string}', async function (rownum, sheetName) {
+    const result = await this.arrayPage.getExpectedResultFromExcel(sheetName,rownum);
+    expect(await this.arrayPage.getResult()).toContain(result);
+  });

@@ -161,14 +161,18 @@ Feature: Array feature Validations
     Examples:
       | PracticeQuestionLinks | error message                    |
       | /question/1           | SyntaxError: bad input on line 4 |
-  # @arrays-practice-question2-run
-  # Scenario Outline: User is able to run the valid python to <PracticeQuestionLinks> on array page
-  #   Given User is on "Array" page after logged in
-  #   When User click the "<PracticeQuestionLinks>" from practice question page
-  #   And User clicks the run button after entering code in tryEditor
-  #   Then User should be presented with Run result as "<Results>"
-  #   Examples:
-  #     | PracticeQuestionLinks | SheetName  | Results       |
-  #     | /question/2           | pythoncode | Element Found |
 
+  @arrays-practice-question2-run-excel
+  Scenario Outline: User is able to run the valid python to <PracticeQuestionLinks> on array page
+    Given User is on "Array" page after logged in
+    When User click the "<PracticeQuestionLinks>" from practice question page
+    And User clicks the run button after entering code in tryEditor from row "<rownumber>" of sheet "<SheetName>"
+    Then User should be presented with Run result from row "<rownumber>" of sheet "<SheetName>"
+
+    Examples:
+      | PracticeQuestionLinks | SheetName  | rownumber |
+      # | /question/1           | pythonCode |         2 |
+      # | /question/2           | pythonCode |         6 |
+      # | /question/3           | pythonCode |         8 |
+        | /question/4           | pythonCode |         10 |
 

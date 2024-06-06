@@ -1,3 +1,5 @@
+const ExcelJS = require('exceljs');
+const excelData = require('../utils/ExcelReaderUtil.spec');
 class ArrayPage {
 
     constructor(page) {
@@ -45,9 +47,9 @@ class ArrayPage {
         console.log("🚀 ~ ArrayPage ~ enterCode ~ code:", typeof code)
         await this.page.waitForLoadState('networkidle');
         await this.tryEditorTextarea.fill(code);
-        
+
     }
-       
+
 
     async clickRunButton() {
         await this.tryEditorButton.click();
@@ -64,6 +66,25 @@ class ArrayPage {
         const result = await this.textOutput.textContent();
         return result;
     }
+
+    async getExpectedResultFromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);
+       // console.log("🚀 ~ ArrayPage ~ getExpectedResultFromExcel ~ output:", output)
+        
+        const expectedResult = output[rowNumber].get('Result');
+       console.log("🚀 ~ ArrayPage ~ getExpectedResultFromExcel ~ expectedResult:", expectedResult)
+        return expectedResult;
+    }
+
+    async enterCodefromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);
+      //  console.log("🚀 ~ ArrayPage ~ enterCodefromExcel ~ output:", output)
+        const code = output[rowNumber].get('pythonCode');
+        console.log("🚀 ~ ArrayPage ~ enterCodefromExcel ~ code:", code)
+        await this.page.waitForLoadState('networkidle');
+        await this.tryEditorTextarea.fill(code);
+    }
+
 
     async getErrorMsg() {
         let errormsg;
