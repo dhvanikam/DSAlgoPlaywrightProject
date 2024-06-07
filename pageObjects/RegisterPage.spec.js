@@ -1,6 +1,6 @@
 // @ts-ignore
-// const { randomFill } = require("crypto");
-// const ExcelJS = require('exceljs');
+
+const { randomFill } = require("crypto");
 const util = require('../utils/util.spec')
 
 class RegisterPage {
@@ -13,10 +13,15 @@ class RegisterPage {
         this.confirmpassword = page.locator("#id_password2");
         this.RegisterButton = page.locator("input[value='Register']");
         this.successRegisterText = page.locator("div.alert.alert-primary");
-        //this.errorMsgText = page.getByText("#id_username");
         this.errorMsgText = page.locator("div.alert.alert-primary");
+        this.loginLink_down = page.getByRole('link', {name: 'Login '});
     }
 
+    async clickLoginLink(){
+        await this.loginLink_down.click();
+        return this.pommanager.getSignInPage();
+    }
+    
     //Register with Valid Credentials
     async registerWithValidCredentials(username, password, confirmpassword) {
         username = username + util.getRandomInt(50);
@@ -35,48 +40,35 @@ class RegisterPage {
     }
 
     //Register with Empty Fields
-    async clickRegisterWithEmptyFields(username, password, confirmpassword) {
+    async clickRegisterWithEmptyField(username, password, confirmpassword) {
         await this.username.fill(username);
         await this.password.fill(password);
         await this.confirmpassword.fill(confirmpassword)
         await this.RegisterButton.click();
     }
 
-    /*
-    async errorMsg(){
+    async errorMsgInUsername()
+    {
         await this.username.hover();
-            await this.RegisterButton.click();
-            tooltipText = await this.username.evaluate(node => node.validationMessage);
-            console.log('Tooltip text:', tooltipText);
-        return tooltipText.trim();
-    }*/
+        this.tooltipText = await this.username.evaluate(node => node.validationMessage);
+       // console.log('Tooltip text:', this.tooltipText);
+        return this.tooltipText.trim();
+    }
 
-    async errorMsg(fieldName) {
+    async errorMsgInPassword()
+    {
+        await this.password.hover();
+        this.tooltipText = await this.password.evaluate(node => node.validationMessage);
+        //console.log('Tooltip text:', this.tooltipText);
+        return this.tooltipText.trim(); 
+    }
 
-        let tooltipText = "";
-
-        if(fieldName.toLowerCase() === "username"){
-            console.log("Inside username block")
-            await this.username.hover();
-            await this.RegisterButton.click();
-            tooltipText = await this.username.evaluate(node => node.validationMessage);//this is not capturing
-        }
-        else if(fieldName.toLowerCase() === "password"){
-            await this.password.hover();
-            await this.RegisterButton.click();
-            tooltipText = await this.password.evaluate(node => node.validationMessage);
-        }
-        else if(fieldName.toLowerCase() === "confirmpassword"){
-            await this.confirmpassword.hover();
-            await this.RegisterButton.click();
-            tooltipText = await this.confirmpassword.evaluate(node => node.validationMessage);
-        }
-        else{
-
-        }
-       
-        console.log('Tooltip text:', tooltipText);
-        return tooltipText.trim();
+    async errorMsgInConfirmpassword()
+    {
+        await this.confirmpassword.hover();
+        this.tooltipText = await this.confirmpassword.evaluate(node => node.validationMessage);
+        //console.log('Tooltip text:', this.tooltipText);
+        return this.tooltipText.trim();
     }
 
     //Register with InValid Credentials
