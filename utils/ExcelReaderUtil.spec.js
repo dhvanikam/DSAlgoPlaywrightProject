@@ -64,11 +64,9 @@ async getLoginData(sheetName, rowNum)  {
     })
 
    return data;
-}
-}
+},
 
-
-module.exports = {async readExcel(sheetName) {
+async readExcel(sheetName) {
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.readFile("./PythonCode.xlsx");
     const worksheet = workbook.getWorksheet(sheetName);
@@ -91,4 +89,7 @@ module.exports = {async readExcel(sheetName) {
     })
     return excelRows;
 }
+
 }
+
+
