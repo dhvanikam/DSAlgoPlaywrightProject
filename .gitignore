@@ -19,4 +19,4 @@ tests/
 /ExcelReader.js
 utils/ExcelReader.js
 utils/tryExcel.spec.js
-.vscode/
+/.vscode/
