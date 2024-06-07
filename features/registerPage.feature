@@ -19,7 +19,7 @@ Feature: Register page Validation
     Examples:
        | JsonDataSet|
        | 1          |
-       | 2          |
+      | 2          |
 
    
   @RegisterTest_with_invalidcredentials_Excel
