@@ -1,24 +1,15 @@
 const ExcelJS = require('exceljs');
 const excelData = require('../utils/ExcelReaderUtil.spec');
-class ArrayPage {
+class DSIntroduction {
 
     constructor(page) {
         this.page = page;
         this.arraysInPythonLink = page.locator("[href='arrays-in-python']");
-        this.arraysUsingListLink = page.locator("[href='arrays-using-list']");
-        this.basicOpinListsLink = page.locator("[href='basic-operations-in-lists']");
-        this.appOfArrayLink = page.locator("[href='applications-of-array']");
-        this.practiceQueLink = page.locator("[href='/array/practice']");
-        this.searchArrayLink = page.locator("[href='/question/1']");
-        this.mostConOnesLink = page.locator("[href='/question/2']");
-        this.findEvenNumLink = page.locator("[href='/question/3']");
-        this.sqOfSortedArrayLink = page.locator("[href='/question/4']");
         this.tryEditorLink = page.locator('[href="/tryEditor"]');
         this.tryEditorTextarea = page.locator("//textarea[@tabindex='0']");
         this.tryEditorButton = page.locator('[type="button"]');
         this.submitButton = page.locator('[class="button"]');
         this.textOutput = page.locator('[id="output"]');
-        this.signOut = page.locator('[href="/logout"]');
     }
 
     async clickOnLink(linkName) {
@@ -68,12 +59,7 @@ class ArrayPage {
     }
 
     
-    
-    async getPageNameFromExcel(sheetName, rowNumber) {
-        const output = await excelData.readExcel(sheetName);     
-        const linkName = output[rowNumber].get('pagename');
-        return linkName;
-    }
+
     async getLinkNameFromExcel(sheetName, rowNumber) {
         const output = await excelData.readExcel(sheetName);     
         const linkName = output[rowNumber].get('links');
@@ -105,4 +91,4 @@ class ArrayPage {
         return errormsg;
     }
 }
-module.exports = { ArrayPage };
+module.exports = { DSIntroductionPage };

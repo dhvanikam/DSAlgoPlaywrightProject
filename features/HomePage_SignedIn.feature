@@ -2,7 +2,6 @@
 Feature: Home Page Functionality with signed in status for DsAlgo Website
 
 Background: 
-    Given User launches the browser
     Given User gives the correct DsAlgo portal URL
     Given User clicks on SignIn link on Home Page
     When User enters valid username "tohfatul@gmail.com" and password "Array123$$" and clicks on login button

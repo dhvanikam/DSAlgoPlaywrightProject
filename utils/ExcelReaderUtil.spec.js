@@ -91,3 +91,29 @@ async getRegistrationData(sheetName, rowNum)  {
    return data;
 }
 }
+
+
+module.exports = {async readExcel(sheetName) {
+    const workbook = new ExcelJS.Workbook();
+    await workbook.xlsx.readFile("./PythonCode.xlsx");
+    const worksheet = workbook.getWorksheet(sheetName);
+    let excelRows = [];
+
+    worksheet.eachRow((row, rowNumber) => {
+
+        if (rowNumber === 1) {
+            return;
+        }
+        
+        let columnMapData = new Map();
+        row.eachCell((cell, colNumber) => {
+            cell = worksheet.getRow(rowNumber);
+            let columnHeaderName = worksheet.getRow(1).getCell(colNumber).value;
+
+            columnMapData.set(columnHeaderName, cell.getCell(colNumber).value);
+        })
+        excelRows.push(columnMapData);
+    })
+    return excelRows;
+}
+}
