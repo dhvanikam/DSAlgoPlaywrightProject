@@ -54,9 +54,9 @@ Then('User should be presented with Run result as {string} in the console screen
   expect(await this.linkedListPage.getResult()).toContain(result);
 });
 
-Then('User should be presented with error message as {string} in the popupbox', async function (errorMessage) {
-  expect(this.errormsg).toContain(errorMessage);
-});
+// Then('User should be presented with error message as {string} in the popupbox', async function (errorMessage) {
+//   expect(this.errormsg).toContain(errorMessage);
+// });
 
 When('The user clicks on the Practice Questions button on the {string} in the LinkedList page',async function (linkName) {
   await this.linkedListPage.clickOnLink(linkName);
@@ -67,4 +67,40 @@ When('The user clicks on the Practice Questions button on the {string} in the Li
 
 Then('The user should be directed to Practice Questions  Page which contains {string} url',async function (linkName) {
  expect(await this.currentUrl).toMatch(new RegExp(`${linkName}$`));
+});
+
+When('User click the Try here button from {string} in LinkedList page from {string} of rownumber {string}',async function (links,sheetName, rowNumber) {
+  const linkName = await this.linkedListPage.getLinkNameFromExcel(sheetName, rowNumber);
+  console.log(sheetName, rowNumber,linkName);
+    await this.linkedListPage.clickOnLink(linkName);
+    console.log("clicked1");
+    await this.linkedListPage.clickTryButton();
+});
+
+When('User click the Try here button from {string} in LinkedList page from {string} and row {string}',async function (string, sheetName, rowNumber) {
+  const linkName = await this.linkedListPage.getLinkNameFromExcel(sheetName, rowNumber);
+  console.log(linkName);
+  await this.linkedListPage.clickOnLink(linkName);
+  console.log(linkName,"im clicked");
+  await this.linkedListPage.clickTryButton();
+  console.log(linkName, "im linked");
+});
+
+When('User clicks the run button after entering valid python code in the tryEditorr page from {string} and row {string}',async function (sheetName, rowNumber) {
+  await this.linkedListPage.enterCodefromExcel(sheetName, rowNumber);
+    await this.linkedListPage.clickRunButton();
+});
+
+Then('User should be presented with Run result from {string} and row {string}',async function (sheetName, rownum) {
+  const errorMessage = await this.linkedListPage.getExpectedResultFromExcel(sheetName, rownum);
+    expect(await this.linkedListPage.getErrorMsg()).toContain(errorMessage);
+});
+
+Then('User should be presented with Run message from {string} and row {string}',async function (sheetName, rownum) {
+  const result = await this.linkedListPage.getExpectedResultFromExcel(sheetName, rownum);
+    expect(await this.linkedListPage.getResult()).toContain(result);
+});
+Then('User should be presented with Errorr Message from sheet {string} and row {string} of  in the popup box',async function (sheetName, rownum) {
+  const errorMessage = await this.linkedListPage.getExpectedResultFromExcel(sheetName, rownum);
+  expect(await this.linkedListPage.getErrorMsg()).toContain(errorMessage);
 });

@@ -15,6 +15,7 @@ class POManager {
         this.registerPage = new RegisterPage(this.page,this);      
         this.stackPage=null;
         this.linkedListPage=null; 
+        this.graphPage=null;
         this.arrayPage = new ArrayPage(this.page,this);
         this.queuePage = new QueuePage(this.page, this);
         this.treePage = new TreePage(this.page,this);
@@ -56,6 +57,16 @@ class POManager {
             this.linkedListPage=new LinkedListPage(this.page,this);
         }        
         return this.linkedListPage;
+    }
+
+    getGraphPage()
+    {
+        if(!this.graphPage)
+        {
+            const {GraphPage}=require('./GraphPage.spec'); 
+            this.graphPage=new GraphPage(this.page,this);
+        }        
+        return this.graphPage;
     }
 
  

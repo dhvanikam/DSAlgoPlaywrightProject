@@ -69,7 +69,7 @@ async getLoginData(sheetName, rowNum)  {
 async readExcel(sheetName) {
     const workbook = new ExcelJS.Workbook();
     await workbook.xlsx.readFile("./PythonCode.xlsx");
-    const worksheet = workbook.getWorksheet(sheetName);
+    const worksheet = workbook.getWorksheet(sheetName);    
     let excelRows = [];
 
     worksheet.eachRow((row, rowNumber) => {
@@ -86,6 +86,7 @@ async readExcel(sheetName) {
             columnMapData.set(columnHeaderName, cell.getCell(colNumber).value);
         })
         excelRows.push(columnMapData);
+        
     })
     return excelRows;
 }

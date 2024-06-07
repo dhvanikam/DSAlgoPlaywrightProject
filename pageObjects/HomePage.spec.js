@@ -169,6 +169,7 @@ class HomePage{
     }
     async clickGetStartedOf_Graph(){
         await this.graphBtn.click();
+        return this.pommanager.getGraphPage();
     }
 
 

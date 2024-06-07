@@ -1,4 +1,4 @@
-@LinkedList
+@Linkedlist
 Feature: Stack Page Validations
 
   Background:
@@ -23,54 +23,54 @@ Feature: Stack Page Validations
 
 
   @LinkedList-tryeditor 
-  Scenario Outline: User is able to navigate to "<Links>" on stack page
+  Scenario Outline: User is able to navigate to "<Links>" on linkedlist page
     Given User is on "LinkedList" page after logged in to the portal
-    When User click the Try here button from "<Links>" in LinkedList page
+    When User click the Try here button from "<Links>" in LinkedList page from "<SheetName>" of rownumber "<rownumber>"
     Then User should be directed to a page having an tryEditorr with a Run button to test
 
      Examples:    
-    |Links      |                    
-    |introduction   |                
-    |creating-linked-list   |         
-    |implement-linked-list-in-python|
-    |types-of-linked-list|
-    |traversal               |      
-    |insertion-in-linked-list  |    
-    |deletion-in-linked-list   |    
+    |Links                          |     SheetName       | rownumber |                
+    |introduction                   |  Linkedlistpage     |         0 |               
+    |creating-linked-list           |  Linkedlistpage     |         1 |                
+     |implement-linked-list-in-python|  Linkedlistpage     |         2 |       
+    |types-of-linked-list           |  Linkedlistpage     |         3 |       
+    |traversal                      |  Linkedlistpage     |         4 |             
+    |insertion-in-linked-list       |  Linkedlistpage     |         5 |          
+    |deletion-in-linked-list        |  Linkedlistpage     |         6 |           
 
   @LinkedList-tryeditor-validcode 
   Scenario: User is able run valid python code in tryEditor for '<Links>' page
     Given User is on "LinkedList" page after logged in to the portal
-    When User click the Try here button from '<Links>' in LinkedList page
-    And User clicks the run button after entering '<valid python code>' in the tryEditorr page
-    Then User should be presented with Run result as '<result>' in the console screen
+    When User click the Try here button from '<Links>' in LinkedList page from "<SheetName>" and row "<rownumber>" 
+    And User clicks the run button after entering valid python code in the tryEditorr page from "<SheetName>" and row "<rownumber>"
+    Then User should be presented with Run message from "<SheetName>" and row "<rownumber>"
 
     Examples:
-      | Links                           | valid python code | result |
-      | introduction                    | print("hello")    | hello  |
-      | creating-linked-list            | print("hello")    | hello  |
-      | implement-linked-list-in-python | print("hello")    | hello  |
-      |types-of-linked-list             | print("hello")    | hello  |
-      |traversal                        | print("hello")    | hello  |    
-      |insertion-in-linked-list         | print("hello")    | hello  |  
-      |deletion-in-linked-list          | print("hello")    | hello  | 
+      | Links                           |     SheetName       | rownumber | 
+      | introduction                    | Linkedlistpage     |         0 | 
+      | creating-linked-list            | Linkedlistpage     |         1 |
+      | implement-linked-list-in-python | Linkedlistpage     |         2 |
+      |types-of-linked-list             | Linkedlistpage     |         3 |
+      |traversal                        | Linkedlistpage     |         4 |   
+      |insertion-in-linked-list         | Linkedlistpage     |         5 |  
+      |deletion-in-linked-list          | Linkedlistpage     |         6 | 
      
  @LinkedList-tryeditor-invalidcode
   Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<Links>" page
     Given User is on "LinkedList" page after logged in to the portal
-    When User click the Try here button from "<Links>" in LinkedList page
-    And User clicks the run button after entering invalidcode"<invalid python code>" in the tryEditorr page
-    Then User should be presented with error message as "<error message>" in the popupbox
+    When User click the Try here button from '<Links>' in LinkedList page from "<SheetName>" and row "<rownumber>" 
+    And User clicks the run button after entering valid python code in the tryEditorr page from "<SheetName>" and row "<rownumber>"
+    Then User should be presented with Errorr Message from sheet "<SheetName>" and row "<rownumber>" of  in the popup box
 
-    Examples:
-      | Links                           | invalid python code | error message                                    |
-      | introduction                    | hello               | NameError: name 'hello' is not defined on line 1 |
-      | creating-linked-list            | hello               | NameError: name 'hello' is not defined on line 1 |
-      | implement-linked-list-in-python | hello               | NameError: name 'hello' is not defined on line 1 |
-      | types-of-linked-list            | hello               | NameError: name 'hello' is not defined on line 1 |
-      |traversal                        | hello               | NameError: name 'hello' is not defined on line 1 |
-      |insertion-in-linked-list         | hello               | NameError: name 'hello' is not defined on line 1 |
-      |deletion-in-linked-list          | hello               | NameError: name 'hello' is not defined on line 1 |
+     Examples:
+      | Links                           |     SheetName       | rownumber | 
+       | introduction                    | Linkedlistpage     |         7 | 
+       |creating-linked-list            | Linkedlistpage     |         8 |
+      |implement-linked-list-in-python | Linkedlistpage     |         9 |
+      |types-of-linked-list             | Linkedlistpage     |         10 |
+      |traversal                        | Linkedlistpage     |         11 |   
+      |insertion-in-linked-list         | Linkedlistpage     |         12 |  
+      |deletion-in-linked-list          | Linkedlistpage     |         13 | 
 
  @PracticeQuestions_LinkedList
  Scenario Outline: The user is able to navigate to '<Links>' in stack Page
