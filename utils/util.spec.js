@@ -1,6 +1,7 @@
 // @ts-check
 module.exports = {
 
+    /**Convert an Object Array to String Array */
     convertObjectArrayToStringArray(objectArray){
         let strArr = [];
 
@@ -12,12 +13,13 @@ module.exports = {
         return strArr;
     },
 
+    /**Check if each element in the given array matches exactly with expected String */
     checkActualEveryErrMsgToEquate(expArray,expectedText){
         let arr = expArray;
         return arr.every((e) => e===expectedText); 
     },
 
-    //to generate random number
+    /**Generate random number */
     getRandomInt(max) 
     {
         return Math.floor(Math.random() * max);

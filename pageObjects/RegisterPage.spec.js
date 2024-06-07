@@ -1,6 +1,6 @@
 // @ts-ignore
-const { randomFill } = require("crypto");
-const ExcelJS = require('exceljs');
+// const { randomFill } = require("crypto");
+// const ExcelJS = require('exceljs');
 const util = require('../utils/util.spec')
 
 class RegisterPage {

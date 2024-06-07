@@ -1,7 +1,6 @@
 
 const elementUtil = require('../utils/elementUtil.spec');
-const config = require('../playwright.config'); //Changes made by suba
-
+const config = require('../playwright.config');
 class HomePage{
 
     constructor(page,pommanager){
@@ -49,8 +48,10 @@ class HomePage{
     }
 
     async clickOnDropDOwn(){
-        await elementUtil.clickLocator(this.dropdownEle);
-        return elementUtil.isELementVisible(this.dropdownMenuSection);
+        //await elementUtil.clickLocator(this.dropdownEle);
+        await this.dropdownEle.click();
+        //return elementUtil.isELementVisible(this.dropdownMenuSection);
+        return await this.dropdownMenuSection.isVisible();
     }
 
     async clickEachOptionAndGetErrMsg(){

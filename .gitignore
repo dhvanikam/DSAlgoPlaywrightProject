@@ -1,4 +1,5 @@
 node_modules/
+tests/
 tests-examples
 allure-results/
 /test-results/
@@ -17,5 +18,3 @@ tests/
 /utils/TestData.xlsx
 /ExcelReader.js
 utils/ExcelReader.js
-
-

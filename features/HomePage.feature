@@ -7,10 +7,10 @@ Scenario: Verify User is able to land on home page
     When User gives the correct DsAlgo portal URL
     Then User lands on home page
 
-# @404 @misspelledbaseURL @negative
-# Scenario: Verify User is able to land on home page
-#     When User gives DsAlgo URL with misspelled baseURL
-#     Then User recieves "404" page not found error 
+@404 @misspelledbaseURL
+Scenario: Verify User gets 404 Page Not Found for incorrect URL
+    When User gives DsAlgo URL with misspelled baseURL
+    Then User recieves status code "404" and  error message "Not Found"
 
 ################ SignIn Link scenarios #####################   
 
