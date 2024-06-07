@@ -33,7 +33,7 @@ Feature: Data Structures-Introduction feature Validations
 
     Examples:
       | pagename             | SheetName | rownumber |
-      | Time Complexity page | DSPage    |         0 |
+      | Time Complexity page | DSPythonCode    |         0 |
 
   @data-structure-tryeditor-validcode
   Scenario: User is able run valid python code in tryEditor for "<pagename>" Data Structures page
@@ -44,7 +44,7 @@ Feature: Data Structures-Introduction feature Validations
 
     Examples:
       | pagename             | SheetName | rownumber |
-      | Time Complexity page | DSPage    |         0 |
+      | Time Complexity page | DSPythonCode    |         0 |
 
   @data-structure-tryeditor-invalidcode
   Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<pagename>" for Data Structures page
@@ -55,4 +55,4 @@ Feature: Data Structures-Introduction feature Validations
 
     Examples:
       | pagename             | SheetName | rownumber |
-      | Time Complexity page | DSPage    |         1 |
+      | Time Complexity page | DSPythonCode    |         1 |
