@@ -17,7 +17,8 @@ Before({timeout: 100*1000},async function () {
     this.browser = await playwright.chromium.launch({
       headless: false,
   });
-  this.context = await this.browser.newContext(this.context);
+
+  this.context = await this.browser.newContext();
   this.page =  await this.context.newPage();
   this.pomanager = new POManager(this.page);
 });
@@ -36,8 +37,8 @@ AfterStep(async function ({ result }) {
   }
 });
 
-After(async function () {
-  await this.page.close();
-  await this.context.close();
-  await this.browser.close();
+After(async function () { 
+    await this.page.close();
+    await this.context.close();
+    await this.browser.close();
 });
