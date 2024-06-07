@@ -18,3 +18,4 @@ loginauth.json
 utils/ExcelReader.js
 utils/tryExcel.spec.js
 /.vscode/
+/reports/
