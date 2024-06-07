@@ -45,7 +45,7 @@ async getRegistrationData(sheetName, rowNum)  {
 
 async getLoginData(sheetName, rowNum)  {    
     const workbook = new ExcelJS.Workbook();
-    await workbook.xlsx.readFile("./utils/Excel_Data_Login_Register.xlsx");
+    await workbook.xlsx.readFile("./testData/Excel_Data_Login_Register.xlsx");
     
     const worksheet = workbook.getWorksheet(sheetName);
     const data = [];
