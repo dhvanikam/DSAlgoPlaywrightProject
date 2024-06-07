@@ -1,5 +1,4 @@
 node_modules/
-tests/
 tests-examples
 allure-results/
 /test-results/
@@ -12,7 +11,6 @@ screenshotdir/
 /allure-report/
 global-setup.js
 loginauth.json
-tests/
 .DS_Store
 /utils/EXCEL.js
 /utils/TestData.xlsx

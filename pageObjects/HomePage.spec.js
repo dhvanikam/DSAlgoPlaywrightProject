@@ -1,5 +1,3 @@
-
-const elementUtil = require('../utils/elementUtil.spec');
 const config = require('../playwright.config');
 class HomePage{
 
@@ -39,8 +37,7 @@ class HomePage{
 
     /*********** DropDown methods *****************/
     async isDropDOwnVisible(){
-        return elementUtil.isELementVisible(this.dropdownEle);
-        
+        return await this.dropdownEle.isVisible();  
     }
 
     getDefaultDropDownOptionEle(){
@@ -48,9 +45,7 @@ class HomePage{
     }
 
     async clickOnDropDOwn(){
-        //await elementUtil.clickLocator(this.dropdownEle);
         await this.dropdownEle.click();
-        //return elementUtil.isELementVisible(this.dropdownMenuSection);
         return await this.dropdownMenuSection.isVisible();
     }
 
@@ -72,9 +67,7 @@ class HomePage{
                 let text = await this.errMsg.textContent()
                 errMsgArray.push(text.trim());
             }
-            
-            //click on dropdown again
-            //await clickOnDropDOwn(); //--> giving the error: ReferenceError: clickOnDropDOwn is not defined-->Team??
+
             await this.dropdownEle.click();
 
           } 
@@ -148,7 +141,7 @@ class HomePage{
 
     async clickGetStartedOf_Array(){
         await this.arrayBtn.click();
-        return this.pommanager.getArrayPage(); //Added by Dhvani      
+        return this.pommanager.getArrayPage();      
     }
 
     async clickGetStartedOf_LinkedList(){
