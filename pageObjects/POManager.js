@@ -4,6 +4,7 @@ const {SignInPage} = require('./SignInPage.spec');
 const{RegisterPage} = require('./RegisterPage.spec');
 const { QueuePage } = require('./QueuePage.spec');
 const { TreePage } = require('./TreePage.spec');
+const { DataStructuresIntroductionPage } = require('./DataStructuresIntroductionPage.spec');
 
 class POManager {
     constructor(page) {
@@ -17,6 +18,7 @@ class POManager {
         this.arrayPage = new ArrayPage(this.page,this);
         this.queuePage = new QueuePage(this.page, this);
         this.treePage = new TreePage(this.page,this);
+        this.datastructurePage = new DataStructuresIntroductionPage(this.page,this);
     }
 
     getHomePage() {
@@ -63,6 +65,10 @@ class POManager {
     }
     getTreePage() {
         return this.treePage;
+    }
+
+    getDataStructurePage(){
+        return this.datastructurePage;
     }
 
 }
