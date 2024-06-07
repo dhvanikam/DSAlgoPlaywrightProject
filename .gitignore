@@ -18,10 +18,5 @@ loginauth.json
 /utils/TestData.xlsx
 /ExcelReader.js
 utils/ExcelReader.js
-<<<<<<< Updated upstream
 utils/tryExcel.spec.js
 /.vscode/
-=======
-
-
->>>>>>> Stashed changes
