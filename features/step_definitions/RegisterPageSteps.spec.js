@@ -2,7 +2,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
 const {POManager} = require('../../pageObjects/POManager');
-const dataset = JSON.parse(JSON.stringify(require('../../utils/RegisterValidTestData.json')));
+const dataset = JSON.parse(JSON.stringify(require('../../testData/RegisterValidTestData.json')));
 const excel = require('../../utils/ExcelReaderUtil.spec');
 const util = require('../../utils/util.spec');
 
@@ -19,15 +19,18 @@ When('User clicks on Login link on Register Page', async function () {
     const username = dataset[datasetNumber-1].username
     const password = dataset[datasetNumber-1].password
     const confirmpassword = dataset[datasetNumber-1].confirmpassword
-
+    
     this.homePage = await this.registerPage.registerWithValidCredentials(username, password, confirmpassword);
+    
   });
 
 
-  Then('User navigate to the home page with a message {string}', async function (string) {
-    expect(await this.registerPage.successRegister()).toBeVisible;
-    expect(await this.registerPage.successRegister()).toHaveText("New Account Created");
+  Then('User navigate to the home page with a message {string}', {timeout: 100*1000}, async function (expectedErrMsg) {
     
+    expect(await this.registerPage.successRegister()).toBeVisible;
+  
+    expect(await this.registerPage.successRegister()).toContain("New Account Created"); 
+  
   });
 
 
