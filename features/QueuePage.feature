@@ -30,33 +30,61 @@ Background:
       | Implementation-array      |
       | QueueOp                   |
 
-@queue-tryeditor-validcode
-  Scenario: User is able run valid python code in tryEditor for "<Links>" page
+@queue-tryeditor-validcode-exceldata
+  Scenario: User is able run valid python code in tryEditor for "<pagename>" page
     Given User is on "Queue" page after logged in
-    When User click the Try here button for Queue page from "<Links>" page
-    And User clicks the run button after entering "<valid python code>" in tryEditor for Queue page
-    Then User should be presented with Run result as "<result>" in Queue page
+    When User click the Try here button for Queue page from "<pagename>" page from "<rownumber>" of sheet "<SheetName>"
+    And User clicks the run button after entering code in tryEditor for Queue page from row "<rownumber>" of sheet "<SheetName>"
+    Then User should be presented with Run result for Queue page from row "<rownumber>" of sheet "<SheetName>"
 
     Examples:
-      | Links                     | valid python code | result |
-      | implementation-lists      | print('hello')    | hello  |
-      | implementation-collections| print('hello')    | hello  |
-      | Implementation-array      | print('hello')    | hello  |
-      | QueueOp                   | print('hello')    | hello  |
+      | pagename                              | SheetName       | rownumber |
+      | Implementation of Queue in Python     | QueuePythonCode |         0 |
+      | Implementation using collections.deque| QueuePythonCode |         1 |
+      | Implementation using array            | QueuePythonCode |         2 |
+      | Queue Operations                      | QueuePythonCode |         3 |
 
-@queue-tryeditor-invalidcode
-  Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<Links>" page
+# @queue-tryeditor-validcode
+#   Scenario: User is able run valid python code in tryEditor for "<Links>" page
+#     Given User is on "Queue" page after logged in
+#     When User click the Try here button for Queue page from "<Links>" page
+#     And User clicks the run button after entering "<valid python code>" in tryEditor for Queue page
+#     Then User should be presented with Run result as "<result>" in Queue page
+
+#     Examples:
+#       | Links                     | valid python code | result |
+#       | implementation-lists      | print('hello')    | hello  |
+#       | implementation-collections| print('hello')    | hello  |
+#       | Implementation-array      | print('hello')    | hello  |
+#       | QueueOp                   | print('hello')    | hello  |
+
+@queue-tryeditor-invalidcode-exceldata
+ Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<pagename>"
     Given User is on "Queue" page after logged in
-    When User click the Try here button for Queue page from "<Links>" page
-    And User clicks the run button after entering "<invalid python code>" in tryEditor for Queue page
-    Then User should be presented with error message as "<error message>" in Queue page
+    When User click the Try here button for Queue page from "<pagename>" page from "<rownumber>" of sheet "<SheetName>"
+    And User clicks the run button after entering code in tryEditor for Queue page from row "<rownumber>" of sheet "<SheetName>"
+    Then User should be presented with error message for Queue page from row "<rownumber>" of sheet "<SheetName>"
 
     Examples:
-      | Links                     | invalid python code | error message                                    |
-      | implementation-lists      | hello               | NameError: name 'hello' is not defined on line 1 |
-      | implementation-collections| hello               | NameError: name 'hello' is not defined on line 1 |
-      | Implementation-array      | hello               | NameError: name 'hello' is not defined on line 1 |
-      | QueueOp                   | hello               | NameError: name 'hello' is not defined on line 1 |
+      | pagename                              | SheetName       | rownumber |
+      | Implementation of Queue in Python     | QueuePythonCode |         4 |
+      | Implementation using collections.deque| QueuePythonCode |         5 |
+      | Implementation using array            | QueuePythonCode |         6 |
+      | Queue Operations                      | QueuePythonCode |         7 |
+
+# @queue-tryeditor-invalidcode
+#   Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<Links>" page
+#     Given User is on "Queue" page after logged in
+#     When User click the Try here button for Queue page from "<Links>" page
+#     And User clicks the run button after entering "<invalid python code>" in tryEditor for Queue page
+#     Then User should be presented with error message as "<error message>" in Queue page
+
+#     Examples:
+#       | Links                     | invalid python code | error message                                    |
+#       | implementation-lists      | hello               | NameError: name 'hello' is not defined on line 1 |
+#       | implementation-collections| hello               | NameError: name 'hello' is not defined on line 1 |
+#       | Implementation-array      | hello               | NameError: name 'hello' is not defined on line 1 |
+#       | QueueOp                   | hello               | NameError: name 'hello' is not defined on line 1 |
 
 @queue-practice-questions
   Scenario: The user is able to navigate to QueueOp page and click on Practice Questions

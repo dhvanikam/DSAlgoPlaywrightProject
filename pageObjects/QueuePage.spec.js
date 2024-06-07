@@ -1,4 +1,5 @@
-const { expect } = require('@playwright/test');
+const ExcelJS = require('exceljs');
+const excelData = require('../utils/ExcelReaderUtil.spec');
 class QueuePage
 {
     constructor(page)
@@ -14,14 +15,17 @@ class QueuePage
         this.practiceQuestion = page.locator("//a[@href='/queue/practice']");
 
         this.tryEditorLink = page.locator("a[href='/tryEditor']");
-        this.textEditor = page.locator("//textarea[@tabindex='0']");
+        this.tryEditorTextarea = page.locator("//textarea[@tabindex='0']");
         this.runButton = page.getByRole("button",{name: "Run"});
         this.textOutput=page.locator("[id='output']");
+        this.submitButton = page.locator('[class="button"]');
     }
 
     async clickOnLink(linkName)
     {
-        await this.page.locator(`[href="${linkName}"]`).click();
+        this.test = this.page.locator(`[href="${linkName}"]`);
+        await this.test.waitFor();
+        await this.test.click();
     }
 
     async clickTryButton()
@@ -34,7 +38,7 @@ class QueuePage
         console.log(code);
         //await this.tryEditorTextarea.waitFor();
         await this.page.waitForLoadState('networkidle');
-        await this.textEditor.fill(code);
+        await this.tryEditorTextarea.fill(code);
     }
 
     async clickRunButton()
@@ -42,8 +46,15 @@ class QueuePage
         await this.runButton.click();
     }
 
+    async clickSubmitButton() {
+        await this.page.waitForLoadState('networkidle');
+        await this.submitButton.click();
+
+    }
+
     async getResult()
     {
+        await this.textOutput.waitFor();
         const result = await this.textOutput.textContent();
         return result;
     }
@@ -69,6 +80,29 @@ class QueuePage
     async clickPracticeQuestion()
     {
         await this.practiceQuestion.click();
+    }
+
+    async getPageNameFromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);     
+        const linkName = output[rowNumber].get('pagename');
+        return linkName;
+    }
+    async getLinkNameFromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);     
+        const linkName = output[rowNumber].get('links');
+        return linkName;
+    }
+    async getExpectedResultFromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);     
+        const expectedResult = output[rowNumber].get('Result');
+        return expectedResult;
+    }
+
+    async enterCodefromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);
+        const code = output[rowNumber].get('pythonCode');
+        await this.page.waitForLoadState('networkidle');
+        await this.tryEditorTextarea.fill(code);
     }
 
 }

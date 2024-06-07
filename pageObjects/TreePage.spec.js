@@ -1,3 +1,5 @@
+const ExcelJS = require('exceljs');
+const excelData = require('../utils/ExcelReaderUtil.spec');
 class TreePage
 {
     constructor(page)
@@ -6,16 +8,19 @@ class TreePage
         this.dropDown = page.getByRole('link', { name: 'Data Structures' });
         this.treeLink = page.locator("a[href='/tree']");
         this.tryEditorLink = page.locator("a[href='/tryEditor']");
-        this.textEditor = page.locator("//textarea[@tabindex='0']");
+        this.tryEditorTextarea = page.locator("//textarea[@tabindex='0']");
         this.runButton = page.getByRole("button",{name: "Run"});
         this.textOutput=page.locator("[id='output']");
         this.treeBST = page.locator("//a[@href='implementation-of-bst']");
         this.practiceQuestion = page.locator("//a[@href='/tree/practice']");
+        this.submitButton = page.locator('[class="button"]');
     }
 
     async clickOnLink(linkName)
     {
-        await this.page.locator(`[href="${linkName}"]`).click();
+        this.test = this.page.locator(`[href="${linkName}"]`);
+        await this.test.waitFor();
+        await this.test.click();
     }
 
     async clickTryButton()
@@ -28,7 +33,7 @@ class TreePage
         console.log(code);
         //await this.tryEditorTextarea.waitFor();
         await this.page.waitForLoadState('networkidle');
-        await this.textEditor.fill(code);
+        await this.tryEditorTextarea.fill(code);
     }
 
     async clickRunButton()
@@ -36,8 +41,15 @@ class TreePage
         await this.runButton.click();
     }
 
+    async clickSubmitButton() {
+        await this.page.waitForLoadState('networkidle');
+        await this.submitButton.click();
+
+    }
+
     async getResult()
     {
+        await this.textOutput.waitFor();
         const result = await this.textOutput.textContent();
         return result;
     }
@@ -65,7 +77,28 @@ class TreePage
         await this.practiceQuestion.click();
     }
 
-   
+    async getPageNameFromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);     
+        const linkName = output[rowNumber].get('pagename');
+        return linkName;
+    }
+    async getLinkNameFromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);     
+        const linkName = output[rowNumber].get('links');
+        return linkName;
+    }
+    async getExpectedResultFromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);     
+        const expectedResult = output[rowNumber].get('Result');
+        return expectedResult;
+    }
+
+    async enterCodefromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);
+        const code = output[rowNumber].get('pythonCode');
+        await this.page.waitForLoadState('networkidle');
+        await this.tryEditorTextarea.fill(code);
+    }
 
 }
 module.exports = {TreePage};

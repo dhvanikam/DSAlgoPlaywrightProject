@@ -50,3 +50,26 @@ Then('User is directed to Practice page', async function ()
 {
   await expect(this.page).toHaveTitle("Practice Questions")
 });
+
+//Excel- Python Code
+When('User click the Try here button for Queue page from {string} page from {string} of sheet {string}', async function (string, rowNumber, sheetName) {
+  const linkName = await this.queuePage.getLinkNameFromExcel(sheetName, rowNumber);
+  console.log(linkName);
+  await this.queuePage.clickOnLink(linkName);
+  await this.queuePage.clickTryButton();
+});
+
+When('User clicks the run button after entering code in tryEditor for Queue page from row {string} of sheet {string}', async function (rowNumber, sheetName) {
+  await this.queuePage.enterCodefromExcel(sheetName, rowNumber);
+  await this.queuePage.clickRunButton();
+});
+
+Then('User should be presented with Run result for Queue page from row {string} of sheet {string}', async function (rowNumber, sheetName) {
+  const result = await this.queuePage.getExpectedResultFromExcel(sheetName, rowNumber);
+  expect(await this.queuePage.getResult()).toContain(result);
+});
+
+Then('User should be presented with error message for Queue page from row {string} of sheet {string}', async function (rownum, sheetName) {
+  const errorMessage = await this.queuePage.getExpectedResultFromExcel(sheetName, rownum);
+  expect(await this.queuePage.getErrorMsg()).toContain(errorMessage);
+});
