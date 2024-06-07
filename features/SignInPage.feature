@@ -1,41 +1,15 @@
 @logIn
 Feature: Login Action
 
+
 Background: 
     When User gives the correct DsAlgo portal URL
     When User clicks on SignIn link on Home Page
 
-
-  # @LoginTest_Emptyfields
-  # Scenario: To verify SignIn with Empty fields
-  #   Given User is on Login page
-  #   When User clicks on login button with all empty field
-  #   Then User verify the message at username as "Please fill out this field."
-
-  # @LoginTest_Invaliddatas
-  # Scenario Outline: To verify SignIn with invalid "<username>" and "<password> and gets the result "<result>"
-  #   Given User is on Login page
-  #   When User enters invalid username as "<username>" and password as "<password>" and gets the result "<result>"
-  #   And User clicks login button
-  #   Then User verify the message as "<result>"
-
-  #   Examples:
-  #     | username | password | result                        |
-  #     | abcdefgh | zxyu1234 | Invalid Username and Password |
-  #     | asdfger  | @@@@     | Invalid Username and Password |
-  #     | ER@$     | sdkfsk12 | Invalid Username and Password |
-
-  # @LoginTest_withonly_username
-  # Scenario: To verify SignIn with username only
-  #   Given User is on Login page
-  #   When User clicks on login button with username as "numpy" only
-  #   Then User verify the message at password as "Please fill out this field."
-
-  # @LoginTest_withonly_password
-  # Scenario: To verify SignIn with password only
-  #   Given User is on Login page
-  #   When User clicks on login button with password as "numpy" only
-  #   Then User verify the message at user as "Please fill out this field."
+  @LoginTest_RegisterLink
+  Scenario: To verify Register link in Sign In page
+    When User clicks on Register link
+    Then User lands on Registration Page
 
   @LoginTest_with_validdata
   Scenario Outline: User  Login with  valid "<username>" and "<password>"
@@ -45,3 +19,25 @@ Background:
     Examples:
       | username        | password  |
       | julie@gmail.com | Sdet@1234 |
+
+  @LoginTest_Invaliddatas
+  Scenario Outline: To verify Login with invalid Credentials
+    When user enters invalid login credentials in the sheetname "<sheetname>" and row number <rownum> and clicks login button
+    Then User verify the message "Invalid Username and Password".
+
+    Examples:
+      | sheetname                | rownum |
+      | Login_InvalidCredentials |      2 |
+      | Login_InvalidCredentials |      3 |
+      | Login_InvalidCredentials |      4 |
+
+  @LoginTest_Empty_Fields
+  Scenario Outline: To verify SignIn with Empty fields
+    When User clicks on login button with atleast one empty field in the sheetname "<sheetname>" and row number <rownum>
+    Then User verify the message "Please fill out this field." underneath one of the fields
+
+    Examples:
+      | sheetname                | rownum |
+      | Login_InvalidCredentials |      5 |
+      | Login_InvalidCredentials |      6 |
+      | Login_InvalidCredentials |      7 |

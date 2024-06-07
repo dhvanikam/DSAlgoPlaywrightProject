@@ -18,3 +18,4 @@ tests/
 /utils/TestData.xlsx
 /ExcelReader.js
 utils/ExcelReader.js
+utils/tryExcel.spec.js
