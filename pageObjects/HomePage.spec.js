@@ -143,6 +143,7 @@ class HomePage{
 
     async clickGetStartedOf_DataStructure(){
         await this.dsIntroBtn.click();
+        return this.pommanager.getDataStructurePage(); //Added by Dhvani 
     }
 
     async clickGetStartedOf_Array(){

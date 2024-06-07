@@ -6,7 +6,7 @@ Feature: Array feature Validations
     When User clicks get started for array after entering valid credential
 
   @arrays-links-navigations
-  Scenario Outline: User is able to navigate to links from array page
+  Scenario Outline: Verify User is able to navigate to links from array page
     Given User is on "Array" page after logged in
     When User clicks on "<Links>"
     Then User should be navigate to "<pagename>" page
@@ -19,7 +19,7 @@ Feature: Array feature Validations
       | applications-of-array     | Applications of Array     |
 
   @arrays-practiceQuetionsLink-navigation
-  Scenario Outline: User is able to navigate to a page having an Practice Questions from array page
+  Scenario Outline: Verify User is able to navigate to a page having an Practice Questions from array page
     Given User is on "Array" page after logged in
     When User click the practice question button from "<Links>" page
     Then User should be navigate to a page having "Practice Questions"
@@ -32,17 +32,17 @@ Feature: Array feature Validations
       | applications-of-array     |
 
   @arrays-tryeditor-navigation
-  Scenario Outline: The user is able to navigate to a page having an tryEditor from "<pagename>"
+  Scenario Outline: Verify User is able to navigate to a page having an tryEditor from "<pagename>"
     Given User is on "Array" page after logged in
     When User click the Try here button from "<pagename>" page from "<rownumber>" of sheet "<SheetName>"
     Then User should be navigate to a page having an tryEditor with a Run button to test
 
     Examples:
       | pagename                       | SheetName       | rownumber |
-      | Arrays in Python page          | linkspythoncode |         0 |
-      | Arrays Using List page         | linkspythoncode |         1 |
-      | Basic Operations in Lists page | linkspythoncode |         2 |
-      | Applications of Array page     | linkspythoncode |         3 |
+      | Arrays in Python page          | arraysLinksPythoncode |         0 |
+      | Arrays Using List page         | arraysLinksPythoncode |         1 |
+      | Basic Operations in Lists page | arraysLinksPythoncode |         2 |
+      | Applications of Array page     | arraysLinksPythoncode |         3 |
 
   @arrays-tryeditor-validcode
   Scenario: User is able run valid python code in tryEditor for "<pagename>" page
@@ -53,10 +53,10 @@ Feature: Array feature Validations
 
     Examples:
       | pagename                       | SheetName       | rownumber |
-      | Arrays in Python page          | linkspythoncode |         0 |
-      | Arrays Using List page         | linkspythoncode |         1 |
-      | Basic Operations in Lists page | linkspythoncode |         2 |
-      | Applications of Array page     | linkspythoncode |         3 |
+      | Arrays in Python page          | arraysLinksPythoncode |         0 |
+      | Arrays Using List page         | arraysLinksPythoncode |         1 |
+      | Basic Operations in Lists page | arraysLinksPythoncode |         2 |
+      | Applications of Array page     | arraysLinksPythoncode |         3 |
 
   @arrays-tryeditor-invalidcode
   Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<pagename>"
@@ -67,10 +67,10 @@ Feature: Array feature Validations
 
     Examples:
       | pagename                       | SheetName       | rownumber |
-      | Arrays in Python page          | linkspythoncode |         4 |
-      | Arrays Using List page         | linkspythoncode |         5 |
-      | Basic Operations in Lists page | linkspythoncode |         6 |
-      | Applications of Array page     | linkspythoncode |         7 |
+      | Arrays in Python page          | arraysLinksPythoncode |         4 |
+      | Arrays Using List page         | arraysLinksPythoncode |         5 |
+      | Basic Operations in Lists page | arraysLinksPythoncode |         6 |
+      | Applications of Array page     | arraysLinksPythoncode |         7 |
 
   @arrays-practice-questionsLinks
   Scenario Outline: User is able to navigate to <PracticeQuestionLinks> on array page
@@ -95,10 +95,10 @@ Feature: Array feature Validations
 
     Examples:
       | PracticeQuestionLinks | SheetName  | rownumber |
-      | /question/1           | pythonCode |         2 |
-      # | /question/2           | pythonCode |         4 |
-      # | /question/3           | pythonCode |         6 |
-      # | /question/4           | pythonCode |         8 |
+      | /question/1           | arraysPracticePythonCode |         2 |
+      # | /question/2           | arraysPracticePythonCode |         4 |
+      # | /question/3           | arraysPracticePythonCode |         6 |
+      # | /question/4           | arraysPracticePythonCode |         8 |
 
   @arrays-practice-questions-submitValid-excel
   Scenario Outline: User is able to run the valid python to "<PracticeQuestionLinks>" on array page
@@ -109,10 +109,10 @@ Feature: Array feature Validations
 
     Examples:
       | PracticeQuestionLinks | SheetName  | rownumber |
-      | /question/1           | pythonCode |         3 |
-      | /question/2           | pythonCode |         5 |
-      | /question/3           | pythonCode |         7 |
-      | /question/4           | pythonCode |         9 |
+      | /question/1           | arraysPracticePythonCode |         3 |
+      | /question/2           | arraysPracticePythonCode |         5 |
+      | /question/3           | arraysPracticePythonCode |         7 |
+      | /question/4           | arraysPracticePythonCode |         9 |
 
   @arrays-practice-questions-runInvalid-excel
   Scenario Outline: User is able to get error message for invalid python for "<PracticeQuestionLinks>" on array page
@@ -123,10 +123,10 @@ Feature: Array feature Validations
 
     Examples:
       | PracticeQuestionLinks | SheetName  | rownumber |
-      | /question/1           | pythonCode |        10 |
-      | /question/2           | pythonCode |        11 |
-      | /question/3           | pythonCode |        12 |
-      | /question/4           | pythonCode |        13 |
+      | /question/1           | arraysPracticePythonCode |        10 |
+      | /question/2           | arraysPracticePythonCode |        11 |
+      | /question/3           | arraysPracticePythonCode |        12 |
+      | /question/4           | arraysPracticePythonCode |        13 |
 
   @arrays-practice-questions-submitInvalid-excel
   Scenario Outline: User is able to get error message for invalid python for "<PracticeQuestionLinks> for array page
@@ -137,7 +137,7 @@ Feature: Array feature Validations
 
     Examples:
       | PracticeQuestionLinks | SheetName  | rownumber |
-      | /question/1           | pythonCode |        10 |
-      | /question/2           | pythonCode |        11 |
-      | /question/3           | pythonCode |        12 |
-      | /question/4           | pythonCode |        13 |
+      | /question/1           | arraysPracticePythonCode |        10 |
+      | /question/2           | arraysPracticePythonCode |        11 |
+      | /question/3           | arraysPracticePythonCode |        12 |
+      | /question/4           | arraysPracticePythonCode |        13 |
