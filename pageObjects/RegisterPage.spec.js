@@ -12,7 +12,8 @@ class RegisterPage {
         this.password = page.locator("#id_password1");
         this.confirmpassword = page.locator("#id_password2");
         this.RegisterButton = page.locator("input[value='Register']");
-        this.successRegisterText = page.locator("div.alert.alert-primary");
+        this.successRegisterText = page.locator("//*[@class='alert alert-primary']");
+        //this.successRegisterText = page.getByText("div[role='alert']");
         this.errorMsgText = page.locator("div.alert.alert-primary");
         this.loginLink_down = page.getByRole('link', {name: 'Login '});
     }
@@ -24,7 +25,8 @@ class RegisterPage {
     
     //Register with Valid Credentials
     async registerWithValidCredentials(username, password, confirmpassword) {
-        username = username + util.getRandomInt(50);
+        username = username + util.getRandomInt(1000);
+        
         await this.username.fill(username);
         await this.password.fill(password);
         await this.confirmpassword.fill(confirmpassword)
@@ -33,8 +35,13 @@ class RegisterPage {
     }
 
     async successRegister() {
+        
+        await this.successRegisterText.waitFor()
+
         if (await this.successRegisterText.isVisible()) {
-            return this.successRegisterText;
+           
+            return this.successRegisterText.textContent();
+
         }
 
     }

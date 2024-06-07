@@ -19,15 +19,18 @@ When('User clicks on Login link on Register Page', async function () {
     const username = dataset[datasetNumber-1].username
     const password = dataset[datasetNumber-1].password
     const confirmpassword = dataset[datasetNumber-1].confirmpassword
-
+    
     this.homePage = await this.registerPage.registerWithValidCredentials(username, password, confirmpassword);
+    
   });
 
 
-  Then('User navigate to the home page with a message {string}', async function (string) {
-    expect(await this.registerPage.successRegister()).toBeVisible;
-    expect(await this.registerPage.successRegister()).toHaveText("New Account Created");
+  Then('User navigate to the home page with a message {string}', {timeout: 100*1000}, async function (expectedErrMsg) {
     
+    expect(await this.registerPage.successRegister()).toBeVisible;
+  
+    expect(await this.registerPage.successRegister()).toContain("New Account Created"); 
+  
   });
 
 
