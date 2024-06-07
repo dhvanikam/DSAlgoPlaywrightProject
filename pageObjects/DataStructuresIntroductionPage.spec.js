@@ -1,6 +1,6 @@
 const ExcelJS = require('exceljs');
 const excelData = require('../utils/ExcelReaderUtil.spec');
-class DSIntroduction {
+class DataStructuresIntroductionPage {
 
     constructor(page) {
         this.page = page;
@@ -91,4 +91,4 @@ class DSIntroduction {
         return errormsg;
     }
 }
-module.exports = { DSIntroductionPage };
+module.exports = { DataStructuresIntroductionPage };

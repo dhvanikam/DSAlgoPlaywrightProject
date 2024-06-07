@@ -22,6 +22,7 @@ Then('User should be navigate to {string} page', async function (pageName) {
     await expect(this.page).toHaveTitle(pageName);
 });
 
+
 Then('User should be navigate to {string} page from {string} of sheet {string}', async function (string, rowNumber, sheetName) {
     const pageName = await this.arrayPage.getPageNameFromExcel(sheetName, rowNumber);
     await expect(this.page).toHaveTitle(pageName);
