@@ -9,7 +9,7 @@ When('User clicks get started for array after entering valid credential', async 
     this.arrayPage = await this.homePage.clickGetStartedOf_Array();
 });
 
-//@arrays-links
+//@arrays-links-navigation
 Given('User is on {string} page after logged in', async function (pageTitle) {
     console.log(await this.page.title());
 });
@@ -22,7 +22,12 @@ Then('User should be navigate to {string} page', async function (pageName) {
     await expect(this.page).toHaveTitle(pageName);
 });
 
-//@arrays-practiceQuetionsLink
+Then('User should be navigate to {string} page from {string} of sheet {string}', async function (string, rowNumber, sheetName) {
+    const pageName = await this.arrayPage.getPageNameFromExcel(sheetName, rowNumber);
+    await expect(this.page).toHaveTitle(pageName);
+  });
+
+//@arrays-practiceQuetionsLink-navigation
 When('User click the practice question button from {string} page', async function (linkName) {
     await this.arrayPage.clickOnLink(linkName);
     await this.arrayPage.clickOnLink("/array/practice");
@@ -31,29 +36,20 @@ When('User click the practice question button from {string} page', async functio
 Then('User should be navigate to a page having {string}', async function (pageTitle) {
     await expect(this.page).toHaveTitle(pageTitle);
 });
-//@arrays-tryeditor
-// When('User click the Try here button from {string} page', async function (linkName) {
-//     await this.arrayPage.clickOnLink(linkName);
-//     await this.arrayPage.clickTryButton();
-// });
 
+//@arrays-tryeditor-navigation
 When('User click the Try here button from {string} page from {string} of sheet {string}', async function (string, rowNumber, sheetName) {
     const linkName = await this.arrayPage.getLinkNameFromExcel(sheetName, rowNumber);
     await this.arrayPage.clickOnLink(linkName);
     await this.arrayPage.clickTryButton();
 });
+
 Then('User should be navigate to a page having an tryEditor with a Run button to test', async function () {
     await expect(this.page).toHaveTitle("Assessment");
 });
 
 //@arrays-tryeditor-validcode
-// When('User clicks the run button after entering {string} in tryEditor', async function (code) {
-//     console.log(code)
-//     await this.arrayPage.enterCode(code);
-//     await this.arrayPage.clickRunButton();
-// });
 When('User clicks the run button after entering code in tryEditor from row {string} of sheet {string}', async function (rowNumber, sheetName) {
-    //await this.arrayPage.enterCode(code);
     await this.arrayPage.enterCodefromExcel(sheetName, rowNumber);
     await this.arrayPage.clickRunButton();
 });
@@ -61,12 +57,17 @@ Then('User should be presented with Run result from row {string} of sheet {strin
     const result = await this.arrayPage.getExpectedResultFromExcel(sheetName, rowNumber);
     expect(await this.arrayPage.getResult()).toContain(result);
 });
-// Then('User should be presented with Run result as {string}', async function (result) {
-//     expect(await this.arrayPage.getResult()).toContain(result);
-// });
+Then('User should be presented with Run result as {string}', async function (result) {
+    expect(await this.arrayPage.getResult()).toContain(result);
+});
 
 //@arrays-tryeditor-invalidcode
 Then('User should be presented with error message as {string}', async function (errorMessage) {
+    expect(await this.arrayPage.getErrorMsg()).toContain(errorMessage);
+});
+
+Then('User should be presented with error message from row {string} of sheet {string}', async function (rownum, sheetName) {
+    const errorMessage = await this.arrayPage.getExpectedResultFromExcel(sheetName, rownum);
     expect(await this.arrayPage.getErrorMsg()).toContain(errorMessage);
 });
 
@@ -74,13 +75,6 @@ Then('User should be presented with error message as {string}', async function (
 When('User click the Practice Questions from {string} page', async function (string) {
     await this.arrayPage.clickOnLink("arrays-in-python");
     await this.arrayPage.clickOnLink("/array/practice");
-});
-
-//@arrays-practice-question1-run
-When('User click the {string} from practice question page', async function (linkName) {
-    await this.arrayPage.clickOnLink("arrays-in-python");
-    await this.arrayPage.clickOnLink("/array/practice");
-    await this.arrayPage.clickOnLink(linkName);
 });
 
 When('User click on {string} page', async function (linkName) {
@@ -91,18 +85,18 @@ Then('User should be navigate to a page having an question with a Run button and
     await expect(this.page).toHaveTitle("Assessment");
 });
 
-When('User clicks the run button after entering code in tryEditor', async function (docString) {
+// @arrays-practice-questions-runValid-excel
+When('User click the {string} from practice question page', async function (linkName) {
+    await this.arrayPage.clickOnLink("arrays-in-python");
+    await this.arrayPage.clickOnLink("/array/practice");
+    await this.arrayPage.clickOnLink(linkName);
+  });
+When('User clicks the run button after entering code in {string} from row {string} of sheet {string}', async function (link, rowNumber, sheetName) {
     await this.arrayPage.clearCodeFromEditor();
-    await this.arrayPage.enterCode(docString);
+    await this.arrayPage.enterCodefromExcel(sheetName, rowNumber);
     await this.arrayPage.clickRunButton();
-});
+  });
 
-// @arrays-practice-question1-submit
-When('User clicks the submit button after entering code in tryEditor', async function (docString) {
-    await this.arrayPage.clearCodeFromEditor();
-    await this.arrayPage.enterCode(docString);
-
-});
 Then('User should be presented with Submit result as {string}', async function (result) {
     await this.arrayPage.clickSubmitButton();
     expect(await this.arrayPage.getResult()).toContain(result);
@@ -128,8 +122,5 @@ When('User clicks the submit button after entering code in \\/question\\/{int} f
     await this.arrayPage.clickSubmitButton();
 });
 
-Then('User should be presented with error message from row {string} of sheet {string}', async function (rownum, sheetName) {
-    const errorMessage = await this.arrayPage.getExpectedResultFromExcel(sheetName, rownum);
-    expect(await this.arrayPage.getErrorMsg()).toContain(errorMessage);
-});
+
 

@@ -68,7 +68,12 @@ class ArrayPage {
     }
 
     
-
+    
+    async getPageNameFromExcel(sheetName, rowNumber) {
+        const output = await excelData.readExcel(sheetName);     
+        const linkName = output[rowNumber].get('pagename');
+        return linkName;
+    }
     async getLinkNameFromExcel(sheetName, rowNumber) {
         const output = await excelData.readExcel(sheetName);     
         const linkName = output[rowNumber].get('links');
