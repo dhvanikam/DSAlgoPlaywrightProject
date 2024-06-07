@@ -1,5 +1,7 @@
 const { expect } = require('@playwright/test');
 const config = require('../playwright.config.js');
+const ExcelJS = require('exceljs');
+const excelData = require('../utils/ExcelReaderUtil.spec');
 
 
 class StackPage{
@@ -89,6 +91,26 @@ async clickRunButtonwithInvalidCode()
   return errormsg;
 
 }
+
+async getLinkNameFromExcel(sheetName, rowNumber) {
+  const output = await excelData.readExcel(sheetName);     
+  const linkName = output[rowNumber].get('links');
+  return linkName;
+}
+
+async enterCodefromExcel(sheetName, rowNumber) {
+  const output = await excelData.readExcel(sheetName);
+  const code = output[rowNumber].get('pythonCode');
+  await this.page.waitForLoadState('networkidle');
+  await this.tryEditorTextarea.fill(code);
+}
+
+async getExpectedResultFromExcel(sheetName, rowNumber) {
+  const output = await excelData.readExcel(sheetName);   
+  const expectedResult = output[rowNumber].get('Result');
+  return expectedResult;
+}
+
 
 }
 

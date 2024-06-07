@@ -86,6 +86,7 @@ async readExcel(sheetName) {
             columnMapData.set(columnHeaderName, cell.getCell(colNumber).value);
         })
         excelRows.push(columnMapData);
+        
     })
     return excelRows;
 }

@@ -1,5 +1,6 @@
 const { expect } = require('@playwright/test');
 const config = require('../playwright.config.js');
+const excelData = require('../utils/ExcelReaderUtil.spec');
 
 
 class LinkedListPage{
@@ -26,89 +27,90 @@ class LinkedListPage{
     this.practiceQuestionLink=page.locator("//a[normalize-space()='Practice Questions']");
   }
 
-  async goToUrl()
-  {  
-   await this.page.goto(config.use.baseURL);
-  }
-  async loginValidCredentials(username,password)
-  {
-    await this.username.fill(username);
-    await this.password.fill(password);      
-    await this.submitButton.click();   
-    await this.page.waitForLoadState('networkidle');    
-  }  
-  async successLoginTextCheck(successLoginTextStr) {
-    const successText= await this.successLoginText.textContent();  
-     expect(await successText).toContain(successLoginTextStr) ;    
- }
- async selectStackOption()
- { 
-  try{
-  await this.dropDown.click();    
-  await this.stackOption.click();   
- await this.page.waitForLoadState('networkidle'); 
-  const expectedUrl="https://dsportalapp.herokuapp.com/stack/";
-  // await this.verifyUrl(expectedUrl);
-  const currentUrl = await this.page.url();
-    if (currentUrl !== expectedUrl) {
-      throw new Error(`URL mismatch: expected ${expectedUrl}, but got ${currentUrl}`);
-    }
-  } catch (error) {
-    console.error(`Error in selectStackOption: ${error.message}`);
-    throw error;
-  }
-  }
+//   async goToUrl()
+//   {  
+//    await this.page.goto(config.use.baseURL);
+//   }
+//   async loginValidCredentials(username,password)
+//   {
+//     await this.username.fill(username);
+//     await this.password.fill(password);      
+//     await this.submitButton.click();   
+//     await this.page.waitForLoadState('networkidle');    
+//   }  
+//   async successLoginTextCheck(successLoginTextStr) {
+//     const successText= await this.successLoginText.textContent();  
+//      expect(await successText).toContain(successLoginTextStr) ;    
+//  }
+//  async selectStackOption()
+//  { 
+//   try{
+//   await this.dropDown.click();    
+//   await this.stackOption.click();   
+//  await this.page.waitForLoadState('networkidle'); 
+//   const expectedUrl="https://dsportalapp.herokuapp.com/stack/";
+//   // await this.verifyUrl(expectedUrl);
+//   const currentUrl = await this.page.url();
+//     if (currentUrl !== expectedUrl) {
+//       throw new Error(`URL mismatch: expected ${expectedUrl}, but got ${currentUrl}`);
+//     }
+//   } catch (error) {
+//     console.error(`Error in selectStackOption: ${error.message}`);
+//     throw error;
+//   }
+//   }
 
- async verifyStackPageUrl()
- {
-  await this.page.waitForTimeout(3000);
-  const title=await this.page.title();
-  return title;
- }
+//  async verifyStackPageUrl()
+//  {
+//   await this.page.waitForTimeout(3000);
+//   const title=await this.page.title();
+//   return title;
+//  }
 
-async clickMenuOption(menuoption)
-{ 
-  const expectedUrl = `https://dsportalapp.herokuapp.com/stack/${menuoption}/`;
-  await this.page.locator(`[href="${menuoption}"]`).click();
-  await this.verifyUrl(expectedUrl);    
-}
-async enterCodeInTryEditor(pythonCode){
-  await this.tryEditorLink.click();
-  await this.tryEditorTextarea.fill(pythonCode);
-  await this.tryEditorButton.click();
-  const actualOutput=await this.textOutput.textContent()
-  return actualOutput;
-}
+// async clickMenuOption(menuoption)
+// { 
+//   const expectedUrl = `https://dsportalapp.herokuapp.com/stack/${menuoption}/`;
+//   await this.page.locator(`[href="${menuoption}"]`).click();
+//   await this.verifyUrl(expectedUrl);    
+// }
+// async enterCodeInTryEditor(pythonCode){
+//   await this.tryEditorLink.click();
+//   await this.tryEditorTextarea.fill(pythonCode);
+//   await this.tryEditorButton.click();
+//   const actualOutput=await this.textOutput.textContent()
+//   return actualOutput;
+// }
 
-async verifyUrl(expectedUrl)
-{
-    const currentUrl = await this.page.url();
-    expect(currentUrl).toBe(expectedUrl); 
-}
+// async verifyUrl(expectedUrl)
+// {
+//     const currentUrl = await this.page.url();
+//     expect(currentUrl).toBe(expectedUrl); 
+// }
 
-async enterInvalidCodeInTryEditor(invalidPythonCode)
-{
-  await this.tryEditorLink.click();
-  await this.tryEditorTextarea.fill(invalidPythonCode);
-}
-async acceptAlert()
-{
-  this.page.on("dialog", async (dialog)=>
-  {    
-    await dialog.accept();
-  })  
-  await this.tryEditorButton.click();  
-}
+// async enterInvalidCodeInTryEditor(invalidPythonCode)
+// {
+//   await this.tryEditorLink.click();
+//   await this.tryEditorTextarea.fill(invalidPythonCode);
+// }
+// async acceptAlert()
+// {
+//   this.page.on("dialog", async (dialog)=>
+//   {    
+//     await dialog.accept();
+//   })  
+//   await this.tryEditorButton.click();  
+// }
 
-async logOut()
-{
-  await this.page.goBack();
-  await this.signOut.click();
-}
+// async logOut()
+// {
+//   await this.page.goBack();
+//   await this.signOut.click();
+// }
 
-//**********from ArrayPage copied functions */
-async clickOnLink(linkName) {
+//**********common functions */
+async clickOnLink(linkName) { 
   await this.page.locator(`[href="${linkName}"]`).click();
+  console.log("clicked: ",linkName);
 }
 
 async getPageTitle() {
@@ -116,6 +118,7 @@ async getPageTitle() {
 }
 
 async clickTryButton() {
+  console.log("clicked2");
   await this.tryEditorLink.click();
 }
 
@@ -167,6 +170,24 @@ async clickRunButtonwithInvalidCode()
   await this.tryEditorButton.click();
   return errormsg;
 
+}
+async getLinkNameFromExcel(sheetName, rowNumber) {
+  const output = await excelData.readExcel(sheetName);     
+  const linkName = output[rowNumber].get('links');
+  return linkName;
+}
+
+async enterCodefromExcel(sheetName, rowNumber) {
+  const output = await excelData.readExcel(sheetName);
+  const code = output[rowNumber].get('pythonCode');
+  await this.page.waitForLoadState('networkidle');
+  await this.tryEditorTextarea.fill(code);
+}
+
+async getExpectedResultFromExcel(sheetName, rowNumber) {
+  const output = await excelData.readExcel(sheetName);   
+  const expectedResult = output[rowNumber].get('Result');
+  return expectedResult;
 }
 
 
