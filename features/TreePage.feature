@@ -21,7 +21,9 @@ Background:
       | binary-trees                | Binary Trees                |
       | types-of-binary-trees       | Types of Binary Trees       |
       | implementation-in-python    | Implementation in Python    |
-      | applications-of-binary-trees| Applications of Binary Trees|
+      | binary-tree-traversals      | Binary Tree Traversals      |
+      | implementation-of-binary-trees| Implementation of Binary Trees|
+      | applications-of-binary-trees| Applications of Binary trees|
       | binary-search-trees         | Binary Search Trees         |
       | implementation-of-bst       | Implementation Of BST       |
 
@@ -41,7 +43,9 @@ Background:
       | binary-trees                | 
       | types-of-binary-trees       |
       | implementation-in-python    | 
-      | applications-of-binary-trees| 
+      | binary-tree-traversals      |
+      | implementation-of-binary-trees| 
+      | applications-of-binary-trees|  
       | binary-search-trees         | 
       | implementation-of-bst       | 
 
@@ -62,6 +66,8 @@ Background:
       | binary-trees                | print('hello')    | hello  |
       | types-of-binary-trees       | print('hello')    | hello  |
       | implementation-in-python    | print('hello')    | hello  |
+      | binary-tree-traversals      | print('hello')    | hello  |
+      | implementation-of-binary-trees|print('hello')    | hello  |
       | applications-of-binary-trees| print('hello')    | hello  |
       | binary-search-trees         | print('hello')    | hello  |
       | implementation-of-bst       | print('hello')    | hello  |
@@ -76,17 +82,19 @@ Background:
     Examples:
       | Links                       | invalid python code | error message                                    |
       | overview-of-trees           | hello               | NameError: name 'hello' is not defined on line 1 |
-      | terminologie                | hello               | NameError: name 'hello' is not defined on line 1 |
+      | terminologies               | hello               | NameError: name 'hello' is not defined on line 1 |
       | types-of-trees              | hello               | NameError: name 'hello' is not defined on line 1 |
       | tree-traversals             | hello               | NameError: name 'hello' is not defined on line 1 |
       | traversals-illustration     | hello               | NameError: name 'hello' is not defined on line 1 |
       | binary-trees                | hello               | NameError: name 'hello' is not defined on line 1 |
       | types-of-binary-trees       | hello               | NameError: name 'hello' is not defined on line 1 |
       | implementation-in-python    | hello               | NameError: name 'hello' is not defined on line 1 |
+      | binary-tree-traversals      | hello               | NameError: name 'hello' is not defined on line 1 |
+      | implementation-of-binary-trees|hello               | NameError: name 'hello' is not defined on line 1 |
       | applications-of-binary-trees| hello               | NameError: name 'hello' is not defined on line 1 |
       | binary-search-trees         | hello               | NameError: name 'hello' is not defined on line 1 |
       | implementation-of-bst       | hello               | NameError: name 'hello' is not defined on line 1 |
-      
+
 @tree-practice-questions
   Scenario: The user is able to navigate to QueueOp page and click on Practice Questions
     Given User is on "Tree" page after logged in
