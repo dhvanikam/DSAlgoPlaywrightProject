@@ -7,5 +7,8 @@ module.exports = {
     STACK_PAGE_TITLE: 'Stack',
     QUEUE_PAGE_TITLE: 'Queue',
     TREE_PAGE_TITLE: 'Tree',
-    GRAPH_PAGE_TITLE: 'Graph'
+    GRAPH_PAGE_TITLE: 'Graph',
+
+    MISSPELLED_URL: "https://dsporrtalapp.herokuapp.com/home",
+    HOMEPAGE_TITLE: 'NumpyNinja'
 }
