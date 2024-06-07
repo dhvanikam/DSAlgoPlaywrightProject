@@ -6,13 +6,13 @@ Feature: Data Structures-Introduction feature Validations
     When User clicks get started for data structure after entering valid credential
 
   @data-structure-links-navigation
-  Scenario Outline: User is able to navigate to "<Links>" from Data Structures page
+  Scenario Outline: User is able to navigate to <links> from Data Structures page
     Given User is on Data Structures page after logged in
-    When User clicks on "<Links>" for Data Structures page
+    When User clicks on "<links>" for Data Structures page
     Then User should be navigate to "<pagename>" page Data Structures page
 
     Examples:
-      | Links           | pagename        |
+      | links           | pagename        |
       | time-complexity | Time Complexity |
 
   @data-structure-practiceQuetionsLink-navigation
@@ -33,7 +33,7 @@ Feature: Data Structures-Introduction feature Validations
 
     Examples:
       | pagename             | SheetName | rownumber |
-      | Time Complexity page | DSPage    |         0 |
+      | Time Complexity page | DSPythonCode    |         0 |
 
   @data-structure-tryeditor-validcode
   Scenario: User is able run valid python code in tryEditor for "<pagename>" Data Structures page
@@ -44,7 +44,7 @@ Feature: Data Structures-Introduction feature Validations
 
     Examples:
       | pagename             | SheetName | rownumber |
-      | Time Complexity page | DSPage    |         0 |
+      | Time Complexity page | DSPythonCode    |         0 |
 
   @data-structure-tryeditor-invalidcode
   Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<pagename>" for Data Structures page
@@ -55,4 +55,4 @@ Feature: Data Structures-Introduction feature Validations
 
     Examples:
       | pagename             | SheetName | rownumber |
-      | Time Complexity page | DSPage    |         1 |
+      | Time Complexity page | DSPythonCode    |         1 |
