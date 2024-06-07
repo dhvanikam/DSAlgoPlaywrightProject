@@ -2,7 +2,7 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
 const {POManager} = require('../../pageObjects/POManager');
-const dataset = JSON.parse(JSON.stringify(require('../../utils/RegisterValidTestData.json')));
+const dataset = JSON.parse(JSON.stringify(require('../../testData/RegisterValidTestData.json')));
 const excel = require('../../utils/ExcelReaderUtil.spec');
 const util = require('../../utils/util.spec');
 
