@@ -18,9 +18,9 @@ When('User enters valid username {string} and password {string} and clicks on lo
   this.homePage = await this.signInPage.validLogin(username, password);
 });
 
-Then('User navigates to the home page with a message {string}', async function (msg) {
-       
-  expect(await this.signInPage.successLogin()).toHaveText("    You are logged in");
+Then('User navigates to the home page with a message {string}', async function (expctedSuccessMsg) {
+
+  expect(await this.homePage.successLogin()).toBe(expctedSuccessMsg);
    
 });
 

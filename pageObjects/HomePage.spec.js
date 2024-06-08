@@ -2,7 +2,9 @@ const config = require('../playwright.config');
 class HomePage{
 
     constructor(page,pommanager){
+        
         this.page = page;
+
         //dropdown locators
         this.pommanager = pommanager;
         this.textLogo = page.locator(".navbar-brand");
@@ -13,6 +15,9 @@ class HomePage{
 
         //error msg locator
         this.errMsg = page.locator("div[role='alert']");
+
+        //successMsg Locator for SignIn
+        this.successLoginText = page.locator("div.alert.alert-primary");
 
         //link locators
         this.registerLink = page.locator("//a[normalize-space()='Register']");
@@ -130,6 +135,16 @@ class HomePage{
         await this.signOut.click();
     }
     
+    /**************************Success Msg Alert For Login ******************/
+    async successLogin() 
+    {
+        if(await this.successLoginText.isVisible())
+        {
+           const successTxt = await this.successLoginText.textContent();
+           console.log(successTxt.trim())
+           return successTxt.trim();
+        }      
+    }
     
 
     /*********** Module methods *****************/

@@ -11,7 +11,7 @@ Background:
     Then User lands on Registration Page
 
   @LoginTest_with_validdata
-  Scenario Outline: User  Login with  valid "<username>" and "<password>"
+  Scenario Outline: User  Login with valid "<username>" and "<password>"
     When User enters valid username "<username>" and password "<password>" and clicks on login button
     Then User navigates to the home page with a message "You are logged in"
 
