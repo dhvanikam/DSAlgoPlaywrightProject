@@ -6,7 +6,7 @@ Feature: Array feature Validations
     When User clicks get started for array after entering valid credential
 
   @arrays-links-navigations
-  Scenario Outline: Verify User is able to navigate to links from array page
+  Scenario Outline: Verify User is able to navigate to "<Links>" from array page
     Given User is on "Array" page after logged in
     When User clicks on "<Links>"
     Then User should be navigate to "<pagename>" page
@@ -19,7 +19,7 @@ Feature: Array feature Validations
       | applications-of-array     | Applications of Array     |
 
   @arrays-practiceQuetionsLink-navigation
-  Scenario Outline: Verify User is able to navigate to a page having an Practice Questions from array page
+  Scenario Outline: Verify User is able to navigate to a page having an Practice Questions from "<Links>"
     Given User is on "Array" page after logged in
     When User click the practice question button from "<Links>" page
     Then User should be navigate to a page having "Practice Questions"
@@ -73,7 +73,7 @@ Feature: Array feature Validations
       | Applications of Array page     | arraysLinksPythoncode |         7 |
 
   @arrays-practice-questionsLinks
-  Scenario Outline: User is able to navigate to <PracticeQuestionLinks> on array page
+  Scenario Outline: User is able to navigate to "<PracticeQuestionLinks>" on array page
     Given User is on "Array" page after logged in
     When User click the Practice Questions from "Arrays in Python" page
     And User click on "<PracticeQuestionLinks>" page
