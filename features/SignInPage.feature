@@ -1,7 +1,6 @@
 @logIn
 Feature: Login Action
 
-
 Background: 
     When User gives the correct DsAlgo portal URL
     When User clicks on SignIn link on Home Page
@@ -21,7 +20,7 @@ Background:
       | julie@gmail.com | Sdet@1234 |
 
   @LoginTest_Invaliddatas
-  Scenario Outline: To verify Login with invalid Credentials
+  Scenario Outline: To verify Login with invalid Credentials from "<sheetname>" and <rownum>
     When user enters invalid login credentials in the sheetname "<sheetname>" and row number <rownum> and clicks login button
     Then User verify the message "Invalid Username and Password".
 
@@ -32,7 +31,7 @@ Background:
       | Login_InvalidCredentials |      4 |
 
   @LoginTest_Empty_Fields
-  Scenario Outline: To verify SignIn with Empty fields
+  Scenario Outline: To verify SignIn with atleast one Empty fields from sheetname "<sheetname>" and row number <rownum>
     When User clicks on login button with atleast one empty field in the sheetname "<sheetname>" and row number <rownum>
     Then User verify the message "Please fill out this field." underneath one of the fields
 

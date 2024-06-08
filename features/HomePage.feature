@@ -1,4 +1,4 @@
-@homePage_Val
+@HomePage
 Feature: Home Page Functionality without sign in for DsAlgo Website
 Background: User has launched the browser
 ################ End Point scenarios #####################
@@ -7,14 +7,13 @@ Scenario: Verify User is able to land on home page
     When User gives the correct DsAlgo portal URL
     Then User lands on home page
 
-@404 @misspelledbaseURL
 Scenario: Verify User gets 404 Page Not Found for incorrect URL
     When User gives DsAlgo URL with misspelled baseURL
     Then User recieves status code "404" and  error message "Not Found"
 
 ################ SignIn Link scenarios #####################   
 
-Scenario: Verify user can navigate to Sign In Page
+Scenario: Verify user can see Sign In Link
     And User gives the correct DsAlgo portal URL
     When User sees SignIn link 
 
@@ -25,7 +24,7 @@ Scenario: Verify user can navigate to Sign In Page
 
 ################ Registration Link scenarios #####################  
 
-Scenario: Verify user can navigate to Registration Page
+Scenario: Verify user can see Registration link
     And User gives the correct DsAlgo portal URL
     When User sees Registration link
 

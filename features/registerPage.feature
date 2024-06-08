@@ -12,7 +12,7 @@ Feature: Register page Validation
     Then User lands on SignIn Page
 
   @RegisterTest_with_validdata_JSON
-  Scenario Outline: User register with valid information
+  Scenario Outline: User register with valid information from JsonFile "<JsonDataSet>"
     #Given The user opens Register Page
     When User logs in with valid credentials from "<JsonDataSet>"
     Then User navigate to the home page with a message "New Account Created"
@@ -23,7 +23,7 @@ Feature: Register page Validation
       |           2 |
 
   @RegisterTest_with_invalidcredentials_Excel
-  Scenario Outline: To verify Register Form with invalid Credentials
+  Scenario Outline: To verify Register Form with invalid Credentials from "<sheetname>" and row number <rownum>
     #Given The user opens Register Page
     When user enters invalid credentials in the sheetname "<sheetname>" and row number <rownum>
     Then User verifies for the mismatch error message "password_mismatch:The two password fields didn’t match."
@@ -39,7 +39,7 @@ Feature: Register page Validation
       | Register_InvalidCredentials |      8 |
 
   @RegisterTest_with_invalidcredentials_Excel @OnlySheetname
-  Scenario Outline: To verify Register Form with invalid Credentials with all data sets
+  Scenario Outline: To verify Register Form with invalid Credentials with all data sets from "<sheetname>"
     #Given The user opens Register Page
     When user enters invalid credentials in the sheetname "<sheetname>"
     Then User verifies for the mismatch error message "password_mismatch:The two password fields didn’t match."
@@ -49,7 +49,7 @@ Feature: Register page Validation
       | Register_InvalidCredentials |
 
   @RegisterTest_Empty_Fields
-  Scenario Outline: The user is presented with error message for empty fields
+  Scenario Outline: The user is presented with error message for empty fields for dataset from "<sheetname>" and row number <rownum>
     When The user clicks Register button with atleast one empty field in the sheetname "<sheetname>" and row number <rownum>
     Then It should display an error "Please fill out this field." underneath one of the fields
 
