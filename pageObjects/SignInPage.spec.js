@@ -8,7 +8,6 @@ class SignInPage {
         this.password = page.locator("#id_password");
         this.loginButton = page.locator("input[value='Login']");
         this.registerLink_Down = page.getByRole('link', {name: 'Register!'});
-        this.successLoginText = page.locator("div.alert.alert-primary");
         this.errorMsgText = page.locator("div.alert.alert-primary");
         
      }
@@ -25,14 +24,6 @@ class SignInPage {
         await this.password.fill(password);
         await this.loginButton.click();
         return this.pommanager.getHomePage();
-    }
-
-    async successLogin() 
-    {
-        if(await this.successLoginText.isVisible())
-        {
-           return this.successLoginText;
-        }      
     }
 
     //Login with InValid Credentials
@@ -63,7 +54,7 @@ class SignInPage {
     {
         await this.username.hover();
         this.tooltipText = await this.username.evaluate(Node => Node.validationMessage);
-        //console.log('Tooltip Text: ' + this.tooltipText);
+
         return this.tooltipText.trim();
     }
 
@@ -72,7 +63,7 @@ class SignInPage {
     {
         await this.password.hover();
         this.tooltipText = await this.password.evaluate(Node => Node.validationMessage);
-       // console.log('Tooltip Text: ' + this.tooltipText);
+
         return this.tooltipText.trim();
     }
 }
