@@ -32,8 +32,8 @@ Feature: Data Structures-Introduction feature Validations
     Then User should be navigate to a page having an tryEditor with a Run button to test for Data Structures page
 
     Examples:
-      | pagename             | SheetName | rownumber |
-      | Time Complexity page | DSPythonCode    |         0 |
+      | pagename             | SheetName    | rownumber |
+      | Time Complexity page | DSPythonCode |         0 |
 
   @data-structure-tryeditor-validcode
   Scenario: User is able run valid python code in tryEditor for "<pagename>" Data Structures page
@@ -43,8 +43,8 @@ Feature: Data Structures-Introduction feature Validations
     Then User should be presented with Run result from row "<rownumber>" of sheet "<SheetName>" for Data Structures page
 
     Examples:
-      | pagename             | SheetName | rownumber |
-      | Time Complexity page | DSPythonCode    |         0 |
+      | pagename             | SheetName    | rownumber |
+      | Time Complexity page | DSPythonCode |         0 |
 
   @data-structure-tryeditor-invalidcode
   Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<pagename>" for Data Structures page
@@ -54,5 +54,5 @@ Feature: Data Structures-Introduction feature Validations
     Then User should be presented with error message from row "<rownumber>" of sheet "<SheetName>" for Data Structures page
 
     Examples:
-      | pagename             | SheetName | rownumber |
-      | Time Complexity page | DSPythonCode    |         1 |
+      | pagename             | SheetName    | rownumber |
+      | Time Complexity page | DSPythonCode |         1 |
