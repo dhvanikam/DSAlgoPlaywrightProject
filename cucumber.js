@@ -8,12 +8,10 @@ module.exports = {
       'features/step_definitions/*.spec.js'
     ],
     forceExit: true,
-    //format: [path.resolve(__dirname, "reporter.js")],
-    //format: ["html:cucumber-report.html"],
     format: ["html:reports/cucumber-report.html", 
     "json:reports/cucumber-report.json",
     './reporter.js'],
-    retry: 1,
+    retry: 2,
     parallel: 3
 
   },

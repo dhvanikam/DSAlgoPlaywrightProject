@@ -15,7 +15,7 @@ Before({timeout: 100*1000},async function () {
   //     /**NEED STEP TO DELETE SCREENSHOTS FROM PREVIOUS TEST RUN */
   //   console.log("inside Before Hook");
     this.browser = await playwright.chromium.launch({
-      headless: false,
+      headless: true,
   });
 
   this.context = await this.browser.newContext();
