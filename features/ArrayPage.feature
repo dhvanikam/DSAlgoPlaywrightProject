@@ -6,7 +6,7 @@ Feature: Array feature Validations
     When User clicks get started for array after entering valid credential
 
   @arrays-links-navigations
-  Scenario Outline: Verify User is able to navigate to "<Links>" from array page
+  Scenario Outline: Verify user is able to navigate to "<Links>" from array page
     Given User is on "Array" page after logged in
     When User clicks on "<Links>"
     Then User should be navigate to "<pagename>" page
@@ -19,7 +19,7 @@ Feature: Array feature Validations
       | applications-of-array     | Applications of Array     |
 
   @arrays-practiceQuetionsLink-navigation
-  Scenario Outline: Verify User is able to navigate to a page having an Practice Questions from "<Links>"
+  Scenario Outline: Verify user is able to navigate to a page having an Practice Questions from "<Links>"
     Given User is on "Array" page after logged in
     When User click the practice question button from "<Links>" page
     Then User should be navigate to a page having "Practice Questions"
@@ -32,112 +32,112 @@ Feature: Array feature Validations
       | applications-of-array     |
 
   @arrays-tryeditor-navigation
-  Scenario Outline: Verify User is able to navigate to a page having an tryEditor from "<pagename>"
+  Scenario Outline: Verify user is able to navigate to a page having an tryEditor from "<pagename>"
     Given User is on "Array" page after logged in
     When User click the Try here button from "<pagename>" page from "<rownumber>" of sheet "<SheetName>"
     Then User should be navigate to a page having an tryEditor with a Run button to test
 
     Examples:
-      | pagename                       | SheetName       | rownumber |
+      | pagename                       | SheetName             | rownumber |
       | Arrays in Python page          | arraysLinksPythoncode |         0 |
       | Arrays Using List page         | arraysLinksPythoncode |         1 |
       | Basic Operations in Lists page | arraysLinksPythoncode |         2 |
       | Applications of Array page     | arraysLinksPythoncode |         3 |
 
   @arrays-tryeditor-validcode
-  Scenario: User is able run valid python code in tryEditor for "<pagename>" page
+  Scenario: Verify user is able run valid python code in tryEditor for "<pagename>"
     Given User is on "Array" page after logged in
-    When User click the Try here button from "Links" page from "<rownumber>" of sheet "<SheetName>"
+    When User click the Try here button from "<pagename>" page from "<rownumber>" of sheet "<SheetName>"
     And User clicks the run button after entering code in tryEditor from row "<rownumber>" of sheet "<SheetName>"
     Then User should be presented with Run result from row "<rownumber>" of sheet "<SheetName>"
 
     Examples:
-      | pagename                       | SheetName       | rownumber |
+      | pagename                       | SheetName             | rownumber |
       | Arrays in Python page          | arraysLinksPythoncode |         0 |
       | Arrays Using List page         | arraysLinksPythoncode |         1 |
       | Basic Operations in Lists page | arraysLinksPythoncode |         2 |
       | Applications of Array page     | arraysLinksPythoncode |         3 |
 
   @arrays-tryeditor-invalidcode
-  Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<pagename>"
+  Scenario: Verify user is presented with error message for code with invalid syntax in tryEditor for "<pagename>"
     Given User is on "Array" page after logged in
     When User click the Try here button from "<pagename>" page from "<rownumber>" of sheet "<SheetName>"
     And User clicks the run button after entering code in tryEditor from row "<rownumber>" of sheet "<SheetName>"
     Then User should be presented with error message from row "<rownumber>" of sheet "<SheetName>"
 
     Examples:
-      | pagename                       | SheetName       | rownumber |
+      | pagename                       | SheetName             | rownumber |
       | Arrays in Python page          | arraysLinksPythoncode |         4 |
       | Arrays Using List page         | arraysLinksPythoncode |         5 |
       | Basic Operations in Lists page | arraysLinksPythoncode |         6 |
       | Applications of Array page     | arraysLinksPythoncode |         7 |
 
   @arrays-practice-questionsLinks
-  Scenario Outline: User is able to navigate to "<PracticeQuestionLinks>" on array page
+  Scenario Outline: Verify user is able to navigate to "<QuestionLinks>" from "<pagename>"
     Given User is on "Array" page after logged in
-    When User click the Practice Questions from "Arrays in Python" page
-    And User click on "<PracticeQuestionLinks>" page
-    Then User should be navigate to a page having an question with a Run button and submit button to test
+    When User click the Practice Questions link from "Arrays in Python" page
+    And User click on "<QuestionLinks>" page
+    Then User should be navigate to a page having an "Assessment" with a Run button and submit button to test
 
     Examples:
-      | PracticeQuestionLinks | pagename                                |
-      | /question/1           | Search the array                        |
-      | /question/2           | Max Consecutive Ones                    |
-      | /question/3           | Find Numbers with Even Number of Digits |
-      | /question/4           | Squares of a Sorted Array               |
+      | QuestionLinks | pagename                                |
+      | /question/1   | Search the array                        |
+      | /question/2   | Max Consecutive Ones                    |
+      | /question/3   | Find Numbers with Even Number of Digits |
+      | /question/4   | Squares of a Sorted Array               |
 
   @arrays-practice-questions-runValid-excel
-  Scenario Outline: User is able to run the valid python to "<PracticeQuestionLinks>" on array page
+  Scenario Outline: Verify user is able to run code in tryEditor for "<QuestionLinks>"
     Given User is on "Array" page after logged in
-    When User click the "<PracticeQuestionLinks>" from practice question page
-    And User clicks the run button after entering code in <PracticeQuestionLinks> from row "<rownumber>" of sheet "<SheetName>"
+    When User click the "<QuestionLinks>" from practice question page
+    And User clicks the run button after entering code in "<QuestionLinks>" from row "<rownumber>" of sheet "<SheetName>"
     Then User should be presented with Run result from row "<rownumber>" of sheet "<SheetName>"
 
     Examples:
-      | PracticeQuestionLinks | SheetName  | rownumber |
-      | /question/1           | arraysPracticePythonCode |         2 |
-      # | /question/2           | arraysPracticePythonCode |         4 |
-      # | /question/3           | arraysPracticePythonCode |         6 |
-      # | /question/4           | arraysPracticePythonCode |         8 |
+      | QuestionLinks | SheetName                | rownumber |
+      | /question/1   | arraysPracticePythonCode |         2 |
+      | /question/2   | arraysPracticePythonCode |         4 |
+      | /question/3   | arraysPracticePythonCode |         6 |
+      | /question/4   | arraysPracticePythonCode |         8 |
 
   @arrays-practice-questions-submitValid-excel
-  Scenario Outline: User is able to run the valid python to "<PracticeQuestionLinks>" on array page
+  Scenario Outline: Verify user is able to submit code in tryEditor for "<QuestionLinks>"
     Given User is on "Array" page after logged in
-    When User click the "<PracticeQuestionLinks>" from practice question page
-    And User clicks the submit button after entering code in <PracticeQuestionLinks> from row "<rownumber>" of sheet "<SheetName>"
+    When User click the "<QuestionLinks>" from practice question page
+    And User clicks the submit button after entering code in "<QuestionLinks>" from row "<rownumber>" of sheet "<SheetName>"
     Then User should be presented with result from row "<rownumber>" of sheet "<SheetName>"
 
     Examples:
-      | PracticeQuestionLinks | SheetName  | rownumber |
-      | /question/1           | arraysPracticePythonCode |         3 |
-      | /question/2           | arraysPracticePythonCode |         5 |
-      | /question/3           | arraysPracticePythonCode |         7 |
-      | /question/4           | arraysPracticePythonCode |         9 |
+      | QuestionLinks | SheetName                | rownumber |
+      | /question/1   | arraysPracticePythonCode |         3 |
+      | /question/2   | arraysPracticePythonCode |         5 |
+      | /question/3   | arraysPracticePythonCode |         7 |
+      | /question/4   | arraysPracticePythonCode |         9 |
 
   @arrays-practice-questions-runInvalid-excel
-  Scenario Outline: User is able to get error message for invalid python for "<PracticeQuestionLinks>" on array page
+  Scenario Outline: Verify user is able to get error message when run button pressed with code with invalid syntax in tryEditor for "<QuestionLinks>"
     Given User is on "Array" page after logged in
-    When User click the "<PracticeQuestionLinks>" from practice question page
-    And User clicks the run button after entering code in <PracticeQuestionLinks> from row "<rownumber>" of sheet "<SheetName>"
+    When User click the "<QuestionLinks>" from practice question page
+    And User clicks the run button after entering code in "<QuestionLinks>" from row "<rownumber>" of sheet "<SheetName>"
     Then User should be presented with error message from row "<rownumber>" of sheet "<SheetName>"
 
     Examples:
-      | PracticeQuestionLinks | SheetName  | rownumber |
-      | /question/1           | arraysPracticePythonCode |        10 |
-      | /question/2           | arraysPracticePythonCode |        11 |
-      | /question/3           | arraysPracticePythonCode |        12 |
-      | /question/4           | arraysPracticePythonCode |        13 |
+      | QuestionLinks | SheetName                | rownumber |
+      | /question/1   | arraysPracticePythonCode |        10 |
+      | /question/2   | arraysPracticePythonCode |        11 |
+      | /question/3   | arraysPracticePythonCode |        12 |
+      | /question/4   | arraysPracticePythonCode |        13 |
 
   @arrays-practice-questions-submitInvalid-excel
-  Scenario Outline: User is able to get error message for invalid python for "<PracticeQuestionLinks> for array page
+  Scenario Outline: Verify user is able to get error message when submit button pressed with code with invalid syntax in tryEditor for "<QuestionLinks>"
     Given User is on "Array" page after logged in
-    When User click the "<PracticeQuestionLinks>" from practice question page
-    And User clicks the submit button after entering code in <PracticeQuestionLinks> from row "<rownumber>" of sheet "<SheetName>"
-    Then User should be presented with error message from row "<rownumber>" of sheet "<SheetName>"
+    When User click the "<QuestionLinks>" from practice question page
+    And User clicks the submit button after entering code in "<QuestionLinks>" from row "<rownumber>" of sheet "<SheetName>"
+    Then User should be presented with error message for submit button from row "<rownumber>" of sheet "<SheetName>"
 
     Examples:
-      | PracticeQuestionLinks | SheetName  | rownumber |
-      | /question/1           | arraysPracticePythonCode |        10 |
-      | /question/2           | arraysPracticePythonCode |        11 |
-      | /question/3           | arraysPracticePythonCode |        12 |
-      | /question/4           | arraysPracticePythonCode |        13 |
+      | QuestionLinks | SheetName                | rownumber |
+      | /question/1   | arraysPracticePythonCode |        14 |
+      | /question/2   | arraysPracticePythonCode |        15 |
+      | /question/3   | arraysPracticePythonCode |        16 |
+      | /question/4   | arraysPracticePythonCode |        17 |

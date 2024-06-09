@@ -1,24 +1,15 @@
-const ExcelJS = require('exceljs');
 const excelData = require('../utils/ExcelReaderUtil.spec');
+const utility = require('../utils/util.spec');
 class ArrayPage {
 
     constructor(page) {
         this.page = page;
-        this.arraysInPythonLink = page.locator("[href='arrays-in-python']");
-        this.arraysUsingListLink = page.locator("[href='arrays-using-list']");
-        this.basicOpinListsLink = page.locator("[href='basic-operations-in-lists']");
-        this.appOfArrayLink = page.locator("[href='applications-of-array']");
-        this.practiceQueLink = page.locator("[href='/array/practice']");
-        this.searchArrayLink = page.locator("[href='/question/1']");
-        this.mostConOnesLink = page.locator("[href='/question/2']");
-        this.findEvenNumLink = page.locator("[href='/question/3']");
-        this.sqOfSortedArrayLink = page.locator("[href='/question/4']");
         this.tryEditorLink = page.locator('[href="/tryEditor"]');
         this.tryEditorTextarea = page.locator("//textarea[@tabindex='0']");
+        this.tryEditorTextareaUpdated = page.locator("//textarea[@id='editor']");
         this.tryEditorButton = page.locator('[type="button"]');
         this.submitButton = page.locator('[class="button"]');
         this.textOutput = page.locator('[id="output"]');
-        this.signOut = page.locator('[href="/logout"]');
     }
 
     async clickOnLink(linkName) {
@@ -27,7 +18,6 @@ class ArrayPage {
         await this.test.click();
 
     }
-
     async getPageTitle() {
         return await this.page.title();
     }
@@ -38,18 +28,17 @@ class ArrayPage {
 
     async clearCodeFromEditor() {
         await this.tryEditorTextarea.waitFor();
-        await this.tryEditorTextarea.press('Enter');
-        await this.tryEditorTextarea.press('MetaLeft+KeyA+Backspace');
-        //await this.tryEditorTextarea.clear();//did not work
+        await this.tryEditorTextarea.focus();
+        const keyName = utility.getKeyboardKeyOS();
+        await this.tryEditorTextarea.press(`${keyName}+KeyA+Backspace`);
+        //await this.tryEditorTextareaUpdated.clear();//did not work
     }
     async enterCode(code) {
         //await this.tryEditorTextarea.waitFor();//which one best to use
-        console.log("🚀 ~ ArrayPage ~ enterCode ~ code:", typeof code)
         await this.page.waitForLoadState('networkidle');
         await this.tryEditorTextarea.fill(code);
 
     }
-
 
     async clickRunButton() {
         await this.tryEditorButton.click();
@@ -67,20 +56,20 @@ class ArrayPage {
         return result;
     }
 
-    
-    
+
+
     async getPageNameFromExcel(sheetName, rowNumber) {
-        const output = await excelData.readExcel(sheetName);     
+        const output = await excelData.readExcel(sheetName);
         const linkName = output[rowNumber].get('pagename');
         return linkName;
     }
     async getLinkNameFromExcel(sheetName, rowNumber) {
-        const output = await excelData.readExcel(sheetName);     
+        const output = await excelData.readExcel(sheetName);
         const linkName = output[rowNumber].get('links');
         return linkName;
     }
     async getExpectedResultFromExcel(sheetName, rowNumber) {
-        const output = await excelData.readExcel(sheetName);     
+        const output = await excelData.readExcel(sheetName);
         const expectedResult = output[rowNumber].get('Result');
         return expectedResult;
     }

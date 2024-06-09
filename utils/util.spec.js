@@ -1,3 +1,4 @@
+const os = require('os');
 // @ts-check
 module.exports = {
 
@@ -23,6 +24,18 @@ module.exports = {
     getRandomInt(max) 
     {
         return Math.floor(Math.random() * max);
+    },
+
+    getKeyboardKeyOS(){
+        let platform = os.platform();
+
+        if(platform==='darwin'){
+            return 'MetaLeft';
+        }
+        else{
+            return 'Control';
+        }
+
     }
 
 }
