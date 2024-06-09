@@ -133,11 +133,11 @@ Feature: Array feature Validations
     Given User is on "Array" page after logged in
     When User click the "<QuestionLinks>" from practice question page
     And User clicks the submit button after entering code in "<QuestionLinks>" from row "<rownumber>" of sheet "<SheetName>"
-    Then User should be presented with error message from row "<rownumber>" of sheet "<SheetName>"
+    Then User should be presented with error message for submit button from row "<rownumber>" of sheet "<SheetName>"
 
     Examples:
       | QuestionLinks | SheetName                | rownumber |
-      | /question/1   | arraysPracticePythonCode |        10 |
-      | /question/2   | arraysPracticePythonCode |        11 |
-      | /question/3   | arraysPracticePythonCode |        12 |
-      | /question/4   | arraysPracticePythonCode |        13 |
+      | /question/1   | arraysPracticePythonCode |        14 |
+      | /question/2   | arraysPracticePythonCode |        15 |
+      | /question/3   | arraysPracticePythonCode |        16 |
+      | /question/4   | arraysPracticePythonCode |        17 |

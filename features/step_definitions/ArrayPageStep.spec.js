@@ -119,6 +119,11 @@ Then('User should be presented with error message from row {string} of sheet {st
     expect(await this.arrayPage.getErrorMsg()).toContain(errorMessage);
 });
 
+//@arrays-practice-questions-submitInvalid-excel
+Then('User should be presented with error message for submit button from row {string} of sheet {string}', async function (rownum, sheetName) {
+    const errormsg = await this.arrayPage.getExpectedResultFromExcel(sheetName, rownum);
+    expect(await this.arrayPage.getResult()).toContain(errormsg);
+  });
 
 
 
