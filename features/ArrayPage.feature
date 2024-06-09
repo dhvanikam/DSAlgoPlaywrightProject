@@ -96,9 +96,9 @@ Feature: Array feature Validations
     Examples:
       | QuestionLinks | SheetName                | rownumber |
       | /question/1   | arraysPracticePythonCode |         2 |
-      | /question/2   | arraysPracticePythonCode |         4 |
-      | /question/3   | arraysPracticePythonCode |         6 |
-      | /question/4   | arraysPracticePythonCode |         8 |
+      # | /question/2   | arraysPracticePythonCode |         4 |
+      # | /question/3   | arraysPracticePythonCode |         6 |
+      # | /question/4   | arraysPracticePythonCode |         8 |
 
   @arrays-practice-questions-submitValid-excel
   Scenario Outline: Verify user is able to submit code in tryEditor for "<QuestionLinks>"

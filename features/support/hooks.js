@@ -12,7 +12,7 @@ Before(async function (scenario) {
 
 Before({ timeout: 100 * 1000 }, async function () {
   this.browser = await playwright.chromium.launch({
-    headless: true,
+    headless: false,
   });
 
   this.context = await this.browser.newContext();

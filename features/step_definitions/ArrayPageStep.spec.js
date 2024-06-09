@@ -55,10 +55,12 @@ When('User clicks the run button after entering code in tryEditor from row {stri
     await this.arrayPage.enterCodefromExcel(sheetName, rowNumber);
     await this.arrayPage.clickRunButton();
 });
+
 Then('User should be presented with Run result from row {string} of sheet {string}', async function (rowNumber, sheetName) {
     const result = await this.arrayPage.getExpectedResultFromExcel(sheetName, rowNumber);
     expect(await this.arrayPage.getResult()).toContain(result);
 });
+
 Then('User should be presented with Run result as {string}', async function (result) {
     expect(await this.arrayPage.getResult()).toContain(result);
 });
@@ -67,8 +69,6 @@ Then('User should be presented with Run result as {string}', async function (res
 Then('User should be presented with error message as {string}', async function (errorMessage) {
     expect(await this.arrayPage.getErrorMsg()).toContain(errorMessage);
 });
-
-
 
 //@arrays-practice-questionsLinks
 When('User click the Practice Questions link from {string} page', async function (string) {

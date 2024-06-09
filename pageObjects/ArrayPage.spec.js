@@ -1,4 +1,5 @@
 const excelData = require('../utils/ExcelReaderUtil.spec');
+const utility = require('../utils/util.spec');
 class ArrayPage {
 
     constructor(page) {
@@ -26,9 +27,11 @@ class ArrayPage {
 
     async clearCodeFromEditor() {
         await this.tryEditorTextarea.waitFor();
-        await this.tryEditorTextarea.press('Enter');
-        await this.tryEditorTextarea.press('MetaLeft+KeyA+Backspace');
+        await this.tryEditorTextarea.focus();
+        const keyName = utility.getKeyboardKeyOS();
+        await this.tryEditorTextarea.press(`${keyName}+KeyA+Backspace`);
         //await this.tryEditorTextarea.clear();//did not work
+
     }
     async enterCode(code) {
         //await this.tryEditorTextarea.waitFor();//which one best to use
