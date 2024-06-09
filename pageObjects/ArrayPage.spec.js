@@ -6,6 +6,7 @@ class ArrayPage {
         this.page = page;
         this.tryEditorLink = page.locator('[href="/tryEditor"]');
         this.tryEditorTextarea = page.locator("//textarea[@tabindex='0']");
+        this.tryEditorTextareaUpdated = page.locator("//textarea[@id='editor']");
         this.tryEditorButton = page.locator('[type="button"]');
         this.submitButton = page.locator('[class="button"]');
         this.textOutput = page.locator('[id="output"]');
@@ -30,8 +31,7 @@ class ArrayPage {
         await this.tryEditorTextarea.focus();
         const keyName = utility.getKeyboardKeyOS();
         await this.tryEditorTextarea.press(`${keyName}+KeyA+Backspace`);
-        //await this.tryEditorTextarea.clear();//did not work
-
+        //await this.tryEditorTextareaUpdated.clear();//did not work
     }
     async enterCode(code) {
         //await this.tryEditorTextarea.waitFor();//which one best to use

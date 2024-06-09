@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = {
   default: {
     defaultTimeout: 10000,
@@ -10,9 +8,9 @@ module.exports = {
     forceExit: true,
     format: ["html:reports/cucumber-report.html", 
     "json:reports/cucumber-report.json",
-    /*'./reporter.js'*/],
-    // retry: 2,
-    // parallel: 3
+    './reporter.js'],
+    retry: 2,
+    parallel: 3
 
   },
 };

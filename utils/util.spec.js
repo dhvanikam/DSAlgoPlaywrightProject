@@ -28,7 +28,7 @@ module.exports = {
 
     getKeyboardKeyOS(){
         let platform = os.platform();
-        console.log("🚀 ~ ArrayPage ~ clearCodeFromEditor ~ platform:", platform);
+
         if(platform==='darwin'){
             return 'MetaLeft';
         }
