@@ -40,8 +40,8 @@ Feature: Stack Page Validations
     Examples:        
     |Links              | SheetName | rownumber |
     |operations-in-stack| Stackpage |         0 |
-    # |implementation     | Stackpage |         1 |
-    # |stack-applications | Stackpage |         2 |
+    |implementation     | Stackpage |         1 |
+    |stack-applications | Stackpage |         2 |
      
  @stack-tryeditor-invalidcode
   Scenario: User is presented with error message for code with invalid syntax in tryEditor for "<Links>" page

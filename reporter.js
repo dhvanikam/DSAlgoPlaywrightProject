@@ -3,6 +3,7 @@ const path = require("path");
 
 class Reporter extends CucumberJSAllureFormatter {
   constructor(options) {
+    
     super(
       options,
       new AllureRuntime({
@@ -10,7 +11,8 @@ class Reporter extends CucumberJSAllureFormatter {
       }),
       {},
     );
+     
   }
 }
 
-module.exports = Reporter;
+module.exports =Reporter;
