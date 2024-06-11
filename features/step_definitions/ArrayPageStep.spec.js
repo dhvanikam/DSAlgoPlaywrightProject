@@ -1,6 +1,5 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
-const { POManager } = require('../../pageObjects/POManager');
 
 //Background
 When('User clicks get started for array after entering valid credential', async function () {
@@ -71,10 +70,14 @@ Then('User should be presented with error message as {string}', async function (
 });
 
 //@arrays-practice-questionsLinks
-When('User click the Practice Questions link from {string} page', async function (string) {
-    await this.arrayPage.clickOnLink("arrays-in-python");
-    await this.arrayPage.clickOnLink("/array/practice");
+When('User click the Practice Questions link {string} from {string} page', async function (practiceLink, pagelink) {
+    await this.arrayPage.clickOnLink(pagelink);
+    await this.arrayPage.clickOnLink(practiceLink);
 });
+// When('User click the Practice Questions link from {string} page', async function (string) {
+//     await this.arrayPage.clickOnLink("arrays-in-python");
+//     await this.arrayPage.clickOnLink("/array/practice");
+// });
 
 When('User click on {string} page', async function (linkName) {
     await this.arrayPage.clickOnLink(linkName);
@@ -123,7 +126,7 @@ Then('User should be presented with error message from row {string} of sheet {st
 Then('User should be presented with error message for submit button from row {string} of sheet {string}', async function (rownum, sheetName) {
     const errormsg = await this.arrayPage.getExpectedResultFromExcel(sheetName, rownum);
     expect(await this.arrayPage.getResult()).toContain(errormsg);
-  });
+});
 
 
 
