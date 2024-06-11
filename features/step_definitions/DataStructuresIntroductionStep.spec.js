@@ -1,10 +1,11 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
+const config = require('../../playwright.config');
 
 // @data-structure-links-navigation
 When('User clicks get started for data structure after entering valid credential', async function () {
     this.loginPage = await this.homePage.clickSignInLink();
-    this.homePage = await this.loginPage.validLogin("testuser@gmail.com", "R5h^w&Um3z5HPL");
+    this.homePage = await this.loginPage.validLogin(config.use.username, config.use.password);
     this.datastructurePage = await this.homePage.clickGetStartedOf_DataStructure();
 });
 

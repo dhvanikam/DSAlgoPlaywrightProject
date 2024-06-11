@@ -1,11 +1,12 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
+const config = require('../../playwright.config');
 
 //Background Scenario
 When('User clicks get started for queue after entering valid credential', async function () 
 {
   this.loginPage=await this.homePage.clickSignInLink();
-  this.homePage=await this.loginPage.validLogin("TestUser", "Pass@123");
+  this.homePage = await this.loginPage.validLogin(config.use.username, config.use.password);
   this.queuePage=await this.homePage.clickGetStartedOf_Queue();
 });
 

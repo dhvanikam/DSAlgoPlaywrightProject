@@ -1,9 +1,10 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
+const config = require('../../playwright.config');
 
 When('User clicks get started button for stack after entering valid credential', async function () {
   this.loginPage = await this.homePage.clickSignInLink();
-  this.homePage = await this.loginPage.validLogin("testuser@gmail.com", "R5h^w&Um3z5HPL");
+  this.homePage = await this.loginPage.validLogin(config.use.username, config.use.password);
   this.stackPage = await this.homePage.clickGetStartedOf_Stack();
 });
 

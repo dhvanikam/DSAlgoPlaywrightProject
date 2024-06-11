@@ -1,5 +1,6 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
 const { expect } = require('@playwright/test');
+const config = require('../../playwright.config');
 
 Given('User is on Graph page after logged in to the portal', async function () {
   console.log(await this.page.title());
@@ -13,7 +14,7 @@ Then('User should be navigate to {string} in Graph page', async function (pageNa
 
 When('User clicks get started button for Graph after entering valid credential', async function () {
   this.loginPage = await this.homePage.clickSignInLink();
-  this.homePage = await this.loginPage.validLogin("testuser@gmail.com", "R5h^w&Um3z5HPL");
+  this.homePage = await this.loginPage.validLogin(config.use.username, config.use.password);
   this.graphPage = await this.homePage.clickGetStartedOf_Graph();
 });
 
