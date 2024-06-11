@@ -75,7 +75,7 @@ Feature: Array feature Validations
   @arrays-practice-questionsLinks
   Scenario Outline: Verify user is able to navigate to "<QuestionLinks>" from "<pagename>"
     Given User is on "Array" page after logged in
-    When User click the Practice Questions link from "Arrays in Python" page
+    When User click the Practice Questions link "/array/practice" from "arrays-in-python" page
     And User click on "<QuestionLinks>" page
     Then User should be navigate to a page having an "Assessment" with a Run button and submit button to test
 
