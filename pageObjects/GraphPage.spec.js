@@ -4,7 +4,7 @@ const excelData = require('../utils/ExcelReaderUtil.spec');
 class GraphPage {
 
     constructor(page) {
-        this.page = page;       
+        this.page = page;
         this.basicOpinListsLink = page.locator("[href='basic-operations-in-lists']");
         this.appOfArrayLink = page.locator("[href='applications-of-array']");
         this.practiceQueLink = page.locator("[href='/array/practice']");
@@ -18,7 +18,7 @@ class GraphPage {
         this.submitButton = page.locator('[class="button"]');
         this.textOutput = page.locator('[id="output"]');
         this.signOut = page.locator('[href="/logout"]');
-        this.practiceQuestionLink=page.locator("//a[normalize-space()='Practice Questions']");
+        this.practiceQuestionLink = page.locator("//a[normalize-space()='Practice Questions']");
     }
 
     async clickOnLink(linkName) {
@@ -44,7 +44,6 @@ class GraphPage {
     }
     async enterCode(code) {
         //await this.tryEditorTextarea.waitFor();//which one best to use
-        console.log("🚀 ~ ArrayPage ~ enterCode ~ code:", typeof code)
         await this.page.waitForLoadState('networkidle');
         await this.tryEditorTextarea.fill(code);
 
@@ -67,20 +66,20 @@ class GraphPage {
         return result;
     }
 
-    
-    
+
+
     async getPageNameFromExcel(sheetName, rowNumber) {
-        const output = await excelData.readExcel(sheetName);     
+        const output = await excelData.readExcel(sheetName);
         const linkName = output[rowNumber].get('pagename');
         return linkName;
     }
     async getLinkNameFromExcel(sheetName, rowNumber) {
-        const output = await excelData.readExcel(sheetName);     
+        const output = await excelData.readExcel(sheetName);
         const linkName = output[rowNumber].get('links');
         return linkName;
     }
     async getExpectedResultFromExcel(sheetName, rowNumber) {
-        const output = await excelData.readExcel(sheetName);     
+        const output = await excelData.readExcel(sheetName);
         const expectedResult = output[rowNumber].get('Result');
         return expectedResult;
     }
@@ -105,11 +104,10 @@ class GraphPage {
         return errormsg;
     }
 
-async clickPracticeQuestionButton()
-{
-  await this.practiceQuestionLink.click(); 
-  const currentUrl = await this.page.url();
-  return currentUrl;
-}
+    async clickPracticeQuestionButton() {
+        await this.practiceQuestionLink.click();
+        const currentUrl = await this.page.url();
+        return currentUrl;
+    }
 }
 module.exports = { GraphPage };

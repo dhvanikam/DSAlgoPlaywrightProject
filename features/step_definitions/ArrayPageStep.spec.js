@@ -46,8 +46,8 @@ When('User click the Try here button from {string} page from {string} of sheet {
     await this.arrayPage.clickTryButton();
 });
 
-Then('User should be navigate to a page having an tryEditor with a Run button to test', async function () {
-    await expect(this.page).toHaveTitle("Assessment");
+Then('User should be navigate to a page tryEditor having title an {string} and a Run button to test', async function (pageTitle) {
+    await expect(this.page).toHaveTitle(pageTitle);
 });
 
 //@arrays-tryeditor-validcode
@@ -75,10 +75,7 @@ When('User click the Practice Questions link {string} from {string} page', async
     await this.arrayPage.clickOnLink(pagelink);
     await this.arrayPage.clickOnLink(practiceLink);
 });
-// When('User click the Practice Questions link from {string} page', async function (string) {
-//     await this.arrayPage.clickOnLink("arrays-in-python");
-//     await this.arrayPage.clickOnLink("/array/practice");
-// });
+
 
 When('User click on {string} page', async function (linkName) {
     await this.arrayPage.clickOnLink(linkName);

@@ -40,7 +40,6 @@ Then('User navigate to the home page with a message {string}', { timeout: 100 * 
 When('user enters invalid credentials in the sheetname {string} and row number {int}', { timeout: 100000 }, async function (sheetName, rowNum) {
 
   let data = await excel.getRegistrationData(sheetName, rowNum);
-  //console.log(data)
   this.actualErrMsgArray = [];
   this.actualErrMsgArray.push(await this.registerPage.clickRegisterWithInvalidCredentials(data[0].username, data[0].password, data[0].confirmpassword));
 
@@ -50,7 +49,6 @@ When('user enters invalid credentials in the sheetname {string} and row number {
 When('user enters invalid credentials in the sheetname {string}', { timeout: 100000 }, async function (sheetName) {
 
   let dataSet = await excel.getRegistrationData(sheetName, null);
-  //console.log(dataSet)
   const x = [];
 
   for (const data of dataSet) {
@@ -60,7 +58,6 @@ When('user enters invalid credentials in the sheetname {string}', { timeout: 100
 
   }
   this.actualErrMsgArray = x;
-  // console.log(this.actualErrMsgArray)
 
 })
 
@@ -75,7 +72,6 @@ Then('User verifies for the mismatch error message {string}', function (expected
 
 When('The user clicks Register button with atleast one empty field in the sheetname {string} and row number {int}', async function (sheetName, rowNum) {
   let data = await excel.getRegistrationData(sheetName, rowNum);
-  // console.log(data);
 
   const username = data[0].username;
   const password = data[0].password;
