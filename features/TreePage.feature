@@ -31,7 +31,7 @@ Background:
   Scenario Outline: User is able to navigate to "<Links>" on  queue page
     Given User is on "Tree" page after logged in
     When User click the Try here button for Tree page from "<Links>" page
-    Then User should be navigate to a page having an tryEditor with a Run button to test
+    Then User should be navigate to a page tryEditor having title an "Assessment" and a Run button to test
 
     Examples:
       | Links                       |
