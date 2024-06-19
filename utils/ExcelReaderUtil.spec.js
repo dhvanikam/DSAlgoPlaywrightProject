@@ -4,7 +4,7 @@ const ExcelJS = require('exceljs');
 module.exports = {
     async getRegistrationData(sheetName, rowNum) {
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.readFile("./testData/Excel_Data_Login_Register.xlsx");
+        await workbook.xlsx.readFile("./testData/testDataExcel.xlsx");
 
         const worksheet = workbook.getWorksheet(sheetName);
         const data = [];
@@ -42,7 +42,7 @@ module.exports = {
 
     async getLoginData(sheetName, rowNum) {
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.readFile("./testData/Excel_Data_Login_Register.xlsx");
+        await workbook.xlsx.readFile("./testData/testDataExcel.xlsx");
 
         const worksheet = workbook.getWorksheet(sheetName);
         const data = [];
@@ -75,7 +75,7 @@ module.exports = {
     */
     async readExcel(sheetName) {
         const workbook = new ExcelJS.Workbook();
-        await workbook.xlsx.readFile("./testData/PythonCode.xlsx");
+        await workbook.xlsx.readFile("./testData/testDataExcel.xlsx");
         const worksheet = workbook.getWorksheet(sheetName);
         let excelRows = [];
 

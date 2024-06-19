@@ -35,7 +35,7 @@ Feature: Array feature Validations
   Scenario Outline: Verify user is able to navigate to a page having an tryEditor from "<pagename>"
     Given User is on "Array" page after logged in
     When User click the Try here button from "<pagename>" page from "<rownumber>" of sheet "<SheetName>"
-    Then User should be navigate to a page having an tryEditor with a Run button to test
+    Then User should be navigate to a page tryEditor having title an "Assessment" and a Run button to test
 
     Examples:
       | pagename                       | SheetName             | rownumber |
@@ -75,7 +75,7 @@ Feature: Array feature Validations
   @arrays-practice-questionsLinks
   Scenario Outline: Verify user is able to navigate to "<QuestionLinks>" from "<pagename>"
     Given User is on "Array" page after logged in
-    When User click the Practice Questions link from "Arrays in Python" page
+    When User click the Practice Questions link "/array/practice" from "arrays-in-python" page
     And User click on "<QuestionLinks>" page
     Then User should be navigate to a page having an "Assessment" with a Run button and submit button to test
 

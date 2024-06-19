@@ -13,7 +13,6 @@ class RegisterPage {
         this.confirmpassword = page.locator("#id_password2");
         this.RegisterButton = page.locator("input[value='Register']");
         this.successRegisterText = page.locator("//*[@class='alert alert-primary']");
-        //this.successRegisterText = page.getByText("div[role='alert']");
         this.errorMsgText = page.locator("div.alert.alert-primary");
         this.loginLink_down = page.getByRole('link', {name: 'Login '});
     }
@@ -58,7 +57,6 @@ class RegisterPage {
     {
         await this.username.hover();
         this.tooltipText = await this.username.evaluate(node => node.validationMessage);
-       // console.log('Tooltip text:', this.tooltipText);
         return this.tooltipText.trim();
     }
 
@@ -66,7 +64,6 @@ class RegisterPage {
     {
         await this.password.hover();
         this.tooltipText = await this.password.evaluate(node => node.validationMessage);
-        //console.log('Tooltip text:', this.tooltipText);
         return this.tooltipText.trim(); 
     }
 
@@ -74,7 +71,6 @@ class RegisterPage {
     {
         await this.confirmpassword.hover();
         this.tooltipText = await this.confirmpassword.evaluate(node => node.validationMessage);
-        //console.log('Tooltip text:', this.tooltipText);
         return this.tooltipText.trim();
     }
 

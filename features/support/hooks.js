@@ -11,9 +11,22 @@ Before(async function (scenario) {
 });
 
 Before({ timeout: 100 * 1000 }, async function () {
-  this.browser = await playwright.chromium.launch({
-    headless: true,
-  });
+  const browserName = this.parameters["browser"];
+  if (browserName === 'firefox') {
+    this.browser = await playwright.firefox.launch({
+      headless: false,
+    });
+  }
+  else if (browserName === 'chromium') {
+    this.browser = await playwright.chromium.launch({
+      headless: true,
+    });
+  }
+  else if (browserName === 'webkit') {
+    this.browser = await playwright.webkit.launch({
+      headless: false,
+    });
+  }
 
   this.context = await this.browser.newContext();
   this.page = await this.context.newPage();

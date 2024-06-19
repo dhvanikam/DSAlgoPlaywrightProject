@@ -4,7 +4,6 @@ class DataStructuresIntroductionPage {
 
     constructor(page) {
         this.page = page;
-        this.arraysInPythonLink = page.locator("[href='arrays-in-python']");
         this.tryEditorLink = page.locator('[href="/tryEditor"]');
         this.tryEditorTextarea = page.locator("//textarea[@tabindex='0']");
         this.tryEditorButton = page.locator('[type="button"]');
@@ -27,20 +26,12 @@ class DataStructuresIntroductionPage {
         await this.tryEditorLink.click();
     }
 
-    async clearCodeFromEditor() {
-        await this.tryEditorTextarea.waitFor();
-        await this.tryEditorTextarea.press('Enter');
-        await this.tryEditorTextarea.press('MetaLeft+KeyA+Backspace');
-        //await this.tryEditorTextarea.clear();//did not work
-    }
     async enterCode(code) {
         //await this.tryEditorTextarea.waitFor();//which one best to use
-        console.log("🚀 ~ ArrayPage ~ enterCode ~ code:", typeof code)
         await this.page.waitForLoadState('networkidle');
         await this.tryEditorTextarea.fill(code);
 
     }
-
 
     async clickRunButton() {
         await this.tryEditorButton.click();
