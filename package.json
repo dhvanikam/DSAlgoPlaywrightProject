@@ -4,6 +4,7 @@
   "description": "This is POM Framework with Playwright",
   "main": "index.js",
   "scripts": {
+    "regression_ChromiumBrowser":"npx cucumber-js",
     "regression_FirefoxBrowser":"npx cucumber-js -p profileWithFirefox",
     "regression_WebkitBrowser":"npx cucumber-js -p profileWithWebkit"
 
