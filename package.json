@@ -4,8 +4,9 @@
   "description": "This is POM Framework with Playwright",
   "main": "index.js",
   "scripts": {
-    "regression_FirefoxBrowser":"npx cucumber-js --tags \"@LinkedList-links\" -p profileWithFirefox",
-    "regression_WebkitBrowser":"npx cucumber-js --tags \"@LinkedList-links\" -p profileWithWebkit"
+    "regression_FirefoxBrowser":"npx cucumber-js -p profileWithFirefox",
+    "regression_WebkitBrowser":"npx cucumber-js -p profileWithWebkit"
+
   },
   "keywords": [],
   "author": "JS-Playwright Cruisers",

@@ -41,6 +41,8 @@ module.exports = {
       ...common.worldParameters,
       "browser": "webkit"
     }
-  }
+  },
+  // phone: `--world-parameters '{"device": {"type":"phone","height":568,"width":320}}'`,
+  // tablet: `--world-parameters '{"device": {"type":"tablet","height":1024,"width":768}}'`,
 };
 
