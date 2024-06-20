@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "This is POM Framework with Playwright",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "regression_FirefoxBrowser":"npx cucumber-js --tags \"@LinkedList-links\" -p profileWithFirefox",
+    "regression_WebkitBrowser":"npx cucumber-js --tags \"@LinkedList-links\" -p profileWithWebkit"
+  },
   "keywords": [],
   "author": "JS-Playwright Cruisers",
   "license": "ISC",

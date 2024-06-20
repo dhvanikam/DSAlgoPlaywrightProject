@@ -25,7 +25,7 @@ module.exports = {
     ...common,
     format: ["html:reports/cucumber-report.html"],
     retry: 1,
-    parallel: 1,
+    parallel: 3,
     worldParameters: {
       ...common.worldParameters,
       browser: "firefox"
@@ -36,7 +36,7 @@ module.exports = {
     ...common,
     format: ['./reporter.js'],
     retry: 1,
-    parallel: 1,
+    parallel: 2,
     "worldParameters": {
       ...common.worldParameters,
       "browser": "webkit"

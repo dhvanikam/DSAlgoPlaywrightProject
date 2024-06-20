@@ -10,6 +10,7 @@ Scenario: Verify user can navigate to Data Structures-Introduction page from Hom
     When User clicks on Get Started button of Data Structures-Introduction module
     Then User is able to go to Data Structures-Introduction page
 
+@LinkedList-links 
 Scenario: Verify user can navigate to Array page from Home Page
 	When User clicks on Get Started button of Array module
    	Then User is able to go to Array page
