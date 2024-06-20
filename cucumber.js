@@ -23,7 +23,7 @@ module.exports = {
   },
   profileWithFirefox: {
     ...common,
-    format: ["html:reports/cucumber-report.html"],
+    format: ["html:reports/cucumber-report.html",'./reporter.js'],
     retry: 1,
     parallel: 3,
     worldParameters: {
