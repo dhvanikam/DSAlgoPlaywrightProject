@@ -5,15 +5,6 @@ const {POManager} = require('../../pageObjects/POManager');
 const util = require('../../utils/util.spec.js');
 const contantVals = require('../../utils/appConstants.spec.js');
 
-Given('User launches the browser', async function () {
-    this.browser = await playwright.chromium.launch({
-        headless: false,
-      });
-      this.context = await this.browser.newContext();
-      this.page =  await this.context.newPage();
-      this.pomanager = new POManager(this.page);
-  });
-
   When('User gives the correct DsAlgo portal URL', async function () {
 
     this.homePage =await this.pomanager.getHomePage(); 
