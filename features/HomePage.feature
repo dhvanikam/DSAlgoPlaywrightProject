@@ -1,6 +1,6 @@
 @HomePage
 Feature: Home Page Functionality without sign in for DsAlgo Website
-Background: User has launched the browser
+
 ################ End Point scenarios #####################
 
 Scenario: Verify User is able to land on home page
