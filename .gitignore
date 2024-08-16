@@ -6,3 +6,15 @@ tests-examples
 /blob-report/
 /playwright/.cache/
 cucumber-report.html
+features/test.feature
+features/step_definitions/step.js
+allure-report
+allure-results
+e2e
+auth.json
+C:/Users/subas/DSAlgoPlaywrightProject/reports
+screenshot1.png
+screenshotdir/
+global-setup.js
+loginauth.json
+reports
