@@ -12,15 +12,15 @@ Scenario: Verify user can navigate to Data Structures-Introduction page from Hom
 
 Scenario: Verify user can navigate to Array page from Home Page
 	When User clicks on Get Started button of Array module
-  Then User is able to go to Array page
+   	Then User is able to go to Array page
 
 Scenario: Verify user can navigate to Linked List page from Home Page
 	When User clicks on Get Started button of Linked List module
-  Then User is able to go to Linked List page
+   	Then User is able to go to Linked List page
 
 Scenario: Verify user can navigate to Stack page from Home Page
 	When User clicks on Get Started button of Stack module
-  Then User is able to go to Stack page
+   	Then User is able to go to Stack page
 
 
 Scenario: Verify user can navigate to Queue page from Home Page

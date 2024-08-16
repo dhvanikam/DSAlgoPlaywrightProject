@@ -22,11 +22,14 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  /*globalSetup: require.resolve('./global-setup.js'),*/
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-
+    baseURL:'https://dsportalapp.herokuapp.com/home',
+    username:"testuser@gmail.com",
+    password:"R5h^w&Um3z5HPL",
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
@@ -38,15 +41,16 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
+    
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-
+    /*
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
-    },
+    },*/
 
     /* Test against mobile viewports. */
     // {
@@ -76,4 +80,3 @@ module.exports = defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
